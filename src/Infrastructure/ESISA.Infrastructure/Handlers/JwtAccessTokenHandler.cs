@@ -25,7 +25,7 @@ namespace ESISA.Infrastructure.Handlers
 
         public JwtAccessTokenHandler(IOptions<AccessTokenOptions> options)
         {
-            _accessTokenOptions = options.Value;
+            _accessTokenOptions = options.Value; 
         }
 
         private DateTime expirationDate { get; set; }
