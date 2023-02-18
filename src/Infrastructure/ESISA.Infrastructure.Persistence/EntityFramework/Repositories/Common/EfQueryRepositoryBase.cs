@@ -1,4 +1,5 @@
 ﻿using ESISA.Core.Application.Interfaces.Repositories.Common;
+using ESISA.Core.Application.Utilities.Paging.Extensions;
 using ESISA.Core.Domain.Entities.Common;
 using ESISA.Infrastructure.Persistence.EntityFramework.Contexts;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +26,7 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Repositories.Common
 
         public IQueryable<TEntity> GetAll(bool trackingStatus = false,
                                           Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
+                                          int pageSize = 0, int pageIndex = 0,
                                           params Expression<Func<TEntity, object>>[] includes)
         {
             IQueryable<TEntity> query = this._entities.AsQueryable();
@@ -36,6 +38,9 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Repositories.Common
 
             if (trackingStatus is not true)
                 query = query.AsNoTracking();
+
+            if(pageSize != 0 && pageIndex != 0)
+                query = query.ToPaginate<TEntity>(pageSize, pageIndex);
 
             return query;
         }
@@ -76,6 +81,7 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Repositories.Common
         public IQueryable<TEntity> GetWhere(Expression<Func<TEntity, bool>> predicate,
                                             bool trackingStatus = false,
                                             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
+                                            int pageSize = 0, int pageIndex = 0,
                                             params Expression<Func<TEntity, object>>[] includes)
         {
             IQueryable<TEntity> query = this._entities.AsQueryable();
@@ -90,6 +96,9 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Repositories.Common
 
             if (trackingStatus is not true)
                 query = query.AsNoTracking();
+
+            if (pageSize != 0 && pageIndex != 0)
+                query = query.ToPaginate<TEntity>(pageSize, pageIndex);
 
             return query;
         }

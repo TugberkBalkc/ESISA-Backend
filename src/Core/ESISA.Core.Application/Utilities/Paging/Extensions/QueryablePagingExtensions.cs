@@ -10,9 +10,9 @@ namespace ESISA.Core.Application.Utilities.Paging.Extensions
     {
         public static IQueryable<T> ToPaginate<T>(this IQueryable<T> query, int pageSize, int pageIndex)
         {
-            int count  = query.Count();
+            int count = query.Count();
 
-            int totalPageAmount = (int) Math.Ceiling( (decimal) (count / pageSize));
+            int totalPageAmount = (int)Math.Ceiling((decimal)(count / pageSize));
 
             CheckNotEmptyAccuracy(count);
             CheckTotalPageAmountAndPageIndexAccuracy(totalPageAmount, pageIndex);
@@ -37,7 +37,7 @@ namespace ESISA.Core.Application.Utilities.Paging.Extensions
             if (pageSize >= count)
                 throw new ArgumentException("Page Size Cannot Greater Than Or Equal To Queryable's Count To Paging");
         }
-        
+
         private static void CheckNotEmptyAccuracy(int count)
         {
             if (count == 0)
