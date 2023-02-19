@@ -12,7 +12,7 @@ namespace ESISA.Infrastructure.Persistence.Extensions
 {
     public static class LayerRegistration
     {
-        public static void RegisterPersistenceServices(this IServiceCollection services, IConfiguration configuration)
+        public static void RegisterPersistenceDependencies(this IServiceCollection services, IConfiguration configuration)
         {
             services.RegisterAddressDomainEntitiesRepositories();
             services.RegisterAdvertDomainEntitiesRepositories();
