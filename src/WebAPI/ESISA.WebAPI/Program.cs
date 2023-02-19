@@ -1,4 +1,5 @@
 using ESISA.Core.Application.Extensions;
+using ESISA.Infrastructure.Extensions;
 using ESISA.Infrastructure.Persistence.Extensions;
 using ESISA.WebAPI.Extensions;
 using System.Reflection;
@@ -13,6 +14,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.RegisterApplicationDependencies(builder.Configuration, Assembly.GetExecutingAssembly());
+builder.Services.RegisterInfrastructureDependencies();
 builder.Services.RegisterPersistenceDependencies(builder.Configuration);
 builder.Services.RegisterWebAPIDependencies();
 

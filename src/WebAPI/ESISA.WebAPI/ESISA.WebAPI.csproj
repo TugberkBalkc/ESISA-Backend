@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\ESISA.Infrastructure.Persistence\ESISA.Infrastructure.Persistence.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\ESISA.Infrastructure\ESISA.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
