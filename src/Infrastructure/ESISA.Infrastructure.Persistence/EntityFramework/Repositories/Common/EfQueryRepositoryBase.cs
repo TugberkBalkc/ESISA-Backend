@@ -26,7 +26,6 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Repositories.Common
 
         public IQueryable<TEntity> GetAll(bool trackingStatus = false,
                                           Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-                                          int pageSize = 0, int pageIndex = 0,
                                           params Expression<Func<TEntity, object>>[] includes)
         {
             IQueryable<TEntity> query = this._entities.AsQueryable();
@@ -39,15 +38,12 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Repositories.Common
             if (trackingStatus is not true)
                 query = query.AsNoTracking();
 
-            if(pageSize != 0 && pageIndex != 0)
-                query = query.ToPaginate<TEntity>(pageSize, pageIndex);
-
             return query;
         }
 
         public async Task<TEntity> GetByIdAsync(Guid id,
-                                          bool trackingStatus = false,
-                                          params Expression<Func<TEntity, object>>[] includes)
+                                                bool trackingStatus = false,
+                                                params Expression<Func<TEntity, object>>[] includes)
         {
             IQueryable<TEntity> query = this._entities.AsQueryable();
 
@@ -62,8 +58,8 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Repositories.Common
         }
 
         public async Task<TEntity> GetSingleAsync(Expression<Func<TEntity, bool>> predicate,
-                                            bool trackingStatus = false,
-                                            params Expression<Func<TEntity, object>>[] includes)
+                                                  bool trackingStatus = false,
+                                                  params Expression<Func<TEntity, object>>[] includes)
         {
             IQueryable<TEntity> query = this._entities.AsQueryable();
 
@@ -81,7 +77,6 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Repositories.Common
         public IQueryable<TEntity> GetWhere(Expression<Func<TEntity, bool>> predicate,
                                             bool trackingStatus = false,
                                             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-                                            int pageSize = 0, int pageIndex = 0,
                                             params Expression<Func<TEntity, object>>[] includes)
         {
             IQueryable<TEntity> query = this._entities.AsQueryable();
@@ -97,14 +92,11 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Repositories.Common
             if (trackingStatus is not true)
                 query = query.AsNoTracking();
 
-            if (pageSize != 0 && pageIndex != 0)
-                query = query.ToPaginate<TEntity>(pageSize, pageIndex);
-
             return query;
         }
 
         private static IQueryable<TEntity> ApplyInclude(IQueryable<TEntity> query,
-                                                   params Expression<Func<TEntity, object>>[] includes)
+                                                        params Expression<Func<TEntity, object>>[] includes)
         {
             if (includes is not null)
             {

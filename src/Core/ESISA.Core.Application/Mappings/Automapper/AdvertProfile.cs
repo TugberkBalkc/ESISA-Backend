@@ -18,10 +18,10 @@ namespace ESISA.Core.Application.Mappings.Automapper
                 .ForMember(e => e.Description, e => e.MapFrom(e => e.AdvertDescription))
                 .ReverseMap();
 
-            this.CreateMap<CreateIndividualAdvertDto, IndividualAdvert>()
-                .ForMember(e => e.AdvertId, e => e.MapFrom(e => e))
-                .ForMember(e => e.Description, e => e.MapFrom(e => e.AdvertDescription))
-                .ReverseMap();
+            //this.CreateMap<CreateIndividualAdvertDto, IndividualAdvert>()
+            //    .ForMember(e => e.AdvertId, e => e.MapFrom(e => e))
+            //    .ForMember(e => e.Description, e => e.MapFrom(e => e.AdvertDescription))
+            //    .ReverseMap();
         }
     }
 }

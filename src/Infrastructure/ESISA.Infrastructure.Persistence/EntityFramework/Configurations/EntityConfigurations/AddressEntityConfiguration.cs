@@ -58,8 +58,6 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Configurations.Entity
                 .IsRequired(false)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasOne(e => e.Dealer);
-
             builder.HasMany(e => e.CorporateCustomerAddresses);
 
             builder.HasMany(e => e.IndividualCustomerAddresses);

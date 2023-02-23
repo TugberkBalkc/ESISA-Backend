@@ -24,19 +24,10 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Configurations.Entity
                 .HasColumnName("UserId")
                 .HasColumnType("uniqueidentifier");
 
-            builder.Property(e => e.AddressId)
-             .HasColumnName("AddressId")
-             .HasColumnType("uniqueidentifier");
-
 
             builder.HasOne(e => e.User)
                 .WithOne(e => e.Dealer)
                 .HasForeignKey<Dealer>(e => e.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            builder.HasOne(e => e.Address)
-                .WithOne(e => e.Dealer)
-                .HasForeignKey<Dealer>(e => e.AddressId)
                 .OnDelete(DeleteBehavior.Cascade);
 
 

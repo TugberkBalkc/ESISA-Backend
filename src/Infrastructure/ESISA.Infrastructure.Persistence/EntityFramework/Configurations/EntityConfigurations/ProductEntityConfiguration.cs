@@ -33,8 +33,15 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Configurations.Entity
                  .HasColumnType("nvarchar(MAX)");
 
 
-            builder.HasOne(e=>e.Category)
-                   .WithMany(e=>e.)
+            builder.HasOne(e => e.Category)
+                   .WithMany(e => e.Products)
+                   .HasForeignKey(e => e.CategoryId)
+                   .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasOne(e => e.Brand)
+              .WithMany(e => e.Products)
+              .HasForeignKey(e => e.BrandId)
+              .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

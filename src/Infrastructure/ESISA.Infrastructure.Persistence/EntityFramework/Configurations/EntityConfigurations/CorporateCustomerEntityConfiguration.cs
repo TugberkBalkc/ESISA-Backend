@@ -50,7 +50,7 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Configurations.Entity
 
             builder.HasMany(e => e.CorporateCustomerCorporateDealerComments);
 
-            builder.HasMany(e => e.WholesaleAdvertOrders);
+            builder.HasMany(e => e.CorporateCustomerWholesaleAdvertOrders);
         }
     }
 }

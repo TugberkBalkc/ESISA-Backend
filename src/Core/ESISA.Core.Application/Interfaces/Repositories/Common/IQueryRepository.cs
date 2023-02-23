@@ -13,12 +13,10 @@ namespace ESISA.Core.Application.Interfaces.Repositories.Common
     {
         IQueryable<TEntity> GetAll(bool trackingStatus = false,
                                    Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-                                   int pageSize = 0, int pageIndex = 0,
                                    params Expression<Func<TEntity, object>>[] includes);
         IQueryable<TEntity> GetWhere(Expression<Func<TEntity, bool>> predicate,
                                      bool trackingStatus = false,
                                      Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-                                     int pageSize = 0, int pageIndex = 0,
                                      params Expression<Func<TEntity, object>>[] includes);
 
         Task<TEntity> GetByIdAsync(Guid id,
