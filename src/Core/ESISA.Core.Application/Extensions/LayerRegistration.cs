@@ -16,6 +16,8 @@ namespace ESISA.Core.Application.Extensions
             services.RegisterAutoMapper(assembly);
             services.RegisterMediatR(assembly);
 
+            services.RegisterMediatRPipelines();
+
             services.RegisterApplicationOptions(configuration);
 
             services.AddHttpContextAccessor();
