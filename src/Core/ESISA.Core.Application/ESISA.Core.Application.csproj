@@ -28,7 +28,8 @@
     <Folder Include="Interfaces\Repositories\Payment\" />
     <Folder Include="Rules\BusinessRules\" />
     <Folder Include="Rules\ValidationRules\FluentValidation\" />
-    <Folder Include="Utilities\Pipelines\MediatR\" />
+    <Folder Include="Utilities\Pipelines\MediatR\Authorization\" />
+    <Folder Include="Utilities\Pipelines\MediatR\Transaction\" />
   </ItemGroup>
 
 </Project>
