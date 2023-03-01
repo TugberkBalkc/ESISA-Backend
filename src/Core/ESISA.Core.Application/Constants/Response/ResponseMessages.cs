@@ -8,5 +8,6 @@ namespace ESISA.Core.Application.Constants.Response
 {
     public static class ResponseMessages
     {
+        public const String ValidationError = "Validation Error";
     }
 }

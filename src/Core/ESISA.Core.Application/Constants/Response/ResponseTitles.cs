@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace ESISA.Core.Application.Constants.Response
 {
-    internal class InnerResponseTitles
+    public class ResponseTitles
     {
+        public const String Success = "Successful";
+        public const String Warning = "Warning";
+        public const String Information = "Information";
+        public const String Error = "Error";
     }
 }

@@ -1,4 +1,5 @@
-﻿using ESISA.Core.Domain.Exceptions.AuthenticationAndAuthorization;
+﻿using ESISA.Core.Application.Constants.Response;
+using ESISA.Core.Domain.Exceptions.AuthenticationAndAuthorization;
 using ESISA.Core.Domain.Exceptions.Authorization;
 using ESISA.Core.Domain.Exceptions.BusinessLogic;
 using ESISA.Core.Domain.Exceptions.Database;
@@ -126,9 +127,7 @@ namespace ESISA.Core.Application.CrossCuttingConcerns.ExceptionHanding
 
             var validationErrors = validationException.Errors;
 
-            String[] exceptionHeaders = validationException.Message.Split(',');
-
-            var exceptionDetails = new ESISA.Core.Domain.Exceptions.Validation.ValidationExceptionDetails(exceptionHeaders[0], exceptionHeaders[1], StatusCodes.Status400BadRequest, validationErrors);
+            var exceptionDetails = new ESISA.Core.Domain.Exceptions.Validation.ValidationExceptionDetails(ResponseTitles.Error, ResponseMessages.ValidationError, StatusCodes.Status400BadRequest, validationErrors);
 
             await httpContext.Response.WriteAsync(exceptionDetails.ToString());
         }
