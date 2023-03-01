@@ -8,15 +8,7 @@ namespace ESISA.Core.Domain.Exceptions.Database
 {
     public class DatabaseException : Exception
     {
-        public DatabaseException() : base("Database Exception")
-        {
-        }
-
-        public DatabaseException(string? message) : base(message)
-        {
-        }
-
-        public DatabaseException(string? message, Exception? innerException) : base(message, innerException)
+        public DatabaseException(String title, String message) : base(title + ',' + message)
         {
         }
     }

@@ -8,5 +8,8 @@ namespace ESISA.Core.Domain.Exceptions.Validation
 {
     public class ValidationException : Exception
     {
+        public ValidationException(String title, String message) : base(title + ',' + message)
+        {
+        }
     }
 }

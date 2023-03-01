@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace ESISA.Core.Domain.Exceptions.BusinessLogic
 {
-    internal class BusinessLogicException
+    public class BusinessLogicException : Exception
     {
+        public BusinessLogicException(String title, String message) : base(title + "," + message)
+        {
+        }
     }
 }

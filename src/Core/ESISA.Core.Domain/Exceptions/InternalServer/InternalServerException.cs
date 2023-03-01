@@ -9,16 +9,7 @@ namespace ESISA.Core.Domain.Exceptions.InternalServer
 {
     public class InternalServerException : Exception
     {
-        public InternalServerException() : base($"{DefaultDomainExceptionTitles.InternalExceptionTitle}{DefaultDomainExceptionMessages.InternalExceptionMessage}")
-        {
-
-        }
-
-        public InternalServerException(String message) : base($"{DefaultDomainExceptionTitles.InternalExceptionTitle}:{message}")
-        {
-        }
-
-        public InternalServerException(String title, String message) : base($"{title}:{message}")
+        public InternalServerException(String title, String message) : base(title + ',' + message)
         {
         }
     }

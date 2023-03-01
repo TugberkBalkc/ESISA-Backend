@@ -22,8 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="CrossCuttingConcerns\Transaction\" />
     <Folder Include="Dtos\Security\Authentication\Logins\" />
-    <Folder Include="Features\MediatR\Commands\" />
+    <Folder Include="Features\MediatR\Commands\NewFolder\" />
     <Folder Include="Features\MediatR\Queries\" />
     <Folder Include="Interfaces\Repositories\Payment\" />
     <Folder Include="Rules\BusinessRules\" />
