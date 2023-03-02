@@ -1,4 +1,5 @@
 ﻿using ESISA.Core.Domain.Entities.Common;
+using ESISA.Core.Domain.Entities.Identity.AuthenticationAndAuthorization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +17,10 @@ namespace ESISA.Core.Domain.Entities
         public byte[] PasswordSalt { get; set; }
         public bool Status { get; set; }
 
-        public virtual RefreshToken RefreshToken { get; set; }
-
         public virtual Customer Customer { get; set; }
         public virtual Dealer Dealer { get; set; }
 
         public virtual ICollection<UserRole> UserRoles { get; set; }
+        public virtual ICollection<UserRefreshToken> UserRefreshTokens { get; set; }
     }
 }

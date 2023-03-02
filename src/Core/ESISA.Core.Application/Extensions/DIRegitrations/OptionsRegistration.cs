@@ -15,24 +15,15 @@ namespace ESISA.Core.Application.Extensions.DIRegitrations
     {
         public static void RegisterApplicationOptions(this IServiceCollection services, IConfiguration configuration)
         {
-            services.ConfigureAccessTokenOptions(configuration);
-            services.ConfigureRefreshTokenOptions(configuration);
+            services.ConfigureTokenOptions(configuration);
             services.ConfigureDatabaseOptions(configuration);
         }
 
-        private static void ConfigureAccessTokenOptions(this IServiceCollection services, IConfiguration configuration)
+        private static void ConfigureTokenOptions(this IServiceCollection services, IConfiguration configuration)
         {
-            services.Configure<AccessTokenOptions>(accessTokenOptions =>
+            services.Configure<TokenOptions>(accessTokenOptions =>
             {
-                accessTokenOptions = NonInjectableOptionsTool.GetAccessTokenOptions(configuration);
-            });
-        }
-
-        private static void ConfigureRefreshTokenOptions(this IServiceCollection services, IConfiguration configuration)
-        {
-            services.Configure<RefreshTokenOptions>(refreshTokenOptions =>
-            {
-                refreshTokenOptions = NonInjectableOptionsTool.GetRefreshTokenOptions(configuration);
+                accessTokenOptions = NonInjectableOptionsTool.GetTokenOptions(configuration);
             });
         }
 

@@ -14,7 +14,7 @@ namespace ESISA.Infrastructure.Extensions.DIRegistrations
     {
         internal static void RegisterHandlers(this IServiceCollection services)
         {
-            services.AddScoped<IAccessTokenHandler, JwtAccessTokenHandler>();
+            services.AddScoped<ITokenHandler, JwtTokenHandler>();
         }
     }
 }

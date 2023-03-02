@@ -9,7 +9,7 @@ namespace ESISA.Core.Application.Interfaces.Services.Authentications
 {
     public interface IExternalAuthenticationService
     {
-        Task<AccessToken> FacebookLoginAsync(String authToken, int tokenLifeTimeInSeconds);
-        Task<AccessToken> GoogleLoginAsync(String idToken, int tokenLifeTimeInSeconds);
+        Task<Token> FacebookLoginAsync(String authToken, int tokenLifeTimeInSeconds);
+        Task<Token> GoogleLoginAsync(String idToken, int tokenLifeTimeInSeconds);
     }
 }

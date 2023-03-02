@@ -1,9 +1,11 @@
 ﻿using ESISA.Core.Application.Interfaces.Repositorie;
 using ESISA.Core.Application.Interfaces.Repositories;
 using ESISA.Core.Application.Interfaces.Repositories.Discount;
+using ESISA.Core.Application.Interfaces.Repositories.Identity.AuthenticationAndAuthorization;
 using ESISA.Core.Domain.Entities;
 using ESISA.Infrastructure.Persistence.EntityFramework;
 using ESISA.Infrastructure.Persistence.EntityFramework.Repositories;
+using ESISA.Infrastructure.Persistence.EntityFramework.Repositories.Identity.AuthenticationAndAuthorization;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -134,14 +136,14 @@ namespace ESISA.Infrastructure.Persistence.Extensions.DIRegistrations
             services.AddScoped<IOperationClaimCommandRepository, EFOperationClaimCommandRepository>();
             services.AddScoped<IOperationClaimQueryRepository, EFOperationClaimQueryRepository>();
 
-            services.AddScoped<IRefreshTokenCommandRepository, EFRefreshTokenCommandRepository>();
-            services.AddScoped<IRefreshTokenQueryRepository, EFRefreshTokenQueryRepository>();
-
             services.AddScoped<IRoleCommandRepository, EFRoleCommandRepository>();
             services.AddScoped<IRoleQueryRepository, EFRoleQueryRepository>();
 
             services.AddScoped<IRoleOperationClaimCommandRepository, EFRoleOperationClaimCommandRepository>();
             services.AddScoped<IRoleOperationClaimQueryRepository, EFRoleOperationClaimQueryRepository>();
+
+            services.AddScoped<IUserRefreshTokenCommandRepository, EFUserRefreshTokenCommandRepository>();
+            services.AddScoped<IUserRefreshTokenQueryRepository, EFUserRefreshTokenQueryRepository>();
 
             services.AddScoped<IUserRoleCommandRepository, EFUserRoleCommandRepository>();
             services.AddScoped<IUserRoleQueryRepository, EFUserRoleQueryRepository>();

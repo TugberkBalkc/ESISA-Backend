@@ -13,7 +13,7 @@ namespace ESISA.Core.Application.Interfaces.Services.Authentications
 {
     public interface IInternalAuthenticationService
     {
-        Task<AccessToken> LoginAsync(UserLoginDto userLoginDto, int tokenLifeTimeInSeconds);
+        Task<Token> LoginAsync(UserLoginDto userLoginDto, int tokenLifeTimeInSeconds);
 
 
         Task<IndividualStarterDto> RegisterAsIndividualStarterAsync(RegisterIndividualStarterDto registerIndividualStarterDto);

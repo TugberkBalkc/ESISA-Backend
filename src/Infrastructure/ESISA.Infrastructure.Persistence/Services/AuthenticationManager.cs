@@ -17,33 +17,31 @@ namespace ESISA.Infrastructure.Persistence.Services
 {
     public class AuthenticationManager : IAuthenticationService
     {
-        private readonly IAccessTokenHandler _accessTokenHandler;
-        private readonly IRefreshTokenHandler _refreshTokenHandler;
+        private readonly ITokenHandler _tokenHandler;
 
         private readonly IUserCommandRepository _userCommandRepository;
 
         private readonly IMapper _mapper;
 
-        public AuthenticationManager(IAccessTokenHandler accessTokenHandler, IRefreshTokenHandler refreshTokenHandler, IUserCommandRepository userCommandRepository, IMapper mapper)
+        public AuthenticationManager(ITokenHandler tokenHandler, IUserCommandRepository userCommandRepository, IMapper mapper)
         {
-            _accessTokenHandler = accessTokenHandler;
-            _refreshTokenHandler = refreshTokenHandler;
+            _tokenHandler = tokenHandler;
             _userCommandRepository = userCommandRepository;
 
             _mapper = mapper;
         }
 
-        public Task<AccessToken> FacebookLoginAsync(string authToken, int tokenLifeTimeInSeconds)
+        public Task<Token> FacebookLoginAsync(string authToken, int tokenLifeTimeInSeconds)
         {
             throw new NotImplementedException();
         }
 
-        public Task<AccessToken> GoogleLoginAsync(string idToken, int tokenLifeTimeInSeconds)
+        public Task<Token> GoogleLoginAsync(string idToken, int tokenLifeTimeInSeconds)
         {
             throw new NotImplementedException();
         }
 
-        public Task<AccessToken> LoginAsync(UserLoginDto userLoginDto, int tokenLifeTimeInSeconds)
+        public Task<Token> LoginAsync(UserLoginDto userLoginDto, int tokenLifeTimeInSeconds)
         {
             throw new NotImplementedException();
         }

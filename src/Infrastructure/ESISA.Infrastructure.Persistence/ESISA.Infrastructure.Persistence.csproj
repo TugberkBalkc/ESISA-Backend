@@ -27,6 +27,7 @@
     <Folder Include="Constants\" />
     <Folder Include="EntityFramework\Migrations\" />
     <Folder Include="EntityFramework\Repositories\Payment\" />
+    <Folder Include="Handlers\" />
   </ItemGroup>
 
 </Project>

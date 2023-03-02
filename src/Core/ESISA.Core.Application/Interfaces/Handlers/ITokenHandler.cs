@@ -9,8 +9,10 @@ using System.Threading.Tasks;
 
 namespace ESISA.Core.Application.Interfaces.Handlers
 {
-    public interface IAccessTokenHandler
+    public interface ITokenHandler
     {
-        AccessToken CreateAccessToken(Guid userId, String userFirstName, String userLastName, String userEmail, String[] usersRoleNames);
+        Token CreateToken(Guid userId, String userFirstName, String userLastName, String userEmail, String[] usersRoleNames);
+        Token CreateTokenByRefreshToken(String refreshToken);
+        void RevokeRefreshToken(String refreshToken);
     }
 }

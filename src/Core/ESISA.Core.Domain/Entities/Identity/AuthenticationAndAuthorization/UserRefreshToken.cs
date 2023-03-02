@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESISA.Core.Domain.Entities
+namespace ESISA.Core.Domain.Entities.Identity.AuthenticationAndAuthorization
 {
-    public class RefreshToken : EntityBase
+    public class UserRefreshToken : EntityBase
     {
         public Guid UserId { get; set; }
-        public String Token { get; set; }
-        public DateTime ExpirationDate { get; set; }
+        public String RefreshTokenCode { get; set; }
+        public DateTime RefreshTokenExpiration { get; set; }
 
         public virtual User User { get; set; }
     }

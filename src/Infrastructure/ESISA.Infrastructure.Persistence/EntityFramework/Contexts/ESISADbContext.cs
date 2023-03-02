@@ -1,5 +1,6 @@
 ﻿using ESISA.Core.Domain.Entities;
 using ESISA.Core.Domain.Entities.Common;
+using ESISA.Core.Domain.Entities.Identity.AuthenticationAndAuthorization;
 using ESISA.Infrastructure.Persistence.EntityFramework.Configurations.EntityConfigurations;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -79,6 +80,7 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Contexts
         public DbSet<OperationClaim> OperationClaims { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<RoleOperationClaim> RoleOperationClaims { get; set; }
+        public DbSet<UserRefreshToken> UserRefreshTokens { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
         //End Of Authorization Tables
 
