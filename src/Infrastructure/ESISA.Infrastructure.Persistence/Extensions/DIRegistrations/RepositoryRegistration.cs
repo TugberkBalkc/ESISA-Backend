@@ -11,11 +11,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESISA.Infrastructure.Persistence.Extensions
+namespace ESISA.Infrastructure.Persistence.Extensions.DIRegistrations
 {
     public static class RepositoryRegistration
     {
-        public static void RegisterAddressDomainEntitiesRepositories(this IServiceCollection services)
+        internal static void RegisterAddressDomainEntitiesRepositories(this IServiceCollection services)
         {
             //Addresses
             services.AddScoped<IAddressCommandRepository, EFAddressCommandRepository>();

@@ -9,15 +9,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESISA.Core.Application.Extensions
+namespace ESISA.Core.Application.Extensions.DIRegitrations
 {
     public static class OptionsRegistration
     {
         public static void RegisterApplicationOptions(this IServiceCollection services, IConfiguration configuration)
         {
-            ConfigureAccessTokenOptions(services, configuration);
-            ConfigureRefreshTokenOptions(services, configuration);
-            ConfigureDatabaseOptions(services, configuration);
+            services.ConfigureAccessTokenOptions(configuration);
+            services.ConfigureRefreshTokenOptions(configuration);
+            services.ConfigureDatabaseOptions(configuration);
         }
 
         private static void ConfigureAccessTokenOptions(this IServiceCollection services, IConfiguration configuration)

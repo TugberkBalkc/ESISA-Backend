@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESISA.Infrastructure.Extensions
+namespace ESISA.Infrastructure.Extensions.DIRegistrations
 {
     internal static class HandlerRegistration
     {

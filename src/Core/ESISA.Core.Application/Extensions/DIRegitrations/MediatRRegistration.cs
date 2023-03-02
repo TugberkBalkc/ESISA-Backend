@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESISA.Core.Application.Extensions
+namespace ESISA.Core.Application.Extensions.DIRegitrations
 {
     internal static class MediatRRegistration
     {

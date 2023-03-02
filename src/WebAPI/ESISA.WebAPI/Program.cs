@@ -1,6 +1,7 @@
-using ESISA.Core.Application.Extensions;
-using ESISA.Infrastructure.Extensions;
-using ESISA.Infrastructure.Persistence.Extensions;
+using ESISA.Core.Application.Extensions.DIRegitrations;
+using ESISA.Core.Application.Extensions.MiddlewareRegistrations;
+using ESISA.Infrastructure.Extensions.DIRegistrations;
+using ESISA.Infrastructure.Persistence.Extensions.DIRegistrations;
 using ESISA.WebAPI.Extensions;
 using System.Reflection;
 
@@ -26,6 +27,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseHttpExceptionHandlerMiddleware();
 
 app.UseHttpsRedirection();
 
