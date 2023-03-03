@@ -31,7 +31,7 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Configurations.Entity
 
             builder.HasOne(e => e.IndividualCustomer)
                 .WithMany(e => e.IndividualCustomerCorporateAdvertVotes)
-                .HasForeignKey(e => e.IndividualCustomer)
+                .HasForeignKey(e => e.IndividualCustomerId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(e => e.CorporateAdvert)

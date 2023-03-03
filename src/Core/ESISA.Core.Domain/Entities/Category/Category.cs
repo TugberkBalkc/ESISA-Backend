@@ -9,7 +9,7 @@ namespace ESISA.Core.Domain.Entities
 {
     public class Category : EntityBase
     {
-        public Guid ParentCategoryId { get; set; }
+        public Nullable<Guid> ParentCategoryId { get; set; }
 
         public String Name { get; set; }
         public String Description { get; set; }

@@ -1,4 +1,5 @@
 ﻿using ESISA.Core.Domain.Constants;
+using ESISA.Core.Domain.Entities.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ESISA.Core.Domain.Entities
 {
-    public class WholesaleAdvert : Advert
+    public class WholesaleAdvert : EntityBase
     {
         public Guid AdvertId { get; set; }
         public Guid CorporateDealerId { get; set; }

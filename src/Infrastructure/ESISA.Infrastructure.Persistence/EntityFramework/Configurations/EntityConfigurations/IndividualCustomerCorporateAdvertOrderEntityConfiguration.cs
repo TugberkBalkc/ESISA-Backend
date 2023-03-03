@@ -42,22 +42,22 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Configurations.Entity
             builder.HasOne(e => e.Order)
                 .WithOne(e => e.IndividualCustomerCorporateAdvertOrder)
                 .HasForeignKey<IndividualCustomerCorporateAdvertOrder>(e => e.OrderId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(e => e.CorporateDealer)
            .WithMany(e => e.IndividualCustomerCorporateAdvertOrders)
            .HasForeignKey(e => e.CorporateDealerId)
-           .OnDelete(DeleteBehavior.Cascade);
+           .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(e => e.IndividualCustomer)
              .WithMany(e => e.IndividualCustomerCorporateAdvertOrders)
              .HasForeignKey(e => e.IndividualCustomerId)
-             .OnDelete(DeleteBehavior.Cascade);
+             .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(e => e.IndividualCustomerAddress)
            .WithMany(e => e.IndividualCustomerCorporateAdvertOrders)
            .HasForeignKey(e => e.IndividualCustomerAddressId)
-           .OnDelete(DeleteBehavior.Cascade);
+           .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasMany(e => e.CorporateAdvertOrderItems);
         }

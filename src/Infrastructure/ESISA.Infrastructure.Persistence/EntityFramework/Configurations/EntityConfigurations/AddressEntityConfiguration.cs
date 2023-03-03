@@ -31,7 +31,7 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Configurations.Entity
 
             builder.Property(e => e.DistrictId)
                 .HasColumnName("DistrictId")
-                .HasColumnType("uniqueidentifiers");
+                .HasColumnType("uniqueidentifier");
 
             builder.Property(e => e.PostalCode)
                 .HasColumnName("PostalCode")

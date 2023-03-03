@@ -32,12 +32,10 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Configurations.Entity
                 .HasColumnName("Description")
                 .HasColumnType("nvarchar(MAX)");
 
-
             builder.HasOne(e => e.ParentCategory)
                    .WithMany(e => e.ChildCategories)
                    .HasForeignKey(e => e.ParentCategoryId)
-                   .OnDelete(DeleteBehavior.Cascade);
-
+                   .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasMany(e => e.CategoryPhotoPaths);
 

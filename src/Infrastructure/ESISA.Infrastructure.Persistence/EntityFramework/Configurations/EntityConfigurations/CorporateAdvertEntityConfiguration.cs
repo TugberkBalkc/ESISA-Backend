@@ -63,7 +63,7 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Configurations.Entity
             builder.HasOne(e => e.Product)
                 .WithMany(e => e.CorporateAdverts)
                 .HasForeignKey(e => e.ProductId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(e => e.PurchaseQuantityDiscount)
              .WithMany(e => e.CorporateAdverts)

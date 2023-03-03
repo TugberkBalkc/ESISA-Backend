@@ -1,7 +1,7 @@
-﻿using ESISA.Core.Domain.Entities;
-using ESISA.Core.Domain.Entities.Common;
+﻿using ESISA.Core.Domain.Entities.Common;
 using ESISA.Core.Domain.Entities.Identity.AuthenticationAndAuthorization;
-using ESISA.Infrastructure.Persistence.EntityFramework.Configurations.EntityConfigurations;
+using ESISA.Core.Domain.Entities;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,6 +9,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection.Emit;
 
 namespace ESISA.Infrastructure.Persistence.EntityFramework.Contexts
 {
@@ -50,7 +51,7 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Contexts
 
 
         //Evaluation Tables
-        
+
         //Comment Tables
         public DbSet<CorporateCustomerWholesaleAdvertComment> CorporateCustomerWholesaleAdvertComments { get; set; }
         public DbSet<IndividualCustomerCorporateAdvertComment> IndividualCustomerCorporateAdvertComments { get; set; }
@@ -149,6 +150,8 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            this.SetRelationShipsOnDeleteBehaviors(DeleteBehavior.Restrict, modelBuilder);
+
             var assembly = Assembly.GetExecutingAssembly();
 
             modelBuilder.ApplyConfigurationsFromAssembly(assembly);
@@ -192,7 +195,7 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Contexts
         {
             entities.ToList().ForEach(e =>
             {
-                if(e.CreatedDate == DateTime.MinValue)
+                if (e.CreatedDate == DateTime.MinValue)
                 {
                     e.Id = Guid.NewGuid();
                     e.CreatedDate = DateTime.Now;
@@ -208,8 +211,16 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Contexts
             entities.ToList().ForEach(e =>
             {
                 if (e.Id != Guid.Empty)
-                 e.ModifiedDate = DateTime.Now;
+                    e.ModifiedDate = DateTime.Now;
             });
+        }
+
+        private void SetRelationShipsOnDeleteBehaviors(DeleteBehavior deleteBehavior, ModelBuilder modelBuilder)
+        {
+            foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+            {
+                relationship.DeleteBehavior = deleteBehavior;
+            }
         }
     }
 }

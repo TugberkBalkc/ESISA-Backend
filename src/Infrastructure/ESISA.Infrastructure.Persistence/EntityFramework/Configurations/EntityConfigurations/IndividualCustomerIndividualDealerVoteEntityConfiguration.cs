@@ -31,13 +31,13 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Configurations.Entity
 
             builder.HasOne(e => e.IndividualCustomer)
                 .WithMany(e => e.IndividualCustomerIndividualDealerVotes)
-                .HasForeignKey(e => e.IndividualCustomer)
-                .OnDelete(DeleteBehavior.Cascade);
+                .HasForeignKey(e => e.IndividualCustomerId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(e => e.IndividualDealer)
                 .WithMany(e => e.IndividualCustomerIndividualDealerVotes)
                 .HasForeignKey(e => e.IndividualDealerId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

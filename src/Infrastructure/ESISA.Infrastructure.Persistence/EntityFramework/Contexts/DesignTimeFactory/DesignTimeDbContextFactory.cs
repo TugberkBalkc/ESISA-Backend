@@ -15,6 +15,11 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Contexts.DesignTimeFa
     public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<ESISADbContext>
     {
         private readonly String _connectionString;
+        public DesignTimeDbContextFactory()
+        {
+
+        }
+
         public DesignTimeDbContextFactory(IOptions<SqlServerDatabaseOptions> options)
         {
             _connectionString = options.Value.ConnectionString;
@@ -24,7 +29,7 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Contexts.DesignTimeFa
         {
             DbContextOptionsBuilder<ESISADbContext> dbContextOptionsBuilder = new();
 
-            dbContextOptionsBuilder.UseSqlServer(_connectionString);
+            dbContextOptionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=ESISA;Trusted_Connection=True;MultipleActiveResultSets=true;");
 
             return new(dbContextOptionsBuilder.Options);
         }

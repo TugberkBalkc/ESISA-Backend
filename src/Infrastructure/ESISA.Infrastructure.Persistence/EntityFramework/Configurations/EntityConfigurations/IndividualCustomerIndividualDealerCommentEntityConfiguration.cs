@@ -40,12 +40,12 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Configurations.Entity
             builder.HasOne(e => e.IndividualCustomer)
                 .WithMany(e => e.IndividualCustomerIndividualDealerComments)
                 .HasForeignKey(e => e.IndividualCustomerId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(e => e.IndividualDealer)
                 .WithMany(e => e.IndividualCustomerIndividualDealerComments)
                 .HasForeignKey(e => e.IndividualDealerId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
 
         }
     }
