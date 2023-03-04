@@ -89,5 +89,10 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Repositories.Common
             return await this._dbContext.SaveChangesAsync();
         }
 
+        private void SetEntityId(TEntity entity)
+        {
+            entity.Id = Guid.NewGuid();
+        }
+
     }
 }

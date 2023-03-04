@@ -8,6 +8,8 @@ namespace ESISA.Core.Domain.Constants
 {
     public static class DefaultDomainExceptionMessages
     {
+        public const String AuthorizationExceptionMessage = "The User Does Not Have Authorization For This Operation.";
+
         public const String InternalExceptionMessage = "";
     }
 }
