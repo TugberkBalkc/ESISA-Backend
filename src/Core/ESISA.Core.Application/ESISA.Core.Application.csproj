@@ -26,7 +26,6 @@
     <Folder Include="Features\MediatR\Commands\NewFolder\" />
     <Folder Include="Features\MediatR\Queries\" />
     <Folder Include="Interfaces\Repositories\Payment\" />
-    <Folder Include="Rules\BusinessRules\" />
     <Folder Include="Rules\ValidationRules\FluentValidation\" />
   </ItemGroup>
 
