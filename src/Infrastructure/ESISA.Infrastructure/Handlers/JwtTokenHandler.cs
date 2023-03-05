@@ -3,6 +3,7 @@ using ESISA.Core.Application.Interfaces.Handlers;
 using ESISA.Core.Application.Interfaces.Repositories.Identity.AuthenticationAndAuthorization;
 using ESISA.Core.Application.Options.Authentication;
 using ESISA.Core.Application.Utilities.Security.Encryption;
+using ESISA.Core.Domain.Exceptions.BusinessLogic;
 using ESISA.Infrastructure.Extensions.Claims;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
@@ -38,6 +39,11 @@ namespace ESISA.Infrastructure.Handlers
 
         public Token CreateToken(Guid userId, string userFirstName, string userLastName, string userEmail, string[] usersRoleNames)
         {
+            //TODO Test Satırı Kaldır !!
+
+            if (userId == Guid.Empty)
+                throw new BusinessLogicException();
+
             accessTokenExpirationDate = DateTime.Now.AddMinutes(_tokenOptions.AccessTokenLifeTimeInMinutes);
             refreshTokenExpirationDate = DateTime.Now.AddMinutes(_tokenOptions.RefreshTokenLifeTimeInMinutes);
 

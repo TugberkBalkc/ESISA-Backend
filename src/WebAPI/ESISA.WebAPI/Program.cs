@@ -26,7 +26,9 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+
 }
+
 app.UseHttpExceptionHandlerMiddleware();
 
 app.UseHttpsRedirection();

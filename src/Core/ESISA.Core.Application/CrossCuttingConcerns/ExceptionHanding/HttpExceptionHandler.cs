@@ -1,4 +1,5 @@
-﻿using ESISA.Core.Application.Constants.Response;
+﻿using ESISA.Core.Application.Constants.HttpContextConstants;
+using ESISA.Core.Application.Constants.Response;
 using ESISA.Core.Domain.Exceptions.AuthenticationAndAuthorization;
 using ESISA.Core.Domain.Exceptions.Authorization;
 using ESISA.Core.Domain.Exceptions.BusinessLogic;
@@ -26,6 +27,8 @@ namespace ESISA.Core.Application.CrossCuttingConcerns.ExceptionHanding
             _next = next;
         }
 
+        private String _requestedMethodName { get; set; }
+
         public async Task InvokeAsync(HttpContext httpContext)
         {
             try
@@ -40,6 +43,11 @@ namespace ESISA.Core.Application.CrossCuttingConcerns.ExceptionHanding
 
         private async Task HandleExceptionAsync(HttpContext httpContext, Exception exception)
         {
+            var requestPathElements = httpContext.Request.Path.Value.Split("/");
+            _requestedMethodName = requestPathElements.Last();
+
+            httpContext.Response.ContentType = HttpContextConstants.ContentType;
+
             if (exception.GetType() == typeof(BusinessLogicException))
                 await HandleBusinessLogicExceptionAsync(httpContext, exception);
             else if (exception.GetType() == typeof(AuthenticationException))
@@ -56,13 +64,14 @@ namespace ESISA.Core.Application.CrossCuttingConcerns.ExceptionHanding
 
         private async Task HandleBusinessLogicExceptionAsync(HttpContext httpContext,Exception exception)
         {
+
             httpContext.Response.StatusCode = Convert.ToInt32(HttpStatusCode.BadRequest);
 
             BusinessLogicException businessLogicException = (BusinessLogicException)exception;
 
             String[] exceptionHeaders = businessLogicException.Message.Split(',');
 
-            BusinessLogicExceptionDetails exceptionDetails = new BusinessLogicExceptionDetails(exceptionHeaders[0], exceptionHeaders[1], StatusCodes.Status400BadRequest, _next.Method.Name);
+            BusinessLogicExceptionDetails exceptionDetails = new BusinessLogicExceptionDetails(exceptionHeaders[0], exceptionHeaders[1], StatusCodes.Status400BadRequest, _requestedMethodName );
 
             await httpContext.Response.WriteAsync(exceptionDetails.ToString());
         }
