@@ -11,8 +11,10 @@ namespace ESISA.Core.Application.Extensions.DIRegitrations
 {
     public static class LayerRegistration
     {
-        public static void RegisterApplicationDependencies(this IServiceCollection services, IConfiguration configuration, Assembly assembly)
+        public static void RegisterApplicationDependencies(this IServiceCollection services, IConfiguration configuration)
         {
+            var assembly = Assembly.GetExecutingAssembly();
+
             services.RegisterAutoMapper(assembly);
             services.RegisterMediatR(assembly);
 

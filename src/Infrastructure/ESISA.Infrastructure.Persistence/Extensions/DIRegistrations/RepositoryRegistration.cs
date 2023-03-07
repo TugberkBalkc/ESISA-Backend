@@ -1,10 +1,12 @@
 ﻿using ESISA.Core.Application.Interfaces.Repositorie;
 using ESISA.Core.Application.Interfaces.Repositories;
+using ESISA.Core.Application.Interfaces.Repositories.Demand;
 using ESISA.Core.Application.Interfaces.Repositories.Discount;
 using ESISA.Core.Application.Interfaces.Repositories.Identity.AuthenticationAndAuthorization;
 using ESISA.Core.Domain.Entities;
 using ESISA.Infrastructure.Persistence.EntityFramework;
 using ESISA.Infrastructure.Persistence.EntityFramework.Repositories;
+using ESISA.Infrastructure.Persistence.EntityFramework.Repositories.Demand;
 using ESISA.Infrastructure.Persistence.EntityFramework.Repositories.Identity.AuthenticationAndAuthorization;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -223,6 +225,20 @@ namespace ESISA.Infrastructure.Persistence.Extensions.DIRegistrations
             services.AddScoped<IProductCommandRepository, EFProductCommandRepository>();
             services.AddScoped<IProductQueryRepository, EFProductQueryRepository>();
             //End Of Product
+        }
+
+        public static void RegisterDemandDomainEntitiesRepositories(this IServiceCollection services)
+        {
+            //Demand
+            services.AddScoped<IProductDemandCommandRepository, EFProductDemandCommandRepository>();
+            services.AddScoped<IProductDemandQueryRepository, EFProductDemandQueryRepository>();
+
+            services.AddScoped<ICategoryDemandCommandRepository, EFCategoryDemandCommandRepository>();
+            services.AddScoped<ICategoryDemandQueryRepository, EFCategoryDemandQueryRepository>();
+
+            services.AddScoped<IBrandDemandCommandRepository, EFBrandDemandCommandRepository>();
+            services.AddScoped<IBrandDemandQueryRepository, EFBrandDemandQueryRepository>();
+            //End Of Demand
         }
     }
 }

@@ -45,9 +45,29 @@ namespace ESISA.Core.Application.CrossCuttingConcerns.ExceptionHanding
         {
             var requestPathElements = httpContext.Request.Path.Value.Split("/");
             _requestedMethodName = requestPathElements.Last();
-
+            //todo awaitten sonra yazanları düzelt
+            switch (exception.GetType().Name)
+            {
+                case var value when value == typeof(BusinessLogicException).Name:
+                    await HandleBusinessLogicExceptionAsync(httpContext, exception);
+                    break;
+                case var value when value == typeof(AuthenticationException).Name:
+                    await HandleAuthenticationExceptionAsync(httpContext, exception);
+                    break;
+                case var value when value == typeof(AuthorizationException).Name:
+                    await HandleAuthenticationExceptionAsync(httpContext, exception);
+                    break;
+                case var value when value == typeof(DatabaseException).Name:
+                    await HandleAuthenticationExceptionAsync(httpContext, exception);
+                    break;
+                case var value when value == typeof(InternalServerException).Name:
+                    await HandleAuthenticationExceptionAsync(httpContext, exception);
+                    break;
+                default:
+                    break;
+            }
             httpContext.Response.ContentType = HttpContextConstants.ContentType;
-
+            
             if (exception.GetType() == typeof(BusinessLogicException))
                 await HandleBusinessLogicExceptionAsync(httpContext, exception);
             else if (exception.GetType() == typeof(AuthenticationException))
@@ -60,6 +80,8 @@ namespace ESISA.Core.Application.CrossCuttingConcerns.ExceptionHanding
                 await HandleAuthenticationExceptionAsync(httpContext, exception);
             else if (exception.GetType() == typeof(FluentValidation.ValidationException))
                 await HandleAuthenticationExceptionAsync(httpContext, exception);
+            else
+                await HandleCustomExceptionAsync(httpContext, exception);
         }
 
         private async Task HandleBusinessLogicExceptionAsync(HttpContext httpContext,Exception exception)
@@ -139,6 +161,14 @@ namespace ESISA.Core.Application.CrossCuttingConcerns.ExceptionHanding
             var exceptionDetails = new ESISA.Core.Domain.Exceptions.Validation.ValidationExceptionDetails(ResponseTitles.Error, ResponseMessages.ValidationError, StatusCodes.Status400BadRequest, validationErrors);
 
             await httpContext.Response.WriteAsync(exceptionDetails.ToString());
+        }
+
+        private async Task HandleCustomExceptionAsync(HttpContext httpContext, Exception exception)
+        {
+
+            httpContext.Response.StatusCode = Convert.ToInt32(HttpStatusCode.BadRequest);
+
+            await httpContext.Response.WriteAsync(exception.Message);
         }
     }
 }

@@ -32,5 +32,9 @@ namespace ESISA.Core.Domain.Entities
         public virtual ICollection<IndividualCustomerCorporateAdvertOrder> IndividualCustomerCorporateAdvertOrders { get; set; }
         public virtual ICollection<CorporateCustomerWholesaleAdvertOrder> CorporateCustomerWholesaleAdvertOrders { get; set; }
 
+        public virtual ICollection<ProductDemand> ProductDemands { get; set; }
+        public virtual ICollection<CategoryDemand> CategoryDemands { get; set; }
+        public virtual ICollection<BrandDemand> BrandDemands { get; set; }
+
     }
 }

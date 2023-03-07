@@ -26,6 +26,7 @@ namespace ESISA.Infrastructure.Persistence.Extensions.DIRegistrations
             services.RegisterOrderDomainEntitiesRepositories();
             services.RegisterPaymentDomainEntitiesRepositories();
             services.RegisterProductDomainEntitiesRepositories();
+            services.RegisterDemandDomainEntitiesRepositories();
         }
     }
 }

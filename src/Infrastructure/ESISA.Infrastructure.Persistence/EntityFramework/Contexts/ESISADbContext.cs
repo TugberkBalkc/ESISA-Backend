@@ -138,6 +138,12 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Contexts
         // End Of Discount Tables
 
 
+        //Demand Tables
+        public DbSet<ProductDemand> ProductDemands { get; set; }
+        public DbSet<CategoryDemand> CategoryDemands { get; set; }
+        public DbSet<BrandDemand> BrandDemands { get; set; }
+        //End Of Demand Tables
+
         public ESISADbContext()
         {
 

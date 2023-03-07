@@ -14,7 +14,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.RegisterApplicationDependencies(builder.Configuration, Assembly.GetExecutingAssembly());
+builder.Services.RegisterApplicationDependencies(builder.Configuration);
 builder.Services.RegisterInfrastructureDependencies();
 builder.Services.RegisterPersistenceDependencies(builder.Configuration);
 builder.Services.RegisterWebAPIDependencies();
