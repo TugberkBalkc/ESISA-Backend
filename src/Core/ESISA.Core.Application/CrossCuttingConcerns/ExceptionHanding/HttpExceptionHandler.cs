@@ -1,5 +1,7 @@
 ﻿using ESISA.Core.Application.Constants.HttpContextConstants;
 using ESISA.Core.Application.Constants.Response;
+using ESISA.Core.Application.Utilities.Response.ExceptionResponse;
+using ESISA.Core.Domain.Constants;
 using ESISA.Core.Domain.Exceptions.AuthenticationAndAuthorization;
 using ESISA.Core.Domain.Exceptions.Authorization;
 using ESISA.Core.Domain.Exceptions.BusinessLogic;
@@ -43,6 +45,7 @@ namespace ESISA.Core.Application.CrossCuttingConcerns.ExceptionHanding
 
         private async Task HandleExceptionAsync(HttpContext httpContext, Exception exception)
         {
+            httpContext.Response.ContentType = HttpContextConstants.ContentType;
             var requestPathElements = httpContext.Request.Path.Value.Split("/");
             _requestedMethodName = requestPathElements.Last();
             //todo awaitten sonra yazanları düzelt
@@ -55,33 +58,18 @@ namespace ESISA.Core.Application.CrossCuttingConcerns.ExceptionHanding
                     await HandleAuthenticationExceptionAsync(httpContext, exception);
                     break;
                 case var value when value == typeof(AuthorizationException).Name:
-                    await HandleAuthenticationExceptionAsync(httpContext, exception);
+                    await HandleAuthorizationExceptionAsync(httpContext, exception);
                     break;
                 case var value when value == typeof(DatabaseException).Name:
-                    await HandleAuthenticationExceptionAsync(httpContext, exception);
+                    await HandleDatabaseExceptionAsync(httpContext, exception);
                     break;
                 case var value when value == typeof(InternalServerException).Name:
-                    await HandleAuthenticationExceptionAsync(httpContext, exception);
+                    await HandleInternalServerExceptionAsync(httpContext, exception);
                     break;
                 default:
+                    await HandleCustomExceptionAsync(httpContext, exception);
                     break;
             }
-            httpContext.Response.ContentType = HttpContextConstants.ContentType;
-            
-            if (exception.GetType() == typeof(BusinessLogicException))
-                await HandleBusinessLogicExceptionAsync(httpContext, exception);
-            else if (exception.GetType() == typeof(AuthenticationException))
-                await HandleAuthenticationExceptionAsync(httpContext, exception);
-            else if (exception.GetType() == typeof(AuthorizationException))
-                await HandleAuthenticationExceptionAsync(httpContext, exception);
-            else if (exception.GetType() == typeof(DatabaseException))
-                await HandleAuthenticationExceptionAsync(httpContext, exception);
-            else if (exception.GetType() == typeof(InternalServerException))
-                await HandleAuthenticationExceptionAsync(httpContext, exception);
-            else if (exception.GetType() == typeof(FluentValidation.ValidationException))
-                await HandleAuthenticationExceptionAsync(httpContext, exception);
-            else
-                await HandleCustomExceptionAsync(httpContext, exception);
         }
 
         private async Task HandleBusinessLogicExceptionAsync(HttpContext httpContext,Exception exception)
@@ -93,9 +81,11 @@ namespace ESISA.Core.Application.CrossCuttingConcerns.ExceptionHanding
 
             String[] exceptionHeaders = businessLogicException.Message.Split(',');
 
-            BusinessLogicExceptionDetails exceptionDetails = new BusinessLogicExceptionDetails(exceptionHeaders[0], exceptionHeaders[1], StatusCodes.Status400BadRequest, _requestedMethodName );
+            BusinessLogicExceptionDetails exceptionDetails = new BusinessLogicExceptionDetails(_requestedMethodName);
 
-            await httpContext.Response.WriteAsync(exceptionDetails.ToString());
+            ExceptionResponse exceptionResponse = new ExceptionResponse(businessLogicException, exceptionDetails, exceptionHeaders[0], exceptionHeaders[1], HttpStatusCode.BadRequest);
+
+            await httpContext.Response.WriteAsync(exceptionResponse.GetDetails());
         }
 
         private async Task HandleAuthenticationExceptionAsync(HttpContext httpContext, Exception exception)
@@ -106,9 +96,11 @@ namespace ESISA.Core.Application.CrossCuttingConcerns.ExceptionHanding
 
             String[] exceptionHeaders = authenticationException.Message.Split(',');
 
-            AuthenticationExceptionDetails exceptionDetails = new AuthenticationExceptionDetails(exceptionHeaders[0], exceptionHeaders[1], StatusCodes.Status400BadRequest);
+            AuthenticationExceptionDetails exceptionDetails = new AuthenticationExceptionDetails();
 
-            await httpContext.Response.WriteAsync(exceptionDetails.ToString());
+            ExceptionResponse exceptionResponse = new ExceptionResponse(authenticationException, exceptionDetails, exceptionHeaders[0], exceptionHeaders[1], HttpStatusCode.BadRequest);
+
+            await httpContext.Response.WriteAsync(exceptionResponse.GetDetails());
         }
 
         private async Task HandleAuthorizationExceptionAsync(HttpContext httpContext, Exception exception)
@@ -119,9 +111,11 @@ namespace ESISA.Core.Application.CrossCuttingConcerns.ExceptionHanding
 
             String[] exceptionHeaders = authorizationException.Message.Split(',');
 
-            AuthorizationExceptionDetails exceptionDetails = new AuthorizationExceptionDetails(exceptionHeaders[0], exceptionHeaders[1], StatusCodes.Status403Forbidden, exceptionHeaders[2]);
+            AuthorizationExceptionDetails exceptionDetails = new AuthorizationExceptionDetails(exceptionHeaders[2]);
+          
+            ExceptionResponse exceptionResponse = new ExceptionResponse(authorizationException, exceptionDetails, exceptionHeaders[0], exceptionHeaders[1], HttpStatusCode.BadRequest);
 
-            await httpContext.Response.WriteAsync(exceptionDetails.ToString());
+            await httpContext.Response.WriteAsync(exceptionResponse.GetDetails());
         }
 
         private async Task HandleDatabaseExceptionAsync(HttpContext httpContext, Exception exception)
@@ -132,9 +126,11 @@ namespace ESISA.Core.Application.CrossCuttingConcerns.ExceptionHanding
 
             String[] exceptionHeaders = databaseException.Message.Split(',');
 
-            DatabaseExceptionDetails exceptionDetails = new DatabaseExceptionDetails(exceptionHeaders[0], exceptionHeaders[1], StatusCodes.Status400BadRequest, "ESISA_DB");
+            DatabaseExceptionDetails exceptionDetails = new DatabaseExceptionDetails("ESISA_DB");
 
-            await httpContext.Response.WriteAsync(exceptionDetails.ToString());
+            ExceptionResponse exceptionResponse = new ExceptionResponse(databaseException, exceptionDetails, exceptionHeaders[0], exceptionHeaders[1], HttpStatusCode.BadRequest);
+
+            await httpContext.Response.WriteAsync(exceptionResponse.GetDetails());
         }
 
         private async Task HandleInternalServerExceptionAsync(HttpContext httpContext, Exception exception)
@@ -145,9 +141,11 @@ namespace ESISA.Core.Application.CrossCuttingConcerns.ExceptionHanding
 
             String[] exceptionHeaders = internalServerException.Message.Split(',');
 
-            InternalServerExceptionDetails exceptionDetails = new InternalServerExceptionDetails(exceptionHeaders[0], exceptionHeaders[1], StatusCodes.Status400BadRequest, "ESISA_API");
+            InternalServerExceptionDetails exceptionDetails = new InternalServerExceptionDetails("ESISA_API");
 
-            await httpContext.Response.WriteAsync(exceptionDetails.ToString());
+            ExceptionResponse exceptionResponse = new ExceptionResponse(internalServerException, exceptionDetails, exceptionHeaders[0], exceptionHeaders[1], HttpStatusCode.BadRequest);
+
+            await httpContext.Response.WriteAsync(exceptionResponse.GetDetails());
         }
 
         private async Task HandleValidationExceptionAsync(HttpContext httpContext, Exception exception)
@@ -158,17 +156,20 @@ namespace ESISA.Core.Application.CrossCuttingConcerns.ExceptionHanding
 
             var validationErrors = validationException.Errors;
 
-            var exceptionDetails = new ESISA.Core.Domain.Exceptions.Validation.ValidationExceptionDetails(ResponseTitles.Error, ResponseMessages.ValidationError, StatusCodes.Status400BadRequest, validationErrors);
+            var exceptionDetails = new ESISA.Core.Domain.Exceptions.Validation.ValidationExceptionDetails(validationErrors);
 
-            await httpContext.Response.WriteAsync(exceptionDetails.ToString());
+            ExceptionResponse exceptionResponse = new ExceptionResponse(validationException, exceptionDetails, ResponseTitles.Error, ResponseMessages.ValidationError, HttpStatusCode.BadRequest);
+
+            await httpContext.Response.WriteAsync(exceptionResponse.GetDetails());
         }
 
         private async Task HandleCustomExceptionAsync(HttpContext httpContext, Exception exception)
         {
-
             httpContext.Response.StatusCode = Convert.ToInt32(HttpStatusCode.BadRequest);
 
-            await httpContext.Response.WriteAsync(exception.Message);
+            ExceptionResponse exceptionResponse = new ExceptionResponse(exception, new Domain.Exceptions.Common.ExceptionDetailsBase() { ThrownDate = DateTime.Now} ,DefaultDomainExceptionTitles.InternalExceptionTitle, DefaultDomainExceptionMessages.InternalExceptionMessage, HttpStatusCode.BadRequest);
+
+            await httpContext.Response.WriteAsync(exceptionResponse.GetDetails());
         }
     }
 }

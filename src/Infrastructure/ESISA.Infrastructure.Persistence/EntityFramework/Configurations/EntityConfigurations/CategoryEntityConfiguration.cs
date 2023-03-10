@@ -19,10 +19,10 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Configurations.Entity
 
             builder.ToTable("Cagtegories");
 
-
-            builder.Property(e => e.ParentCategoryId)
-                .HasColumnName("ParentCategoryId")
-                .HasColumnType("uniqueidentifier");
+            builder.Property(e => e.ParentId)
+                   .HasColumnName("ParentId")
+                   .IsRequired(false)
+                   .HasColumnType("uniqueidentifier");
 
             builder.Property(e => e.Name)
                 .HasColumnName("Name")
@@ -31,11 +31,12 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Configurations.Entity
             builder.Property(e => e.Description)
                 .HasColumnName("Description")
                 .HasColumnType("nvarchar(MAX)");
-
-            builder.HasOne(e => e.ParentCategory)
-                   .WithMany(e => e.ChildCategories)
-                   .HasForeignKey(e => e.ParentCategoryId)
-                   .OnDelete(DeleteBehavior.Restrict);
+            
+            builder.HasOne(s => s.Parent)
+            .WithMany(m => m.Children)
+            .HasForeignKey(e => e.ParentId)
+            .IsRequired(false)
+            .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasMany(e => e.CategoryPhotoPaths);
 

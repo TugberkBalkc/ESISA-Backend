@@ -22,6 +22,8 @@ namespace ESISA.Core.Application.Extensions.DIRegitrations
 
             services.RegisterApplicationOptions(configuration);
 
+            services.RegisterBusinessRules();
+
             services.AddHttpContextAccessor();
 
         }

@@ -8,10 +8,10 @@ namespace ESISA.Core.Domain.Constants
 {
     public static class DefaultDomainExceptionTitles
     {
-        public const String InternalExceptionTitle = "Internal Server Error";
-        public const String BusinessExceptionTitle = "Business Error";
-        public const String AuthorizationExceptionTitle = "Authorization Error";
-        public const String DatabaseExceptionTitle = "Database Error";
-        public const String ValidationExceptionTitle = "Validation Error";
+        public const String InternalExceptionTitle = "Sunucu Hatası";
+        public const String BusinessExceptionTitle = "Operasyonel Mantık Hatası";
+        public const String AuthorizationExceptionTitle = "Yetkilendirme Hatası";
+        public const String DatabaseExceptionTitle = "Veritabanı Hatası";
+        public const String ValidationExceptionTitle = "Doğrulama Hatası";
     }
 }

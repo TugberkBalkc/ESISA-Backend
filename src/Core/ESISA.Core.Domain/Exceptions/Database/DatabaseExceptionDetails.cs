@@ -11,16 +11,11 @@ namespace ESISA.Core.Domain.Exceptions.Database
     {
         public String DatabaseName { get; set; }
 
-        public DatabaseExceptionDetails(String title, String detail, int statusCodes, String databaseName)
+        public DatabaseExceptionDetails(String databaseName)
         {
-            this.Title = title;
-            this.Detail = detail;
-            this.StatusCode = statusCodes;
             this.ThrownDate = DateTime.Now;
             this.DatabaseName = databaseName;
         }
 
-
-        public override string ToString() => this.GetDetails(this);
     }
 }

@@ -18,15 +18,10 @@ namespace ESISA.Core.Domain.Exceptions.BusinessLogic
 
         }
 
-        public BusinessLogicExceptionDetails(String title, String detail, int statusCodes, String operationName)
+        public BusinessLogicExceptionDetails(String operationName)
         {
-            this.Title = title; 
-            this.Detail = detail;
-            this.StatusCode = statusCodes;
             this.ThrownDate = DateTime.Now;
             this.OperationName = operationName;
         }
-
-        public override string ToString() => this.GetDetails(this);
     }
 }

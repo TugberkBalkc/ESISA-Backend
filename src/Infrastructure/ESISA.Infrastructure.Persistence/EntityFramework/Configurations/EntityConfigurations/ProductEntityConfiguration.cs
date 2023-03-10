@@ -36,12 +36,12 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Configurations.Entity
             builder.HasOne(e => e.Category)
                    .WithMany(e => e.Products)
                    .HasForeignKey(e => e.CategoryId)
-                   .OnDelete(DeleteBehavior.Cascade);
+                   .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(e => e.Brand)
               .WithMany(e => e.Products)
               .HasForeignKey(e => e.BrandId)
-              .OnDelete(DeleteBehavior.Cascade);
+              .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

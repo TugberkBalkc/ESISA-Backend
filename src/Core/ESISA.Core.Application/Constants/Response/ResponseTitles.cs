@@ -8,9 +8,9 @@ namespace ESISA.Core.Application.Constants.Response
 {
     public class ResponseTitles
     {
-        public const String Success = "Successful";
-        public const String Warning = "Warning";
-        public const String Information = "Information";
-        public const String Error = "Error";
+        public const String Success = "Başarılı";
+        public const String Warning = "Dikkat";
+        public const String Information = "Bilgi";
+        public const String Error = "Hata";
     }
 }

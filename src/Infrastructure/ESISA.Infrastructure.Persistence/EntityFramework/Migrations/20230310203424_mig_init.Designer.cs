@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
 {
     [DbContext(typeof(ESISADbContext))]
-    [Migration("20230303002342_mig_init")]
+    [Migration("20230310203424_mig_init")]
     partial class mig_init
     {
         /// <inheritdoc />
@@ -204,6 +204,52 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                     b.ToTable("Brands", (string)null);
                 });
 
+            modelBuilder.Entity("ESISA.Core.Domain.Entities.BrandDemand", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id");
+
+                    b.Property<string>("BrandName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(MAX)")
+                        .HasColumnName("BrandName");
+
+                    b.Property<Guid>("CorporateDealerId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CorporateDealerId");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime")
+                        .HasColumnName("CreatedDate");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasColumnName("IsActive");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime")
+                        .HasColumnName("ModifiedDate");
+
+                    b.Property<string>("SenderNote")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(MAX)")
+                        .HasColumnName("SenderNote");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CorporateDealerId");
+
+                    b.ToTable("BrandDemands", (string)null);
+                });
+
             modelBuilder.Entity("ESISA.Core.Domain.Entities.BrandPhotoPath", b =>
                 {
                     b.Property<Guid>("Id")
@@ -280,16 +326,62 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                         .HasColumnType("nvarchar(MAX)")
                         .HasColumnName("Name");
 
-                    b.Property<Guid?>("ParentCategoryId")
+                    b.Property<Guid?>("ParentId")
                         .IsRequired()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("ParentCategoryId");
+                        .HasColumnName("ParentId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ParentCategoryId");
+                    b.HasIndex("ParentId");
 
                     b.ToTable("Cagtegories", (string)null);
+                });
+
+            modelBuilder.Entity("ESISA.Core.Domain.Entities.CategoryDemand", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id");
+
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(MAX)")
+                        .HasColumnName("CategoryName");
+
+                    b.Property<Guid>("CorporateDealerId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CorporateDealerId");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime")
+                        .HasColumnName("CreatedDate");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasColumnName("IsActive");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime")
+                        .HasColumnName("ModifiedDate");
+
+                    b.Property<string>("SenderNote")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(MAX)")
+                        .HasColumnName("SenderNote");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CorporateDealerId");
+
+                    b.ToTable("CategoryDemands", (string)null);
                 });
 
             modelBuilder.Entity("ESISA.Core.Domain.Entities.CategoryPhotoPath", b =>
@@ -1811,6 +1903,52 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                     b.ToTable("Products", (string)null);
                 });
 
+            modelBuilder.Entity("ESISA.Core.Domain.Entities.ProductDemand", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id");
+
+                    b.Property<Guid>("CorporateDealerId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CorporateDealerId");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime")
+                        .HasColumnName("CreatedDate");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasColumnName("IsActive");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime")
+                        .HasColumnName("ModifiedDate");
+
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(MAX)")
+                        .HasColumnName("ProductName");
+
+                    b.Property<string>("SenderNote")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(MAX)")
+                        .HasColumnName("SenderNote");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CorporateDealerId");
+
+                    b.ToTable("ProductDemands", (string)null);
+                });
+
             modelBuilder.Entity("ESISA.Core.Domain.Entities.PurchaseQuantityDiscount", b =>
                 {
                     b.Property<Guid>("Id")
@@ -2434,6 +2572,17 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                     b.Navigation("Advert");
                 });
 
+            modelBuilder.Entity("ESISA.Core.Domain.Entities.BrandDemand", b =>
+                {
+                    b.HasOne("ESISA.Core.Domain.Entities.CorporateDealer", "CorporateDealer")
+                        .WithMany("BrandDemands")
+                        .HasForeignKey("CorporateDealerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("CorporateDealer");
+                });
+
             modelBuilder.Entity("ESISA.Core.Domain.Entities.BrandPhotoPath", b =>
                 {
                     b.HasOne("ESISA.Core.Domain.Entities.Brand", "Brand")
@@ -2447,13 +2596,24 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
 
             modelBuilder.Entity("ESISA.Core.Domain.Entities.Category", b =>
                 {
-                    b.HasOne("ESISA.Core.Domain.Entities.Category", "ParentCategory")
-                        .WithMany("ChildCategories")
-                        .HasForeignKey("ParentCategoryId")
+                    b.HasOne("ESISA.Core.Domain.Entities.Category", "Parent")
+                        .WithMany("Children")
+                        .HasForeignKey("ParentId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("ParentCategory");
+                    b.Navigation("Parent");
+                });
+
+            modelBuilder.Entity("ESISA.Core.Domain.Entities.CategoryDemand", b =>
+                {
+                    b.HasOne("ESISA.Core.Domain.Entities.CorporateDealer", "CorporateDealer")
+                        .WithMany("CategoryDemands")
+                        .HasForeignKey("CorporateDealerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("CorporateDealer");
                 });
 
             modelBuilder.Entity("ESISA.Core.Domain.Entities.CategoryPhotoPath", b =>
@@ -2983,18 +3143,29 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                     b.HasOne("ESISA.Core.Domain.Entities.Brand", "Brand")
                         .WithMany("Products")
                         .HasForeignKey("BrandId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("ESISA.Core.Domain.Entities.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Brand");
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("ESISA.Core.Domain.Entities.ProductDemand", b =>
+                {
+                    b.HasOne("ESISA.Core.Domain.Entities.CorporateDealer", "CorporateDealer")
+                        .WithMany("ProductDemands")
+                        .HasForeignKey("CorporateDealerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("CorporateDealer");
                 });
 
             modelBuilder.Entity("ESISA.Core.Domain.Entities.ReturnedOrder", b =>
@@ -3202,7 +3373,7 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                 {
                     b.Navigation("CategoryPhotoPaths");
 
-                    b.Navigation("ChildCategories");
+                    b.Navigation("Children");
 
                     b.Navigation("CorporateDealersSalesCategory");
 
@@ -3256,6 +3427,10 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
 
             modelBuilder.Entity("ESISA.Core.Domain.Entities.CorporateDealer", b =>
                 {
+                    b.Navigation("BrandDemands");
+
+                    b.Navigation("CategoryDemands");
+
                     b.Navigation("CorporateAdverts");
 
                     b.Navigation("CorporateCustomerCorporateDealerComments");
@@ -3263,6 +3438,8 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                     b.Navigation("CorporateCustomerWholesaleAdvertOrders");
 
                     b.Navigation("IndividualCustomerCorporateAdvertOrders");
+
+                    b.Navigation("ProductDemands");
 
                     b.Navigation("WholesaleAdverts");
                 });

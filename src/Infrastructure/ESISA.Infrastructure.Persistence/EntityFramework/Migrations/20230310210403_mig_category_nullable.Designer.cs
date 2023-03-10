@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
 {
     [DbContext(typeof(ESISADbContext))]
-    [Migration("20230307025939_mig_demand_entities_creation")]
-    partial class mig_demand_entities_creation
+    [Migration("20230310210403_mig_category_nullable")]
+    partial class mig_category_nullable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -326,14 +326,13 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                         .HasColumnType("nvarchar(MAX)")
                         .HasColumnName("Name");
 
-                    b.Property<Guid?>("ParentCategoryId")
-                        .IsRequired()
+                    b.Property<Guid?>("ParentId")
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("ParentCategoryId");
+                        .HasColumnName("ParentId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ParentCategoryId");
+                    b.HasIndex("ParentId");
 
                     b.ToTable("Cagtegories", (string)null);
                 });
@@ -2596,13 +2595,12 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
 
             modelBuilder.Entity("ESISA.Core.Domain.Entities.Category", b =>
                 {
-                    b.HasOne("ESISA.Core.Domain.Entities.Category", "ParentCategory")
-                        .WithMany("ChildCategories")
-                        .HasForeignKey("ParentCategoryId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                    b.HasOne("ESISA.Core.Domain.Entities.Category", "Parent")
+                        .WithMany("Children")
+                        .HasForeignKey("ParentId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
-                    b.Navigation("ParentCategory");
+                    b.Navigation("Parent");
                 });
 
             modelBuilder.Entity("ESISA.Core.Domain.Entities.CategoryDemand", b =>
@@ -3143,13 +3141,13 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                     b.HasOne("ESISA.Core.Domain.Entities.Brand", "Brand")
                         .WithMany("Products")
                         .HasForeignKey("BrandId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("ESISA.Core.Domain.Entities.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Brand");
@@ -3373,7 +3371,7 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                 {
                     b.Navigation("CategoryPhotoPaths");
 
-                    b.Navigation("ChildCategories");
+                    b.Navigation("Children");
 
                     b.Navigation("CorporateDealersSalesCategory");
 

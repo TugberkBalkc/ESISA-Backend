@@ -50,9 +50,9 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ParentCategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(MAX)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(MAX)", nullable: false),
+                    ParentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
@@ -62,8 +62,8 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                 {
                     table.PrimaryKey("PK_Cagtegories", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Cagtegories_Cagtegories_ParentCategoryId",
-                        column: x => x.ParentCategoryId,
+                        name: "FK_Cagtegories_Cagtegories_ParentId",
+                        column: x => x.ParentId,
                         principalTable: "Cagtegories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -269,13 +269,13 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                         column: x => x.BrandId,
                         principalTable: "Brands",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Products_Cagtegories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Cagtegories",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -958,6 +958,54 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "BrandDemands",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    BrandName = table.Column<string>(type: "nvarchar(MAX)", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    CorporateDealerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    SenderNote = table.Column<string>(type: "nvarchar(MAX)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BrandDemands", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_BrandDemands_CorporateDealers_CorporateDealerId",
+                        column: x => x.CorporateDealerId,
+                        principalTable: "CorporateDealers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CategoryDemands",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CategoryName = table.Column<string>(type: "nvarchar(MAX)", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    CorporateDealerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    SenderNote = table.Column<string>(type: "nvarchar(MAX)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CategoryDemands", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CategoryDemands_CorporateDealers_CorporateDealerId",
+                        column: x => x.CorporateDealerId,
+                        principalTable: "CorporateDealers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "CorporateAdverts",
                 columns: table => new
                 {
@@ -1077,6 +1125,30 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                         principalTable: "Orders",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProductDemands",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProductName = table.Column<string>(type: "nvarchar(MAX)", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    CorporateDealerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    SenderNote = table.Column<string>(type: "nvarchar(MAX)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductDemands", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProductDemands_CorporateDealers_CorporateDealerId",
+                        column: x => x.CorporateDealerId,
+                        principalTable: "CorporateDealers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -1436,14 +1508,24 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                 column: "AdvertId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_BrandDemands_CorporateDealerId",
+                table: "BrandDemands",
+                column: "CorporateDealerId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_BrandPhotoPaths_BrandId",
                 table: "BrandPhotoPaths",
                 column: "BrandId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cagtegories_ParentCategoryId",
+                name: "IX_Cagtegories_ParentId",
                 table: "Cagtegories",
-                column: "ParentCategoryId");
+                column: "ParentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CategoryDemands_CorporateDealerId",
+                table: "CategoryDemands",
+                column: "CorporateDealerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CategoryPhotoPaths_CategoryId",
@@ -1727,6 +1809,11 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                 column: "UpperOrderPriceDiscountId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ProductDemands_CorporateDealerId",
+                table: "ProductDemands",
+                column: "CorporateDealerId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Products_BrandId",
                 table: "Products",
                 column: "BrandId");
@@ -1842,7 +1929,13 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                 name: "AdvertPhotoPaths");
 
             migrationBuilder.DropTable(
+                name: "BrandDemands");
+
+            migrationBuilder.DropTable(
                 name: "BrandPhotoPaths");
+
+            migrationBuilder.DropTable(
+                name: "CategoryDemands");
 
             migrationBuilder.DropTable(
                 name: "CategoryPhotoPaths");
@@ -1882,6 +1975,9 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
 
             migrationBuilder.DropTable(
                 name: "IndividualCustomerIndividualDealerVotes");
+
+            migrationBuilder.DropTable(
+                name: "ProductDemands");
 
             migrationBuilder.DropTable(
                 name: "ReturnedOrders");

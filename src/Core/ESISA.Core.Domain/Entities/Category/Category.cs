@@ -9,18 +9,18 @@ namespace ESISA.Core.Domain.Entities
 {
     public class Category : EntityBase
     {
-        public Nullable<Guid> ParentCategoryId { get; set; }
-
         public String Name { get; set; }
         public String Description { get; set; }
 
+        public Guid? ParentId { get; set; }
 
-        public virtual Category ParentCategory { get; set; }
+        public virtual Category? Parent { get; set; }
 
-        public virtual ICollection<Category> ChildCategories { get; set; }
-        public virtual ICollection<CategoryPhotoPath> CategoryPhotoPaths { get; set; }
+        public virtual ICollection<Category>? Children { get; set; }
 
         public virtual ICollection<Product> Products { get; set; }
+
+        public virtual ICollection<CategoryPhotoPath> CategoryPhotoPaths { get; set; }
 
         public virtual ICollection<CorporateDealer> CorporateDealersSalesCategory { get; set; }
 

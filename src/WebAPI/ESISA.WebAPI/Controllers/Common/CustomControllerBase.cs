@@ -1,4 +1,5 @@
 ﻿using ESISA.Core.Application.Extensions.ClaimExtensions;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -9,11 +10,13 @@ namespace ESISA.WebAPI.Controllers.Common
     [ApiController]
     public class CustomControllerBase : ControllerBase
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
+        protected readonly IHttpContextAccessor _httpContextAccessor;
+        protected readonly IMediator _mediator;
 
-        public CustomControllerBase(IHttpContextAccessor httpContextAccessor)
+        public CustomControllerBase(IHttpContextAccessor httpContextAccessor, IMediator mediator)
         {
             _httpContextAccessor = httpContextAccessor;
+            _mediator = mediator;
         }
 
         protected Guid UserId => Guid.Parse(_httpContextAccessor.HttpContext.GetUsersId());

@@ -9,14 +9,9 @@ namespace ESISA.Core.Domain.Exceptions.AuthenticationAndAuthorization
 {
     public class AuthenticationExceptionDetails : ExceptionDetailsBase
     {
-        public AuthenticationExceptionDetails(String title, String detail, int statusCodes)
+        public AuthenticationExceptionDetails()
         {
-            this.Title = title;
-            this.Detail = detail;
-            this.StatusCode = statusCodes;
             this.ThrownDate = DateTime.Now;
         }
-
-        public override string ToString() => this.GetDetails(this);
     }
 }

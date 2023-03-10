@@ -11,15 +11,10 @@ namespace ESISA.Core.Domain.Exceptions.Validation
     {
         public object Errors { get; set; }
 
-        public ValidationExceptionDetails(String title, String detail, int statusCodes, object errors)
+        public ValidationExceptionDetails(object errors)
         {
-            this.Title = title;
-            this.Detail = detail;
-            this.StatusCode = statusCodes;
             this.ThrownDate = DateTime.Now;
             this.Errors = errors;
         }
-
-        public override string ToString() => base.GetDetails(this);
     }
 }

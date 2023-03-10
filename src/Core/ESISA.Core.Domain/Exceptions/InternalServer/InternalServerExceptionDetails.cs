@@ -11,15 +11,11 @@ namespace ESISA.Core.Domain.Exceptions.InternalServer
     {
         public String ServerName { get; set; }
 
-        public InternalServerExceptionDetails(String title, String detail, int statusCodes, String serverName)
+        public InternalServerExceptionDetails(String serverName)
         {
-            this.Title = title;
-            this.Detail = detail;
-            this.StatusCode = statusCodes;
             this.ThrownDate = DateTime.Now;
             this.ServerName = serverName;
         }
 
-        public override string ToString() => this.GetDetails(this);
     }
 }

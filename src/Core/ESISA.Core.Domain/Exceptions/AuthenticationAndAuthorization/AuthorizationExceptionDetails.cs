@@ -11,15 +11,10 @@ namespace ESISA.Core.Domain.Exceptions.AuthenticationAndAuthorization
     {
         public String RequestedUsersEmail { get; set; }
 
-        public AuthorizationExceptionDetails(String title, String detail, int statusCodes, String requestedUsersEmail)
+        public AuthorizationExceptionDetails(String requestedUsersEmail)
         {
-            this.Title = title;
-            this.Detail = detail;
-            this.StatusCode = statusCodes;
             this.ThrownDate = DateTime.Now;
             this.RequestedUsersEmail = requestedUsersEmail;
         }
-
-        public override string ToString() => this.GetDetails(this);
     }
 }
