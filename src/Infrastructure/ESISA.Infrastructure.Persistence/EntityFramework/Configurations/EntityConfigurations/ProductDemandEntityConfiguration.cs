@@ -28,6 +28,10 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Configurations.Entity
                    .HasColumnName("SenderNote")
                    .HasColumnType("nvarchar(MAX)");
 
+            builder.Property(e => e.CategoryId)
+                   .HasColumnName("CategoryId")
+                   .HasColumnType("uniqueidentifier");
+
             builder.Property(e => e.ProductName)
                    .HasColumnName("ProductName")
                    .HasColumnType("nvarchar(MAX)");
@@ -36,6 +40,12 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Configurations.Entity
                    .WithMany(e => e.ProductDemands)
                    .HasForeignKey(e => e.CorporateDealerId)
                    .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(e=>e.Category)
+                   .WithMany(e=>e.ProductDemands)
+                   .HasForeignKey(e=>e.CategoryId)
+                   .OnDelete(DeleteBehavior.Restrict);
+                   
         }
     }
 }

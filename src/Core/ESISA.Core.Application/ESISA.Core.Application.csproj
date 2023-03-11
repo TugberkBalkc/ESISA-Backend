@@ -23,6 +23,13 @@
 
   <ItemGroup>
     <Folder Include="Dtos\Security\Authentication\Logins\" />
+    <Folder Include="Features\MediatR\Commands\CorporateUsers\" />
+    <Folder Include="Features\MediatR\Commands\OperationClaims\Create\" />
+    <Folder Include="Features\MediatR\Commands\OperationClaims\Delete\" />
+    <Folder Include="Features\MediatR\Commands\OperationClaims\Update\" />
+    <Folder Include="Features\MediatR\Commands\Roles\AddOperationClaim\" />
+    <Folder Include="Features\MediatR\Commands\Roles\DeleteOperationClaim\" />
+    <Folder Include="Features\MediatR\Commands\Roles\Update\" />
     <Folder Include="Features\MediatR\Queries\" />
     <Folder Include="Interfaces\Repositories\Payment\" />
     <Folder Include="Rules\ValidationRules\FluentValidation\" />

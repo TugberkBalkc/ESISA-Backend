@@ -1906,6 +1906,10 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("Id");
 
+                    b.Property<Guid>("CategoryId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CategoryId");
+
                     b.Property<Guid>("CorporateDealerId")
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CorporateDealerId");
@@ -1939,6 +1943,8 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                         .HasColumnName("SenderNote");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
 
                     b.HasIndex("CorporateDealerId");
 
@@ -3154,11 +3160,19 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
 
             modelBuilder.Entity("ESISA.Core.Domain.Entities.ProductDemand", b =>
                 {
+                    b.HasOne("ESISA.Core.Domain.Entities.Category", "Category")
+                        .WithMany("ProductDemands")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("ESISA.Core.Domain.Entities.CorporateDealer", "CorporateDealer")
                         .WithMany("ProductDemands")
                         .HasForeignKey("CorporateDealerId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Category");
 
                     b.Navigation("CorporateDealer");
                 });
@@ -3371,6 +3385,8 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                     b.Navigation("Children");
 
                     b.Navigation("CorporateDealersSalesCategory");
+
+                    b.Navigation("ProductDemands");
 
                     b.Navigation("Products");
 

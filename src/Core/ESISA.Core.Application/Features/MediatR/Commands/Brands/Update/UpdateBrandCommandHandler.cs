@@ -16,8 +16,8 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Brands.Update
         private readonly IMapper _mapper;
 
         public UpdateBrandCommandHandler
-            (IBrandCommandRepository brandCommandRepository, IBrandQueryRepository brandQueryRepository, 
-             BrandBusinessRules brandBusinessRules, IMapper mapper)
+            (IBrandCommandRepository brandCommandRepository, IBrandQueryRepository brandQueryRepository, BrandBusinessRules brandBusinessRules,
+             IMapper mapper)
         {
             _brandCommandRepository = brandCommandRepository;
             _brandQueryRepository = brandQueryRepository;
@@ -27,10 +27,9 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Brands.Update
 
         public async Task<UpdateBrandCommandResponse> Handle(UpdateBrandCommandRequest request, CancellationToken cancellationToken)
         {
-
-            await _brandBusinessRules.NullCheckByBrandId(request.BrandId);
-
             var brand = await _brandQueryRepository.GetByIdAsync(request.BrandId);
+
+            await _brandBusinessRules.NullCheck(brand);
 
             _mapper.Map(request, brand);
 

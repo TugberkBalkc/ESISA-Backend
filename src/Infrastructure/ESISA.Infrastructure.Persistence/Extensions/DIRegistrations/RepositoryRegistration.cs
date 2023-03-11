@@ -1,6 +1,5 @@
 ﻿using ESISA.Core.Application.Interfaces.Repositorie;
 using ESISA.Core.Application.Interfaces.Repositories;
-using ESISA.Core.Application.Interfaces.Repositories.Demand;
 using ESISA.Core.Application.Interfaces.Repositories.Discount;
 using ESISA.Core.Application.Interfaces.Repositories.Identity.AuthenticationAndAuthorization;
 using ESISA.Core.Domain.Entities;

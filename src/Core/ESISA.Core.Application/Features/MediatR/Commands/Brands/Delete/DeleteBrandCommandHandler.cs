@@ -10,17 +10,21 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Brands.Delete
     public class DeleteBrandCommandHandler : IRequestHandler<DeleteBrandCommandRequest, DeleteBrandCommandResponse>
     {
         private readonly IBrandCommandRepository _brandCommandRepository;
+        private readonly IBrandQueryRepository _brandQueryRepository;
         private readonly BrandBusinessRules _brandBusinessRules;
 
-        public DeleteBrandCommandHandler(IBrandCommandRepository brandCommandRepository, BrandBusinessRules brandBusinessRules)
+        public DeleteBrandCommandHandler(IBrandCommandRepository brandCommandRepository, IBrandQueryRepository brandQueryRepository, BrandBusinessRules brandBusinessRules)
         {
             _brandCommandRepository = brandCommandRepository;
+            _brandQueryRepository = brandQueryRepository;
             _brandBusinessRules = brandBusinessRules;
         }
 
         public async Task<DeleteBrandCommandResponse> Handle(DeleteBrandCommandRequest request, CancellationToken cancellationToken)
         {
-            await _brandBusinessRules.NullCheckByBrandId(request.BrandId);
+            var brandToCheck = await _brandQueryRepository.GetByIdAsync(request.BrandId);
+
+            await _brandBusinessRules.NullCheck(brandToCheck);
 
             await _brandCommandRepository.DeleteAsync(request.BrandId);
 

@@ -8,6 +8,9 @@ namespace ESISA.Core.Domain.Entities
 {
     public class ProductDemand : Demand
     {
+        public Guid CategoryId { get; set; }
         public String ProductName { get; set; }
+
+        public virtual Category Category { get; set; }
     }
 }

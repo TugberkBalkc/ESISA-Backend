@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using ESISA.Core.Application.Dtos;
-using ESISA.Core.Application.Features.MediatR.Commands.Products.Add;
+using ESISA.Core.Application.Features.MediatR.Commands.Products.Create;
 using ESISA.Core.Application.Features.MediatR.Commands.Products.Update;
 using ESISA.Core.Domain.Entities;
 using System;
@@ -15,7 +15,7 @@ namespace ESISA.Core.Application.Mappings.Automapper
     {
         public ProductProfile()
         {
-            this.CreateMap<AddProductCommandRequest, Product>()
+            this.CreateMap<CreateProductCommandRequest, Product>()
              .ForMember(e => e.Name, e => e.MapFrom(e => e.ProductName))
              .ForMember(e => e.CategoryId, e => e.MapFrom(e => e.CategoryId))
              .ForMember(e => e.BrandId, e => e.MapFrom(e => e.BrandId));

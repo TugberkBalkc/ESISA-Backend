@@ -1,5 +1,5 @@
-﻿using ESISA.Core.Application.Interfaces.Repositories.Demand;
-using ESISA.Core.Domain.Entities;
+﻿using ESISA.Core.Application.Interfaces.Repositories;
+using ESISA.Core.Domain.Entities;   
 using ESISA.Infrastructure.Persistence.EntityFramework.Contexts;
 using ESISA.Infrastructure.Persistence.EntityFramework.Repositories.Common;
 

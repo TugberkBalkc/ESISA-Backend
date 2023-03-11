@@ -1,7 +1,8 @@
-﻿using ESISA.Core.Application.Features.MediatR.Commands.Categories.Add;
-using ESISA.Core.Application.Features.MediatR.Commands.Categories.AddSubCategory;
+﻿using ESISA.Core.Application.Features.MediatR.Commands.Categories.CreateMainCategory;
+using ESISA.Core.Application.Features.MediatR.Commands.Categories.CreateSubCategory;
 using ESISA.Core.Application.Features.MediatR.Commands.Categories.Delete;
 using ESISA.Core.Application.Features.MediatR.Commands.Categories.Update;
+using ESISA.Core.Application.Features.MediatR.Commands.Categories.UpdateMainCategory;
 using ESISA.WebAPI.Controllers.Common;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -18,7 +19,7 @@ namespace ESISA.WebAPI.Controllers
         }
 
         [HttpPost("AddMainCategory")]
-        public async Task<IActionResult> AddMainCategoryAsync([FromBody] AddMainCategoryCommandRequest addMainCategoryCommandRequest)
+        public async Task<IActionResult> AddMainCategoryAsync([FromBody] CreateMainCategoryCommandRequest addMainCategoryCommandRequest)
         {
             var response = await base._mediator.Send(addMainCategoryCommandRequest);
 
@@ -28,7 +29,7 @@ namespace ESISA.WebAPI.Controllers
         }
 
         [HttpPost("AddSubCategory")]
-        public async Task<IActionResult> AddSubCategoryAsync([FromBody] AddSubCategoryCommandRequest addSubCategoryCommandRequest)
+        public async Task<IActionResult> AddSubCategoryAsync([FromBody] CreateSubCategoryCommandRequest addSubCategoryCommandRequest)
         {
             var response = await base._mediator.Send(addSubCategoryCommandRequest);
 
@@ -47,10 +48,20 @@ namespace ESISA.WebAPI.Controllers
                 : BadRequest(response.Response.Title + ":" + response.Response.Message);
         }
 
-        [HttpPut("UpdateCategory")]
-        public async Task<IActionResult> UpdateCategoryAsync([FromBody] UpdateSubCategoryCommandRequest updateCategoryCommandRequest)
+        [HttpPut("UpdateSubCategory")]
+        public async Task<IActionResult> UpdateSubCategoryAsync([FromBody] UpdateSubCategoryCommandRequest updateCategoryCommandRequest)
         {
             var response = await base._mediator.Send(updateCategoryCommandRequest);
+
+            return response.Response.IsSucceeded == true
+                ? Ok(response.Response)
+                : BadRequest(response.Response.Title + ":" + response.Response.Message);
+        }
+
+        [HttpPut("UpdateMainCategory")]
+        public async Task<IActionResult> UpdateMainCategoryAsync([FromBody] UpdateMainCategoryCommandRequest updateMainCategoryCommandRequest)
+        {
+            var response = await base._mediator.Send(updateMainCategoryCommandRequest);
 
             return response.Response.IsSucceeded == true
                 ? Ok(response.Response)

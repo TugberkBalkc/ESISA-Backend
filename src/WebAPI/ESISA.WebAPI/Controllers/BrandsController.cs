@@ -1,4 +1,4 @@
-﻿using ESISA.Core.Application.Features.MediatR.Commands.Brands.Add;
+﻿using ESISA.Core.Application.Features.MediatR.Commands.Brands.Create;
 using ESISA.Core.Application.Features.MediatR.Commands.Brands.Delete;
 using ESISA.Core.Application.Features.MediatR.Commands.Brands.Update;
 using ESISA.WebAPI.Controllers.Common;
@@ -17,9 +17,9 @@ namespace ESISA.WebAPI.Controllers
         }
 
         [HttpPost("AddBrand")]
-        public async Task<IActionResult> AddBrandAsync([FromBody] AddBrandCommandRequest addBrandCommandRequest)
+        public async Task<IActionResult> AddBrandAsync([FromBody] CreateBrandCommandRequest createBrandCommandRequest)
         {
-            var response = await base._mediator.Send(addBrandCommandRequest);
+            var response = await base._mediator.Send(createBrandCommandRequest);
 
             return response.Response.IsSucceeded == true
                 ? Ok(response.Response)

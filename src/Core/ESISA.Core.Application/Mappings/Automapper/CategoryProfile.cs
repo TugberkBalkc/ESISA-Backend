@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using ESISA.Core.Application.Dtos;
-using ESISA.Core.Application.Features.MediatR.Commands.Categories.Add;
-using ESISA.Core.Application.Features.MediatR.Commands.Categories.AddSubCategory;
+using ESISA.Core.Application.Features.MediatR.Commands.Categories.CreateMainCategory;
+using ESISA.Core.Application.Features.MediatR.Commands.Categories.CreateSubCategory;
 using ESISA.Core.Application.Features.MediatR.Commands.Categories.Update;
 using ESISA.Core.Domain.Entities;
 using System;
@@ -16,11 +16,11 @@ namespace ESISA.Core.Application.Mappings.Automapper
     {
         public CategoryProfile()
         {
-            this.CreateMap<AddMainCategoryCommandRequest, Category>()
+            this.CreateMap<CreateMainCategoryCommandRequest, Category>()
                 .ForMember(e => e.Name, e => e.MapFrom(e => e.CategoryName))
                 .ForMember(e => e.Description, e => e.MapFrom(e => e.CategoryDescription));
 
-            this.CreateMap<AddSubCategoryCommandRequest, Category>()
+            this.CreateMap<CreateSubCategoryCommandRequest, Category>()
              .ForMember(e=>e.ParentId, e=>e.MapFrom(e=>e.ParentCategoryId))
              .ForMember(e => e.Name, e => e.MapFrom(e => e.CategoryName))
              .ForMember(e => e.Description, e => e.MapFrom(e => e.CategoryDescription));

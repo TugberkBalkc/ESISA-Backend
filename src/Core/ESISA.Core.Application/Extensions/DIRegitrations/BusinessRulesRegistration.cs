@@ -13,8 +13,13 @@ namespace ESISA.Core.Application.Extensions.DIRegitrations
         internal static void RegisterBusinessRules(this IServiceCollection services)
         {
             services.AddScoped<ProductBusinessRules>();
+            services.AddScoped<ProductDemandBusinessRules>();   
+
             services.AddScoped<CategoryBusinessRules>();
+            services.AddScoped<CategoryDemandBusinessRules>();
+            
             services.AddScoped<BrandBusinessRules>();
+            services.AddScoped<BrandDemandBusinessRules>(); 
 
         }
     }

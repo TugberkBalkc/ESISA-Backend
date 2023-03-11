@@ -19,6 +19,7 @@ namespace ESISA.Core.Domain.Entities
         public virtual ICollection<Category>? Children { get; set; }
 
         public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<ProductDemand> ProductDemands { get; set; }
 
         public virtual ICollection<CategoryPhotoPath> CategoryPhotoPaths { get; set; }
 

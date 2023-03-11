@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESISA.Core.Application.Interfaces.Repositories.Demand
+namespace ESISA.Core.Application.Interfaces.Repositories
 {
     public interface IProductDemandCommandRepository : ICommandRepository<ProductDemand>
     {
