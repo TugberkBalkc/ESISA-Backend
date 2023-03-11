@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ESISA.Core.Application.Dtos;
 using ESISA.Core.Application.Features.MediatR.Commands.Products.Add;
+using ESISA.Core.Application.Features.MediatR.Commands.Products.Update;
 using ESISA.Core.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,12 @@ namespace ESISA.Core.Application.Mappings.Automapper
              .ForMember(e => e.Name, e => e.MapFrom(e => e.ProductName))
              .ForMember(e => e.CategoryId, e => e.MapFrom(e => e.CategoryId))
              .ForMember(e => e.BrandId, e => e.MapFrom(e => e.BrandId));
+
+            this.CreateMap<UpdateProductCommandRequest, Product>()
+          .ForMember(e => e.Id, e => e.MapFrom(e => e.ProductId))
+          .ForMember(e => e.Name, e => e.MapFrom(e => e.ProductName))
+          .ForMember(e => e.CategoryId, e => e.MapFrom(e => e.CategoryId))
+          .ForMember(e => e.BrandId, e => e.MapFrom(e => e.BrandId));
 
             this.CreateMap<Product, ProductDto>()
                 .ForMember(e => e.ProductId, e => e.MapFrom(e => e.Id))

@@ -2,6 +2,7 @@
 using ESISA.Core.Application.Dtos;
 using ESISA.Core.Application.Features.MediatR.Commands.Categories.Add;
 using ESISA.Core.Application.Features.MediatR.Commands.Categories.AddSubCategory;
+using ESISA.Core.Application.Features.MediatR.Commands.Categories.Update;
 using ESISA.Core.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,12 @@ namespace ESISA.Core.Application.Mappings.Automapper
              .ForMember(e=>e.ParentId, e=>e.MapFrom(e=>e.ParentCategoryId))
              .ForMember(e => e.Name, e => e.MapFrom(e => e.CategoryName))
              .ForMember(e => e.Description, e => e.MapFrom(e => e.CategoryDescription));
+
+            this.CreateMap<UpdateCategoryCommandRequest, Category>()
+              .ForMember(e => e.Id, e => e.MapFrom(e => e.CategoryId))
+              .ForMember(e => e.ParentId, e => e.MapFrom(e => e.ParentCategoryId))
+              .ForMember(e => e.Name, e => e.MapFrom(e => e.CategoryName))
+              .ForMember(e => e.Description, e => e.MapFrom(e => e.CategoryDescription));
 
             this.CreateMap<Category, CategoryDto>()
                 .ForMember(e => e.CategoryId, e => e.MapFrom(e => e.Id))

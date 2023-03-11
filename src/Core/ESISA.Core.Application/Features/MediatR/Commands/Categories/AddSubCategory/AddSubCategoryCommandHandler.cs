@@ -26,7 +26,7 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Categories.AddSubCate
 
         public async Task<AddSubCategoryCommandResponse> Handle(AddSubCategoryCommandRequest request, CancellationToken cancellationToken)
         {
-            await _categoryBusinessRules.ExistsCheckByCategoryName(request.CategoryName, "Kategori");
+            await _categoryBusinessRules.ExistsCheckByCategoryName(request.CategoryName);
 
             var category = _mapper.Map<Category>(request);
 

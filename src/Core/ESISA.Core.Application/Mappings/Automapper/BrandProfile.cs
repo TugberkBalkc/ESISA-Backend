@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ESISA.Core.Application.Dtos;
 using ESISA.Core.Application.Features.MediatR.Commands.Brands.Add;
+using ESISA.Core.Application.Features.MediatR.Commands.Brands.Update;
 using ESISA.Core.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,12 @@ namespace ESISA.Core.Application.Mappings.Automapper
             this.CreateMap<AddBrandCommandRequest, Brand>()
                 .ForMember(e => e.Name, e => e.MapFrom(e => e.BrandName))
                 .ForMember(e => e.WebsiteUrl, e => e.MapFrom(e => e.BrandWebsiteUrl));
+
+            this.CreateMap<UpdateBrandCommandRequest, Brand>()
+               .ForMember(e => e.Id, e => e.MapFrom(e => e.BrandId))
+              .ForMember(e => e.Name, e => e.MapFrom(e => e.BrandName))
+              .ForMember(e => e.WebsiteUrl, e => e.MapFrom(e => e.BrandWebsiteUrl));
+
 
             this.CreateMap<Brand, BrandDto>()
               .ForMember(e => e.BrandId, e => e.MapFrom(e => e.Id))

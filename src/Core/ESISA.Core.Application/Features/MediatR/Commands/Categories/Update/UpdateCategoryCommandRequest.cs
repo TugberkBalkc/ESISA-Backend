@@ -1,26 +1,27 @@
-﻿using ESISA.Core.Application.Features.MediatR.Commands.Categories.Add;
-using MediatR;
+﻿using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESISA.Core.Application.Features.MediatR.Commands.Categories.AddSubCategory
+namespace ESISA.Core.Application.Features.MediatR.Commands.Categories.Update
 {
-    public class AddSubCategoryCommandRequest : IRequest<AddSubCategoryCommandResponse>
+    public class UpdateCategoryCommandRequest : IRequest<UpdateCategoryCommandResponse>
     {
+        public Guid CategoryId { get; set; }
         public Guid ParentCategoryId { get; set; }
         public String CategoryName { get; set; }
         public String CategoryDescription { get; set; }
 
-        public AddSubCategoryCommandRequest()
+        public UpdateCategoryCommandRequest()
         {
 
         }
 
-        public AddSubCategoryCommandRequest(Guid parentCategoryId, string categoryName, string categoryDescription)
+        public UpdateCategoryCommandRequest(Guid categoryId, Guid parentCategoryId, string categoryName, string categoryDescription)
         {
+            CategoryId = categoryId;
             ParentCategoryId = parentCategoryId;
             CategoryName = categoryName;
             CategoryDescription = categoryDescription;

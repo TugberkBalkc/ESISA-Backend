@@ -12,5 +12,16 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Categories.Add
     {
         public String CategoryName { get; set; }
         public String CategoryDescription { get; set; }
+
+        public AddMainCategoryCommandRequest()
+        {
+
+        }
+
+        public AddMainCategoryCommandRequest(string categoryName, string categoryDescription)
+        {
+            CategoryName = categoryName;
+            CategoryDescription = categoryDescription;
+        }
     }
 }

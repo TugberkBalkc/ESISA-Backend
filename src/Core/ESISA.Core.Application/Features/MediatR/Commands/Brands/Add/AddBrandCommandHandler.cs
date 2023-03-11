@@ -26,7 +26,7 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Brands.Add
 
         public async Task<AddBrandCommandResponse> Handle(AddBrandCommandRequest request, CancellationToken cancellationToken)
         {
-            await _brandBusinessRules.ExistsCheckByBrandName(request.BrandName, "Marka");
+            await _brandBusinessRules.ExistsCheckByBrandName(request.BrandName);
 
             var brand = _mapper.Map<Brand>(request);
 

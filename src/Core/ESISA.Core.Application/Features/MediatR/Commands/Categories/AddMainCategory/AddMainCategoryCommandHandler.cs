@@ -32,7 +32,7 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Categories.Add
 
         public async Task<AddMainCategoryCommandResponse> Handle(AddMainCategoryCommandRequest request, CancellationToken cancellationToken)
         {
-            await _categoryBusinessRules.ExistsCheckByCategoryName(request.CategoryName, "Kategori");
+            await _categoryBusinessRules.ExistsCheckByCategoryName(request.CategoryName);
 
             var category = _mapper.Map<Category>(request);
 

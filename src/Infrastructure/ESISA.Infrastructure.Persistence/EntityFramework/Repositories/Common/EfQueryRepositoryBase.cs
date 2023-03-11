@@ -47,7 +47,7 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Repositories.Common
         {
             IQueryable<TEntity> query = this._entities.AsQueryable();
 
-            query.Where(e => e.Id == id);
+            query = query.Where(e => e.Id == id);
 
             query = ApplyInclude(query, includes);
 

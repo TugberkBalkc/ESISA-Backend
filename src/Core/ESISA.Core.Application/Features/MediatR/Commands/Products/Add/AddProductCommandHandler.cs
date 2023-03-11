@@ -31,7 +31,7 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Products.Add
 
         public async Task<AddProductCommandResponse> Handle(AddProductCommandRequest request, CancellationToken cancellationToken)
         {
-            await _productBusinessRules.ExistsCheckByProductName(request.ProductName, "Ürün");
+            await _productBusinessRules.ExistsCheckByProductName(request.ProductName);
 
             var product = _mapper.Map<Product>(request);
 
