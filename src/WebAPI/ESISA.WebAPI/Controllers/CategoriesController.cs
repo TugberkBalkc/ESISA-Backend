@@ -48,7 +48,7 @@ namespace ESISA.WebAPI.Controllers
         }
 
         [HttpPut("UpdateCategory")]
-        public async Task<IActionResult> UpdateCategoryAsync([FromBody] UpdateCategoryCommandRequest updateCategoryCommandRequest)
+        public async Task<IActionResult> UpdateCategoryAsync([FromBody] UpdateSubCategoryCommandRequest updateCategoryCommandRequest)
         {
             var response = await base._mediator.Send(updateCategoryCommandRequest);
 

@@ -27,9 +27,10 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Brands.Update
 
         public async Task<UpdateBrandCommandResponse> Handle(UpdateBrandCommandRequest request, CancellationToken cancellationToken)
         {
-            var brand = await _brandQueryRepository.GetByIdAsync(request.BrandId);
 
-            await _brandBusinessRules.NullCheck(brand);
+            await _brandBusinessRules.NullCheckByBrandId(request.BrandId);
+
+            var brand = await _brandQueryRepository.GetByIdAsync(request.BrandId);
 
             _mapper.Map(request, brand);
 

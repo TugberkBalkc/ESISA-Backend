@@ -25,7 +25,7 @@ namespace ESISA.Core.Application.Mappings.Automapper
              .ForMember(e => e.Name, e => e.MapFrom(e => e.CategoryName))
              .ForMember(e => e.Description, e => e.MapFrom(e => e.CategoryDescription));
 
-            this.CreateMap<UpdateCategoryCommandRequest, Category>()
+            this.CreateMap<UpdateSubCategoryCommandRequest, Category>()
               .ForMember(e => e.Id, e => e.MapFrom(e => e.CategoryId))
               .ForMember(e => e.ParentId, e => e.MapFrom(e => e.ParentCategoryId))
               .ForMember(e => e.Name, e => e.MapFrom(e => e.CategoryName))

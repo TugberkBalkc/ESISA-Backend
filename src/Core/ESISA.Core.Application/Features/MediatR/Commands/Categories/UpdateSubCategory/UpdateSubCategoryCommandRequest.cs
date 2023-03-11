@@ -7,19 +7,19 @@ using System.Threading.Tasks;
 
 namespace ESISA.Core.Application.Features.MediatR.Commands.Categories.Update
 {
-    public class UpdateCategoryCommandRequest : IRequest<UpdateCategoryCommandResponse>
+    public class UpdateSubCategoryCommandRequest : IRequest<UpdateSubCategoryCommandResponse>
     {
         public Guid CategoryId { get; set; }
         public Guid ParentCategoryId { get; set; }
         public String CategoryName { get; set; }
         public String CategoryDescription { get; set; }
 
-        public UpdateCategoryCommandRequest()
+        public UpdateSubCategoryCommandRequest()
         {
 
         }
 
-        public UpdateCategoryCommandRequest(Guid categoryId, Guid parentCategoryId, string categoryName, string categoryDescription)
+        public UpdateSubCategoryCommandRequest(Guid categoryId, Guid parentCategoryId, string categoryName, string categoryDescription)
         {
             CategoryId = categoryId;
             ParentCategoryId = parentCategoryId;

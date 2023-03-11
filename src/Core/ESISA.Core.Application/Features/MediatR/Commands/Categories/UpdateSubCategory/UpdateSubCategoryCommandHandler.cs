@@ -8,14 +8,14 @@ using MediatR;
 
 namespace ESISA.Core.Application.Features.MediatR.Commands.Categories.Update
 {
-    public class UpdateCategoryCommandHandler : IRequestHandler<UpdateCategoryCommandRequest, UpdateCategoryCommandResponse>
+    public class UpdateSubCategoryCommandHandler : IRequestHandler<UpdateSubCategoryCommandRequest, UpdateSubCategoryCommandResponse>
     {
         private readonly ICategoryCommandRepository _categoryCommandRepository;
         private readonly ICategoryQueryRepository _categoryQueryRepository;
         private readonly CategoryBusinessRules _categoryBusinessRules;
         private readonly IMapper _mapper;
 
-        public UpdateCategoryCommandHandler
+        public UpdateSubCategoryCommandHandler
             (ICategoryCommandRepository categoryCommandRepository, ICategoryQueryRepository categoryQueryRepository,
              CategoryBusinessRules categoryBusinessRules, IMapper mapper)
         {
@@ -25,11 +25,12 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Categories.Update
             _mapper = mapper;
         }
 
-        public async Task<UpdateCategoryCommandResponse> Handle(UpdateCategoryCommandRequest request, CancellationToken cancellationToken)
+        public async Task<UpdateSubCategoryCommandResponse> Handle(UpdateSubCategoryCommandRequest request, CancellationToken cancellationToken)
         {
-            var category = await _categoryQueryRepository.GetByIdAsync(request.CategoryId);
 
-            await _categoryBusinessRules.NullCheck(category);
+            await _categoryBusinessRules.NullCheckByCategroyId(request.CategoryId);
+
+            var category = await _categoryQueryRepository.GetByIdAsync(request.CategoryId);
 
             _mapper.Map(request, category);
 
@@ -39,7 +40,7 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Categories.Update
 
             var categoryDto = _mapper.Map<CategoryDto>(category);
 
-            return new UpdateCategoryCommandResponse(new SuccessfulContentResponse<CategoryDto>(categoryDto, ResponseTitles.Success, ResponseMessages.CategoryUpdated, System.Net.HttpStatusCode.OK));
+            return new UpdateSubCategoryCommandResponse(new SuccessfulContentResponse<CategoryDto>(categoryDto, ResponseTitles.Success, ResponseMessages.CategoryUpdated, System.Net.HttpStatusCode.OK));
         }
     }
 }
