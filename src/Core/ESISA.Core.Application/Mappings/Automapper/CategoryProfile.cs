@@ -3,6 +3,7 @@ using ESISA.Core.Application.Dtos;
 using ESISA.Core.Application.Features.MediatR.Commands.Categories.CreateMainCategory;
 using ESISA.Core.Application.Features.MediatR.Commands.Categories.CreateSubCategory;
 using ESISA.Core.Application.Features.MediatR.Commands.Categories.Update;
+using ESISA.Core.Application.Features.MediatR.Commands.Categories.UpdateMainCategory;
 using ESISA.Core.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,12 @@ namespace ESISA.Core.Application.Mappings.Automapper
                 .ForMember(e => e.Name, e => e.MapFrom(e => e.CategoryName))
                 .ForMember(e => e.Description, e => e.MapFrom(e => e.CategoryDescription));
 
+            this.CreateMap<UpdateMainCategoryCommandRequest, Category>()
+              .ForMember(e => e.Id, e => e.MapFrom(e => e.CategoryId))
+              .ForMember(e => e.IsActive, e => e.MapFrom(e => e.CategoryIsActive))
+              .ForMember(e => e.Name, e => e.MapFrom(e => e.CategoryName))
+              .ForMember(e => e.Description, e => e.MapFrom(e => e.CategoryDescription));
+
             this.CreateMap<CreateSubCategoryCommandRequest, Category>()
              .ForMember(e=>e.ParentId, e=>e.MapFrom(e=>e.ParentCategoryId))
              .ForMember(e => e.Name, e => e.MapFrom(e => e.CategoryName))
@@ -27,6 +34,7 @@ namespace ESISA.Core.Application.Mappings.Automapper
 
             this.CreateMap<UpdateSubCategoryCommandRequest, Category>()
               .ForMember(e => e.Id, e => e.MapFrom(e => e.CategoryId))
+              .ForMember(e => e.IsActive, e => e.MapFrom(e => e.CategoryIsActive))
               .ForMember(e => e.ParentId, e => e.MapFrom(e => e.ParentCategoryId))
               .ForMember(e => e.Name, e => e.MapFrom(e => e.CategoryName))
               .ForMember(e => e.Description, e => e.MapFrom(e => e.CategoryDescription));

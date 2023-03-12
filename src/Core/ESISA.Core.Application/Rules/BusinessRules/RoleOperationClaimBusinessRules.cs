@@ -17,7 +17,7 @@ namespace ESISA.Core.Application.Rules.BusinessRules
         public virtual async Task NullCheck(object entity)
         {
             if (entity is null)
-                throw new BusinessLogicException(ResponseTitles.Error, ResponseMessages.RoleOperationClaimNotFount);
+                throw new BusinessLogicException(ResponseTitles.Error, ResponseMessages.RoleOperationClaimNotFound);
         }
 
         public virtual async Task NullCheck(object[] entities)
@@ -26,7 +26,7 @@ namespace ESISA.Core.Application.Rules.BusinessRules
             {
                 if (entities[i] is null)
                 {
-                    throw new BusinessLogicException(ResponseTitles.Error, $"{_entityName} {ResponseMessages.NotFound}");
+                    throw new BusinessLogicException(ResponseTitles.Error, ResponseMessages.RoleOperationClaimNotFound);
                 }
             }
         }

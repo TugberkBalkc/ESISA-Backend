@@ -24,11 +24,11 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Categories.DeleteRang
         {
             var categoriesToCheck = new List<Category>();
 
-            request.CategoryIds.ToList().ForEach(async id =>
+            foreach (var id in request.CategoryIds)
             {
                 categoriesToCheck.Add(await _categoryQueryRepository.GetByIdAsync(id));
-            });
-
+            }
+ 
             await _categoryBusinessRules.NullCheck(categoriesToCheck.ToArray());
 
             await _categoryCommandRepository.DeleteRangeAsync(request.CategoryIds);

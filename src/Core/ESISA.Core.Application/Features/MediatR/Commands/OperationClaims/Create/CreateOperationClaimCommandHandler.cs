@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using ESISA.Core.Application.Constants.Response;
 using ESISA.Core.Application.Dtos.Security.Authorization;
-using ESISA.Core.Application.Extensions.String;
+using ESISA.Core.Application.Extensions;
 using ESISA.Core.Application.Interfaces.Repositories;
 using ESISA.Core.Application.Rules.BusinessRules;
 using ESISA.Core.Application.Utilities.Response.ContentResponse;
@@ -28,7 +28,7 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.OperationClaims.Creat
 
         public async Task<CreateOperationClaimCommandResponse> Handle(CreateOperationClaimCommandRequest request, CancellationToken cancellationToken)
         {
-            var operationClaimToCheck = await _operationClaimQueryRepository.GetSingleAsync(e => e.ClaimName.GetTrimmedLowered() == request.OperationClaimName);
+            var operationClaimToCheck = await _operationClaimQueryRepository.GetSingleAsync(e => e.ClaimName == request.OperationClaimName);
 
             await _operationClaimBusinessRules.ExistsCheck(operationClaimToCheck);
 

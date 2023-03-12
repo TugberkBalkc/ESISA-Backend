@@ -4,6 +4,9 @@ using ESISA.Core.Application.Features.MediatR.Commands.Demands.CreateProductDema
 using ESISA.Core.Application.Features.MediatR.Commands.Demands.DeleteBrandDemand;
 using ESISA.Core.Application.Features.MediatR.Commands.Demands.DeleteCategoryDemand;
 using ESISA.Core.Application.Features.MediatR.Commands.Demands.DeleteProductDemand;
+using ESISA.Core.Application.Features.MediatR.Commands.Demands.DeleteRangeBrandDemand;
+using ESISA.Core.Application.Features.MediatR.Commands.Demands.DeleteRangeCategoryDemand;
+using ESISA.Core.Application.Features.MediatR.Commands.Demands.DeleteRangeProductDemand;
 using ESISA.WebAPI.Controllers.Common;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -19,8 +22,8 @@ namespace ESISA.WebAPI.Controllers
         {
         }
 
-        [HttpPost("AddBrandDemand")]
-        public async Task<IActionResult> AddBrandDemandAsync([FromBody] CreateBrandDemandCommandRequest createBrandDemandCommandRequest)
+        [HttpPost("CreateBrandDemand")]
+        public async Task<IActionResult> CreateBrandDemandAsync([FromBody] CreateBrandDemandCommandRequest createBrandDemandCommandRequest)
         {
             var response = await _mediator.Send(createBrandDemandCommandRequest);
 
@@ -39,8 +42,18 @@ namespace ESISA.WebAPI.Controllers
                 : BadRequest(response.Response.Title + ":" + response.Response.Message);
         }
 
-        [HttpPost("AddCategoryDemand")]
-        public async Task<IActionResult> AddCategoryDemandAsync([FromBody] CreateCategoryDemandCommandRequest createCategoryDemandCommand)
+        [HttpDelete("DeleteRangeBrandDemand")]
+        public async Task<IActionResult> DeleteRangeBrandDemandAsync([FromBody] DeleteRangeBrandDemandCommandRequest deleteRangeBrandDemandCommandRequest)
+        {
+            var response = await _mediator.Send(deleteRangeBrandDemandCommandRequest);
+
+            return response.Response.IsSucceeded == true
+                ? Ok(response.Response)
+                : BadRequest(response.Response.Title + ":" + response.Response.Message);
+        }
+
+        [HttpPost("CreateCategoryDemand")]
+        public async Task<IActionResult> CreateCategoryDemandAsync([FromBody] CreateCategoryDemandCommandRequest createCategoryDemandCommand)
         {
             var response = await _mediator.Send(createCategoryDemandCommand);
 
@@ -59,8 +72,18 @@ namespace ESISA.WebAPI.Controllers
                 : BadRequest(response.Response.Title + ":" + response.Response.Message);
         }
 
-        [HttpPost("AddProductDemand")]
-        public async Task<IActionResult> AddProductDemandAsync([FromBody] CreateProductDemandCommandRequest createProductDemandCommand)
+        [HttpDelete("DeleteRangeCategoryDemand")]
+        public async Task<IActionResult> DeleteRangeCategoryDemandAsync([FromBody] DeleteRangeCategoryDemandCommandRequest deleteRangeCategoryDemandCommandRequest)
+        {
+            var response = await _mediator.Send(deleteRangeCategoryDemandCommandRequest);
+
+            return response.Response.IsSucceeded == true
+                ? Ok(response.Response)
+                : BadRequest(response.Response.Title + ":" + response.Response.Message);
+        }
+
+        [HttpPost("CreateProductDemand")]
+        public async Task<IActionResult> CreateProductDemandAsync([FromBody] CreateProductDemandCommandRequest createProductDemandCommand)
         {
             var response = await _mediator.Send(createProductDemandCommand);
 
@@ -73,6 +96,16 @@ namespace ESISA.WebAPI.Controllers
         public async Task<IActionResult> DeleteProductDemandAsync([FromBody] DeleteProductDemandCommandRequest deleteProductDemandCommandRequest)
         {
             var response = await _mediator.Send(deleteProductDemandCommandRequest);
+
+            return response.Response.IsSucceeded == true
+                ? Ok(response.Response)
+                : BadRequest(response.Response.Title + ":" + response.Response.Message);
+        }
+
+        [HttpDelete("DeleteRangeProductDemand")]
+        public async Task<IActionResult> DeleteRangeProductDemandAsync([FromBody] DeleteRangeProductDemandCommandRequest deleteRangeProductDemandCommandRequest)
+        {
+            var response = await _mediator.Send(deleteRangeProductDemandCommandRequest);
 
             return response.Response.IsSucceeded == true
                 ? Ok(response.Response)

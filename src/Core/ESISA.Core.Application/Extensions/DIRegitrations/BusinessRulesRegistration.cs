@@ -21,6 +21,9 @@ namespace ESISA.Core.Application.Extensions.DIRegitrations
             services.AddScoped<BrandBusinessRules>();
             services.AddScoped<BrandDemandBusinessRules>(); 
 
+            services.AddScoped<RoleBusinessRules>();
+            services.AddScoped<OperationClaimBusinessRules>();
+            services.AddScoped<RoleOperationClaimBusinessRules>();
         }
     }
 }

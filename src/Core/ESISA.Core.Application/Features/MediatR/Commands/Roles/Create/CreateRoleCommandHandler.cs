@@ -26,7 +26,7 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Roles.Create
 
         public async Task<CreateRoleCommandResponse> Handle(CreateRoleCommandRequest request, CancellationToken cancellationToken)
         {
-            var roleToCheck = await _roleQueryRepository.GetSingleAsync(e => e.Name.Trim().ToLower() == request.RoleName.Trim().ToLower());
+            var roleToCheck = await _roleQueryRepository.GetSingleAsync(e => e.Name == request.RoleName);
 
             await _roleBusinessRules.ExistsCheck(roleToCheck);
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESISA.Core.Application.Extensions.String
+namespace ESISA.Core.Application.Extensions
 {
     public static class StringConventionExtension
     {

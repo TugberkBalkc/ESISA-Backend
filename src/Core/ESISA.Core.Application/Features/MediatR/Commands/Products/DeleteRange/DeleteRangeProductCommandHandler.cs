@@ -24,10 +24,10 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Products.DeleteRange
         {
             var productsToCheck = new List<Product>();
 
-            request.ProductIds.ToList().ForEach(async id =>
+            foreach (var id in request.ProductIds)
             {
                 productsToCheck.Add(await _productQueryRepository.GetByIdAsync(id));
-            });
+            }
 
             await _productBusinessRules.NullCheck(productsToCheck);
 

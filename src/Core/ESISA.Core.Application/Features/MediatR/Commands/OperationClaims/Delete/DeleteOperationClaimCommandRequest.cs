@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace ESISA.Core.Application.Features.MediatR.Commands.OperationClaims.Delete
 {
-    public class DeleteOperationClaimCommadRequest : IRequest<DeleteOperationClaimCommadResponse>
+    public class DeleteOperationClaimCommandRequest : IRequest<DeleteOperationClaimCommandResponse>
     {
         public Guid OperationClaimId { get; set; }
 
-        public DeleteOperationClaimCommadRequest()
+        public DeleteOperationClaimCommandRequest()
         {
 
         }
 
-        public DeleteOperationClaimCommadRequest(Guid operationClaimId)
+        public DeleteOperationClaimCommandRequest(Guid operationClaimId)
         {
             OperationClaimId = operationClaimId;
         }

@@ -26,11 +26,11 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.OperationClaims.Delet
         {
             var operationClaimsToCheck = new List<OperationClaim>();
 
-            request.OperationClaimIds.ToList().ForEach(async id =>
+            foreach (var id in request.OperationClaimIds)
             {
                 operationClaimsToCheck.Add(await _operationClaimQueryRepository.GetByIdAsync(id));
-            });
-
+            }
+        
             await _operationClaimBusinessRules.NullCheck(operationClaimsToCheck);
 
             await _operationClaimCommandRepository.DeleteRangeAsync(request.OperationClaimIds);

@@ -6,20 +6,20 @@ using MediatR;
 
 namespace ESISA.Core.Application.Features.MediatR.Commands.OperationClaims.Delete
 {
-    public class DeleteOperationClaimCommadHandler : IRequestHandler<DeleteOperationClaimCommadRequest, DeleteOperationClaimCommadResponse>
+    public class DeleteOperationClaimCommandHandler : IRequestHandler<DeleteOperationClaimCommandRequest, DeleteOperationClaimCommandResponse>
     {
         private readonly IOperationClaimCommandRepository _operationClaimCommandRepository;
         private readonly IOperationClaimQueryRepository _operationClaimQueryRepository;
         private readonly OperationClaimBusinessRules _operationClaimBusinessRules;
 
-        public DeleteOperationClaimCommadHandler(IOperationClaimCommandRepository operationClaimCommandRepository, IOperationClaimQueryRepository operationClaimQueryRepository, OperationClaimBusinessRules operationClaimBusinessRules)
+        public DeleteOperationClaimCommandHandler(IOperationClaimCommandRepository operationClaimCommandRepository, IOperationClaimQueryRepository operationClaimQueryRepository, OperationClaimBusinessRules operationClaimBusinessRules)
         {
             _operationClaimCommandRepository = operationClaimCommandRepository;
             _operationClaimQueryRepository = operationClaimQueryRepository;
             _operationClaimBusinessRules = operationClaimBusinessRules;
         }
 
-        public async Task<DeleteOperationClaimCommadResponse> Handle(DeleteOperationClaimCommadRequest request, CancellationToken cancellationToken)
+        public async Task<DeleteOperationClaimCommandResponse> Handle(DeleteOperationClaimCommandRequest request, CancellationToken cancellationToken)
         {
             var operationClaimToCheck = await _operationClaimQueryRepository.GetByIdAsync(request.OperationClaimId);
 
@@ -29,7 +29,7 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.OperationClaims.Delet
 
             await _operationClaimCommandRepository.SaveChangesAsync();
 
-            return new DeleteOperationClaimCommadResponse(new SuccessfulContentResponse<Guid>(request.OperationClaimId, ResponseTitles.Success, ResponseMessages.OperationClaimDeleted, System.Net.HttpStatusCode.OK));
+            return new DeleteOperationClaimCommandResponse(new SuccessfulContentResponse<Guid>(request.OperationClaimId, ResponseTitles.Success, ResponseMessages.OperationClaimDeleted, System.Net.HttpStatusCode.OK));
         }
     }
 }

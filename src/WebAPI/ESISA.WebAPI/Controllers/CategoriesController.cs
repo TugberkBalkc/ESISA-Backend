@@ -1,6 +1,7 @@
 ﻿using ESISA.Core.Application.Features.MediatR.Commands.Categories.CreateMainCategory;
 using ESISA.Core.Application.Features.MediatR.Commands.Categories.CreateSubCategory;
 using ESISA.Core.Application.Features.MediatR.Commands.Categories.Delete;
+using ESISA.Core.Application.Features.MediatR.Commands.Categories.DeleteRange;
 using ESISA.Core.Application.Features.MediatR.Commands.Categories.Update;
 using ESISA.Core.Application.Features.MediatR.Commands.Categories.UpdateMainCategory;
 using ESISA.WebAPI.Controllers.Common;
@@ -18,20 +19,20 @@ namespace ESISA.WebAPI.Controllers
         {
         }
 
-        [HttpPost("AddMainCategory")]
-        public async Task<IActionResult> AddMainCategoryAsync([FromBody] CreateMainCategoryCommandRequest addMainCategoryCommandRequest)
+        [HttpPost("CreateMainCategory")]
+        public async Task<IActionResult> CreateMainCategoryAsync([FromBody] CreateMainCategoryCommandRequest createMainCategoryCommandRequest)
         {
-            var response = await base._mediator.Send(addMainCategoryCommandRequest);
+            var response = await base._mediator.Send(createMainCategoryCommandRequest);
 
             return response.Response.IsSucceeded == true
                 ? Ok(response.Response)
                 : BadRequest(response.Response.Title + ":" + response.Response.Message);
         }
 
-        [HttpPost("AddSubCategory")]
-        public async Task<IActionResult> AddSubCategoryAsync([FromBody] CreateSubCategoryCommandRequest addSubCategoryCommandRequest)
+        [HttpPost("CreateSubCategory")]
+        public async Task<IActionResult> CreateSubCategoryAsync([FromBody] CreateSubCategoryCommandRequest createSubCategoryCommandRequest)
         {
-            var response = await base._mediator.Send(addSubCategoryCommandRequest);
+            var response = await base._mediator.Send(createSubCategoryCommandRequest);
 
             return response.Response.IsSucceeded == true
                 ? Ok(response.Response)
@@ -42,6 +43,16 @@ namespace ESISA.WebAPI.Controllers
         public async Task<IActionResult> DeleteCategoryAsync([FromBody] DeleteCategoryCommandRequest deleteCategoryCommandRequest)
         {
             var response = await base._mediator.Send(deleteCategoryCommandRequest);
+
+            return response.Response.IsSucceeded == true
+                ? Ok(response.Response)
+                : BadRequest(response.Response.Title + ":" + response.Response.Message);
+        }
+
+        [HttpDelete("DeleteRangeCategory")]
+        public async Task<IActionResult> DeleteRangeCategoryAsync([FromBody] DeleteRangeCategoryCommandRequest deleteRangeCategoryCommandRequest)
+        {
+            var response = await base._mediator.Send(deleteRangeCategoryCommandRequest);
 
             return response.Response.IsSucceeded == true
                 ? Ok(response.Response)

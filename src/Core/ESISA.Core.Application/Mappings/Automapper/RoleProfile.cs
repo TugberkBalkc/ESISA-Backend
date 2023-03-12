@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ESISA.Core.Application.Dtos.Security.Authorization;
 using ESISA.Core.Application.Features.MediatR.Commands.Roles.Create;
+using ESISA.Core.Application.Features.MediatR.Commands.Roles.Update;
 using ESISA.Core.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,11 @@ namespace ESISA.Core.Application.Mappings.Automapper
         {
             this.CreateMap<CreateRoleCommandRequest, Role>()
                 .ForMember(e => e.Name, e => e.MapFrom(e => e.RoleName));
+
+            this.CreateMap<UpdateRoleCommandRequest, Role>()
+             .ForMember(e => e.Id, e => e.MapFrom(e => e.RoleId))
+             .ForMember(e => e.IsActive, e => e.MapFrom(e => e.RoleIsActive))
+             .ForMember(e => e.Name, e => e.MapFrom(e => e.RoleName));
 
             this.CreateMap<Role, RoleDto>()
                 .ForMember(e => e.RoleId, e => e.MapFrom(e => e.Id))

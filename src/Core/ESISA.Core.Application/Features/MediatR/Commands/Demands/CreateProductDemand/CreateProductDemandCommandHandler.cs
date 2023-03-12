@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using ESISA.Core.Application.Constants.Response;
 using ESISA.Core.Application.Dtos;
-using ESISA.Core.Application.Extensions.String;
+using ESISA.Core.Application.Extensions;
 using ESISA.Core.Application.Interfaces.Repositories;
 using ESISA.Core.Application.Rules.BusinessRules;
 using ESISA.Core.Application.Utilities.Response.ContentResponse;
@@ -31,7 +31,7 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Demands.CreateProduct
 
         public async Task<CreateProductDemandCommandResponse> Handle(CreateProductDemandCommandRequest request, CancellationToken cancellationToken)
         {
-            var productToCheck = await _productQueryRepository.GetSingleAsync(e=>e.Name.GetTrimmedLowered() == request.ProductName.GetTrimmedLowered());
+            var productToCheck = await _productQueryRepository.GetSingleAsync(e=>e.Name == request.ProductName);
 
             await _productDemandBusinessRules.ExistsCheck(productToCheck);
 

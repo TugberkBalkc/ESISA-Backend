@@ -3,9 +3,9 @@ using ESISA.Core.Application.Utilities.Response.Common;
 
 namespace ESISA.Core.Application.Features.MediatR.Commands.Roles.DeleteOperationClaim
 {
-    public class DeleteRoleOperationClaimCommandResponse : CommandResponseBase<Guid>
+    public class DeleteOperationClaimInRoleCommandResponse : CommandResponseBase<Guid>
     {
-        public DeleteRoleOperationClaimCommandResponse(IContentResponse<Guid> response) : base(response)
+        public DeleteOperationClaimInRoleCommandResponse(IContentResponse<Guid> response) : base(response)
         {
         }
     }

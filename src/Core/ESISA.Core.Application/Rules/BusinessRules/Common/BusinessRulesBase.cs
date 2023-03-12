@@ -8,6 +8,5 @@ namespace ESISA.Core.Application.Rules.BusinessRules.Common
 {
     public abstract class BusinessRulesBase
     {
-        protected
     }
 }

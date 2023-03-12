@@ -6,13 +6,13 @@ using MediatR;
 
 namespace ESISA.Core.Application.Features.MediatR.Commands.Roles.DeleteOperationClaim
 {
-    public class DeleteRoleOperationClaimCommandHandler : IRequestHandler<DeleteRoleOperationClaimCommandRequest, DeleteRoleOperationClaimCommandResponse>
+    public class DeleteOperationClaimInRoleCommandHandler : IRequestHandler<DeleteOperationClaimInRoleCommandRequest, DeleteOperationClaimInRoleCommandResponse>
     {
         private readonly IRoleOperationClaimCommandRepository _roleOperationClaimCommandRepository;
         private readonly IRoleOperationClaimQueryRepository _roleOperationClaimQueryRepository;
         private readonly RoleOperationClaimBusinessRules _roleOperationClaimBusinessRules;
 
-        public DeleteRoleOperationClaimCommandHandler
+        public DeleteOperationClaimInRoleCommandHandler
             (IRoleOperationClaimCommandRepository roleOperationClaimCommandRepository, IRoleOperationClaimQueryRepository roleOperationClaimQueryRepository, 
              RoleOperationClaimBusinessRules roleOperationClaimBusinessRules)
         {
@@ -21,7 +21,7 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Roles.DeleteOperation
             _roleOperationClaimBusinessRules = roleOperationClaimBusinessRules;
         }
 
-        public async Task<DeleteRoleOperationClaimCommandResponse> Handle(DeleteRoleOperationClaimCommandRequest request, CancellationToken cancellationToken)
+        public async Task<DeleteOperationClaimInRoleCommandResponse> Handle(DeleteOperationClaimInRoleCommandRequest request, CancellationToken cancellationToken)
         {
             var roleOperationClaimToCheck = await _roleOperationClaimQueryRepository.GetByIdAsync(request.RoleOperationClaimId);
 
@@ -31,7 +31,7 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Roles.DeleteOperation
 
             await _roleOperationClaimCommandRepository.SaveChangesAsync();
 
-            return new DeleteRoleOperationClaimCommandResponse(new SuccessfulContentResponse<Guid>(request.RoleOperationClaimId, ResponseTitles.Success, ResponseMessages.RoleOperationCalimDeleted, System.Net.HttpStatusCode.OK));
+            return new DeleteOperationClaimInRoleCommandResponse(new SuccessfulContentResponse<Guid>(request.RoleOperationClaimId, ResponseTitles.Success, ResponseMessages.RoleOperationCalimDeleted, System.Net.HttpStatusCode.OK));
         }
     }
 }

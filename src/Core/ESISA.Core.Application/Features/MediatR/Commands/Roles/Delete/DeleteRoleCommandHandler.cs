@@ -21,7 +21,7 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Roles.Delete
 
         public async Task<DeleteRoleCommandResponse> Handle(DeleteRoleCommandRequest request, CancellationToken cancellationToken)
         {
-            var roleToCheck = _roleQueryRepository.GetSingleAsync(e=>e.Id== request.RoleId);
+            var roleToCheck = await _roleQueryRepository.GetSingleAsync(e=>e.Id== request.RoleId);
 
             await _roleBusinessRules.NullCheck(roleToCheck);
 

@@ -26,10 +26,10 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Roles.DeleteRange
         {
             var rolesToCheck = new List<Role>();
 
-            request.RoleIds.ToList().ForEach(async id =>
+            foreach (var id in request.RoleIds)
             {
                 rolesToCheck.Add(await _roleQueryRepository.GetByIdAsync(id));
-            });
+            }
 
             await _roleBusinessRules.NullCheck(rolesToCheck);
 

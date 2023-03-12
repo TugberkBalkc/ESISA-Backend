@@ -2,7 +2,7 @@
 using ESISA.Core.Application.Constants.EntityConstantValues;
 using ESISA.Core.Application.Constants.Response;
 using ESISA.Core.Application.Dtos;
-using ESISA.Core.Application.Extensions.String;
+using ESISA.Core.Application.Extensions;
 using ESISA.Core.Application.Interfaces.Repositories;
 using ESISA.Core.Application.Rules.BusinessRules;
 using ESISA.Core.Application.Utilities.Response.ContentResponse;
@@ -35,7 +35,7 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Categories.CreateMain
 
         public async Task<CreateMainCategoryCommandResponse> Handle(CreateMainCategoryCommandRequest request, CancellationToken cancellationToken)
         {
-            var categoryToCheck = await _categoryQueryRepository.GetSingleAsync(e => e.Name.GetTrimmedLowered() == request.CategoryName.GetTrimmedLowered());
+            var categoryToCheck = await _categoryQueryRepository.GetSingleAsync(e => e.Name == request.CategoryName);
 
             await _categoryBusinessRules.ExistsCheck(categoryToCheck);
 

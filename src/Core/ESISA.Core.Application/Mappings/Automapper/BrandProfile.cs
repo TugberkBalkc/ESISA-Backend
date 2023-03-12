@@ -20,7 +20,8 @@ namespace ESISA.Core.Application.Mappings.Automapper
                 .ForMember(e => e.WebsiteUrl, e => e.MapFrom(e => e.BrandWebsiteUrl));
 
             this.CreateMap<UpdateBrandCommandRequest, Brand>()
-               .ForMember(e => e.Id, e => e.MapFrom(e => e.BrandId))
+              .ForMember(e => e.Id, e => e.MapFrom(e => e.BrandId))
+              .ForMember(e=>e.IsActive, e=>e.MapFrom(e=>e.BrandIsActive))
               .ForMember(e => e.Name, e => e.MapFrom(e => e.BrandName))
               .ForMember(e => e.WebsiteUrl, e => e.MapFrom(e => e.BrandWebsiteUrl));
 

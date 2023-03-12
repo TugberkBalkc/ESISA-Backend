@@ -22,6 +22,7 @@ namespace ESISA.Core.Application.Mappings.Automapper
 
             this.CreateMap<UpdateProductCommandRequest, Product>()
           .ForMember(e => e.Id, e => e.MapFrom(e => e.ProductId))
+          .ForMember(e=>e.IsActive, e=>e.MapFrom(e=>e.ProductIsActive))
           .ForMember(e => e.Name, e => e.MapFrom(e => e.ProductName))
           .ForMember(e => e.CategoryId, e => e.MapFrom(e => e.CategoryId))
           .ForMember(e => e.BrandId, e => e.MapFrom(e => e.BrandId));

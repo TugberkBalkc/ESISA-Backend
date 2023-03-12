@@ -1,5 +1,6 @@
 ﻿using ESISA.Core.Application.Features.MediatR.Commands.Products.Create;
 using ESISA.Core.Application.Features.MediatR.Commands.Products.Delete;
+using ESISA.Core.Application.Features.MediatR.Commands.Products.DeleteRange;
 using ESISA.Core.Application.Features.MediatR.Commands.Products.Update;
 using ESISA.WebAPI.Controllers.Common;
 using MediatR;
@@ -16,8 +17,8 @@ namespace ESISA.WebAPI.Controllers
         {
         }
 
-        [HttpPost("AddProduct")]
-        public async Task<IActionResult> AddProductAsync([FromBody] CreateProductCommandRequest createProductCommandRequest)
+        [HttpPost("CreateProduct")]
+        public async Task<IActionResult> CreateProductAsync([FromBody] CreateProductCommandRequest createProductCommandRequest)
         {
             var response = await base._mediator.Send(createProductCommandRequest);
 
@@ -30,6 +31,16 @@ namespace ESISA.WebAPI.Controllers
         public async Task<IActionResult> DeleteProductAsync([FromBody] DeleteProductCommandRequest deleteProductCommandRequest)
         {
             var response = await base._mediator.Send(deleteProductCommandRequest);
+
+            return response.Response.IsSucceeded == true
+                ? Ok(response.Response)
+                : BadRequest(response.Response.Title + ":" + response.Response.Message);
+        }
+
+        [HttpDelete("DeleteRangeProduct")]
+        public async Task<IActionResult> DeleteRangeProductAsync([FromBody] DeleteRangeProductCommandRequest deleteRangeProductCommandRequest)
+        {
+            var response = await base._mediator.Send(deleteRangeProductCommandRequest);
 
             return response.Response.IsSucceeded == true
                 ? Ok(response.Response)

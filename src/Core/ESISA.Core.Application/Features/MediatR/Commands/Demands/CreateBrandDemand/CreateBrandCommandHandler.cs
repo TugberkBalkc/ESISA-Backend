@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using ESISA.Core.Application.Constants.Response;
 using ESISA.Core.Application.Dtos;
-using ESISA.Core.Application.Extensions.String;
+using ESISA.Core.Application.Extensions;
 using ESISA.Core.Application.Interfaces.Repositories;
 using ESISA.Core.Application.Rules.BusinessRules;
 using ESISA.Core.Application.Utilities.Response.ContentResponse;
@@ -32,7 +32,7 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Demands.CreateBrandDe
 
         public async Task<CreateBrandDemandCommandResponse> Handle(CreateBrandDemandCommandRequest request, CancellationToken cancellationToken)
         {
-            var brandToCheck = await _brandQueryRepository.GetSingleAsync(e => e.Name.GetTrimmedLowered() == request.BrandName.GetTrimmedLowered());
+            var brandToCheck = await _brandQueryRepository.GetSingleAsync(e => e.Name == request.BrandName);
 
             await _brandDemandBusinessRules.ExistsCheck(brandToCheck);
 
