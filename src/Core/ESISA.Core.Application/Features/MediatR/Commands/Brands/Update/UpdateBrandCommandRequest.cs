@@ -11,6 +11,7 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Brands.Update
     public class UpdateBrandCommandRequest : IRequest<UpdateBrandCommandResponse>
     {
         public Guid BrandId { get; set; }
+        public bool BrandIsActive { get; set; }
         public String BrandName { get; set; }
         public String BrandWebsiteUrl { get; set; }
 
@@ -19,9 +20,10 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Brands.Update
 
         }
 
-        public UpdateBrandCommandRequest(Guid brandId, string brandName, string brandWebsiteUrl)
+        public UpdateBrandCommandRequest(Guid brandId, bool brandIsActive, string brandName, string brandWebsiteUrl)
         {
             BrandId = brandId;
+            BrandIsActive = brandIsActive;
             BrandName = brandName;
             BrandWebsiteUrl = brandWebsiteUrl;
         }

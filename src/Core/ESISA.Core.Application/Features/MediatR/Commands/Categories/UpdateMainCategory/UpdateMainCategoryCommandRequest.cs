@@ -11,6 +11,7 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Categories.UpdateMain
     public class UpdateMainCategoryCommandRequest : IRequest<UpdateMainCategoryCommandResponse>
     {
         public Guid CategoryId { get; set; }
+        public bool CategoryIsActive { get; set; }
         public String CategoryName { get; set; }
         public String CategoryDescription { get; set; }
 
@@ -19,9 +20,10 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Categories.UpdateMain
 
         }
 
-        public UpdateMainCategoryCommandRequest(Guid categoryId, string categoryName, string categoryDescription)
+        public UpdateMainCategoryCommandRequest(Guid categoryId, bool categoryIsActive, string categoryName, string categoryDescription)
         {
             CategoryId = categoryId;
+            CategoryIsActive = categoryIsActive;
             CategoryName = categoryName;
             CategoryDescription = categoryDescription;
         }

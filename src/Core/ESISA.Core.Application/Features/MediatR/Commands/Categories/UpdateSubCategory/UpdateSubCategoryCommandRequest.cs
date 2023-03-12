@@ -10,6 +10,7 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Categories.Update
     public class UpdateSubCategoryCommandRequest : IRequest<UpdateSubCategoryCommandResponse>
     {
         public Guid CategoryId { get; set; }
+        public bool CategoryIsActive  { get; set; }
         public Guid ParentCategoryId { get; set; }
         public String CategoryName { get; set; }
         public String CategoryDescription { get; set; }
@@ -19,9 +20,10 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Categories.Update
 
         }
 
-        public UpdateSubCategoryCommandRequest(Guid categoryId, Guid parentCategoryId, string categoryName, string categoryDescription)
+        public UpdateSubCategoryCommandRequest(Guid categoryId, bool categoryIsActive, Guid parentCategoryId, string categoryName, string categoryDescription)
         {
             CategoryId = categoryId;
+            CategoryIsActive = categoryIsActive;
             ParentCategoryId = parentCategoryId;
             CategoryName = categoryName;
             CategoryDescription = categoryDescription;
