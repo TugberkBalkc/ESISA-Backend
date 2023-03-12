@@ -11,11 +11,9 @@ namespace ESISA.Core.Application.Rules.BusinessRules
 {
     public class RoleBusinessRules
     {
-        private readonly IRoleQueryRepository _roleQueryRepository;
         private readonly String _entityName;
-        public RoleBusinessRules(IRoleQueryRepository roleQueryRepository)
+        public RoleBusinessRules()
         {
-            _roleQueryRepository = roleQueryRepository;
             _entityName = "Rol";
         }
 
@@ -29,22 +27,6 @@ namespace ESISA.Core.Application.Rules.BusinessRules
         {
             if (entity is not null)
                 throw new BusinessLogicException(ResponseTitles.Error, $"{_entityName} {ResponseMessages.AlreadyExists}");
-        }
-
-        public async Task ExistsCheckByRoleName(String roleName)
-        {
-            var role = await _roleQueryRepository.GetSingleAsync(p => p.Name.Trim().ToLower() == roleName.Trim().ToLower());
-
-            if (role is not null)
-                throw new BusinessLogicException(ResponseTitles.Error, $"{_entityName} {ResponseMessages.AlreadyExists}");
-        }
-
-        public async Task NullCheckByBrandId(Guid roleId)
-        {
-            var role = await _roleQueryRepository.GetByIdAsync(roleId);
-
-            if (role is null)
-                throw new BusinessLogicException(ResponseTitles.Error, $"{_entityName} {ResponseMessages.NotFound}");
         }
     }
 }

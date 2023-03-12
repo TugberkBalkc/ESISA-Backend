@@ -27,9 +27,9 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Categories.UpdateMain
 
         public async Task<UpdateMainCategoryCommandResponse> Handle(UpdateMainCategoryCommandRequest request, CancellationToken cancellationToken)
         {
-            await _categroryBusinessRules.NullCheckByCategroyId(request.CategoryId);
-
             var category = await _categoryQueryRepository.GetByIdAsync(request.CategoryId);
+
+            await _categroryBusinessRules.NullCheck(category);
 
             _mapper.Map(request, category);
 

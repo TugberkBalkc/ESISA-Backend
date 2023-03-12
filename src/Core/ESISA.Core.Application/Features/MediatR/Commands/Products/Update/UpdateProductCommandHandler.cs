@@ -27,10 +27,9 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Products.Update
 
         public async Task<UpdateProductCommandResponse> Handle(UpdateProductCommandRequest request, CancellationToken cancellationToken)
         {
-
-            await _productBusinessRules.NullCheckByProductId(request.ProductId);
-
             var product = await _productQueryRepository.GetByIdAsync(request.ProductId);
+
+            await _productBusinessRules.NullCheck(product);
 
             _mapper.Map(request, product);
 

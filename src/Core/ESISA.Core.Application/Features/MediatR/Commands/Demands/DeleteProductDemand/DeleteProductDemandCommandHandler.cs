@@ -9,17 +9,21 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Demands.DeleteProduct
     public class DeleteProductDemandCommandHandler : IRequestHandler<DeleteProductDemandCommandRequest, DeleteProductDemandCommandResponse>
     {
         private readonly IProductDemandCommandRepository _productDemandCommandRepository;
+        private readonly IProductDemandQueryRepository _productDemandQueryRepository;
         private readonly ProductDemandBusinessRules _productDemandBusinessRules;
 
-        public DeleteProductDemandCommandHandler(IProductDemandCommandRepository productDemandCommandRepository, ProductDemandBusinessRules productDemandBusinessRules)
+        public DeleteProductDemandCommandHandler(IProductDemandCommandRepository productDemandCommandRepository, IProductDemandQueryRepository productDemandQueryRepository, ProductDemandBusinessRules productDemandBusinessRules)
         {
             _productDemandCommandRepository = productDemandCommandRepository;
+            _productDemandQueryRepository = productDemandQueryRepository;
             _productDemandBusinessRules = productDemandBusinessRules;
         }
 
         public async Task<DeleteProductDemandCommandResponse> Handle(DeleteProductDemandCommandRequest request, CancellationToken cancellationToken)
         {
-            await _productDemandBusinessRules.CheckIfProductDemandNull(request.ProductDemandId);
+            var productDemandToCheck = await _productDemandQueryRepository.GetByIdAsync(request.ProductDemandId);
+
+            await _productDemandBusinessRules.NullCheck(productDemandToCheck);
 
             await _productDemandCommandRepository.DeleteAsync(request.ProductDemandId);
 

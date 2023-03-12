@@ -33,22 +33,6 @@ namespace ESISA.Core.Application.Rules.BusinessRules
                 throw new BusinessLogicException(ResponseTitles.Error, $"{_entityName} {ResponseMessages.AlreadyExists}");
         }
 
-        public async Task ExistsCheckByCategoryName(String categoryName)
-        {
-            var category = await _categoryQueryRepository.GetSingleAsync(c => c.Name == categoryName);
-
-            if (category is not null)
-                throw new BusinessLogicException(ResponseTitles.Error, $"{_entityName} {ResponseMessages.AlreadyExists}");
-        }
-
-        public async Task NullCheckByCategroyId(Guid categoryId)
-        {
-            var category = await _categoryQueryRepository.GetByIdAsync(categoryId);
-
-            if (category is null)
-                throw new BusinessLogicException(ResponseTitles.Error, $"{_entityName} {ResponseMessages.NotFound}");
-        }
-
         public async Task CheckIfCategoryHasChildrenById(Guid categoryId, Func<Task> onHasChildren, Func<Task> onHasAnyChildren)
         {
             var parentCategory =await  _categoryQueryRepository.GetSingleAsync(predicate: e => e.Id == categoryId,

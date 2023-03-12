@@ -11,11 +11,9 @@ namespace ESISA.Core.Application.Rules.BusinessRules
 {
     public class ProductBusinessRules
     {
-        private readonly IProductQueryRepository _productQueryRepository;
         private readonly String _entityName;
-        public ProductBusinessRules(IProductQueryRepository productQueryRepository)
+        public ProductBusinessRules()
         {
-            _productQueryRepository = productQueryRepository;
             _entityName = "Ürün";
         }
 
@@ -29,22 +27,6 @@ namespace ESISA.Core.Application.Rules.BusinessRules
         {
             if (entity is not null)
                 throw new BusinessLogicException(ResponseTitles.Error, $"{_entityName} {ResponseMessages.AlreadyExists}");
-        }
-
-        public async Task ExistsCheckByProductName(String productName)
-        {
-            var product = await _productQueryRepository.GetSingleAsync(p=>p.Name == productName);
-           
-            if (product is not null)
-                throw new BusinessLogicException(ResponseTitles.Error, $"{_entityName} {ResponseMessages.AlreadyExists}");
-        }
-
-        public async Task NullCheckByProductId(Guid productId)
-        {
-            var product = await _productQueryRepository.GetByIdAsync(productId);
-
-            if (product is null)
-                throw new BusinessLogicException(ResponseTitles.Error, $"{_entityName} {ResponseMessages.NotFound}");
         }
     }
 }

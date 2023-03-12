@@ -22,7 +22,9 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Categories.Delete
 
         public async Task<DeleteCategoryCommandResponse> Handle(DeleteCategoryCommandRequest request, CancellationToken cancellationToken)
         {
-            await _categoryBusinessRules.NullCheckByCategroyId(request.CategoryId);
+            var categoryToCheck = _categoryQueryRepository.GetByIdAsync(request.CategoryId);
+
+            await _categoryBusinessRules.NullCheck(categoryToCheck);
 
             await _categoryBusinessRules.CheckIfCategoryHasChildrenById(request.CategoryId,
                 async () => {

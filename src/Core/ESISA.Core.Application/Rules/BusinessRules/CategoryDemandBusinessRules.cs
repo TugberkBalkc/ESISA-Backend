@@ -11,37 +11,23 @@ namespace ESISA.Core.Application.Rules.BusinessRules
 {
     public class CategoryDemandBusinessRules
     {
-        private readonly ICategoryDemandQueryRepository _categoryDemandQueryRepository;
-        private readonly CategoryBusinessRules _categoryBusinessRules;
         private readonly String _entityName;
 
-        public CategoryDemandBusinessRules(ICategoryDemandQueryRepository categoryDemandQueryRepository, CategoryBusinessRules categoryBusinessRules)
+        public CategoryDemandBusinessRules()
         {
-            _categoryDemandQueryRepository = categoryDemandQueryRepository;
-            _categoryBusinessRules = categoryBusinessRules;
-
             _entityName = "Kategori Talebi";
         }
 
-        public async Task CheckIfDemandedCategoryExistsByCategoryName(String categoryName)
+        public virtual async Task NullCheck(object entity)
         {
-            await _categoryBusinessRules.ExistsCheckByCategoryName(categoryName);
+            if (entity is null)
+                throw new BusinessLogicException(ResponseTitles.Error, $"{_entityName} {ResponseMessages.NotFound}");
         }
 
-        public async Task CheckIfCategoryDemandExists(String categoryName)
+        public virtual async Task ExistsCheck(object entity)
         {
-            var categoryDemand = await _categoryDemandQueryRepository.GetSingleAsync(e => e.CategoryName.Trim().ToLower() == categoryName.Trim().ToLower());
-
-            if (categoryDemand is not null)
-                throw new BusinessLogicException(ResponseTitles.Error, $"{_entityName} {ResponseMessages.AlreadyExists}. \n ({ResponseMessages.OtherUsersSentDemand})");
-        }
-
-        public async Task CheckIfCategoryDemandNull(Guid categoryDemandId)
-        {
-            var categoryDemand = await _categoryDemandQueryRepository.GetByIdAsync(categoryDemandId);
-
-            if (categoryDemand is null)
-                throw new BusinessLogicException(ResponseTitles.Error, $"{_entityName} {ResponseMessages.NotFound}.");
+            if (entity is not null)
+                throw new BusinessLogicException(ResponseTitles.Error, $"{_entityName} {ResponseMessages.AlreadyExists}");
         }
     }
 }

@@ -23,7 +23,7 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Roles.Delete
         {
             var roleToCheck = _roleQueryRepository.GetSingleAsync(e=>e.Id== request.RoleId);
 
-            await _roleBusinessRules.ExistsCheck(roleToCheck);
+            await _roleBusinessRules.NullCheck(roleToCheck);
 
             await _roleCommandRepository.DeleteAsync(request.RoleId);
 

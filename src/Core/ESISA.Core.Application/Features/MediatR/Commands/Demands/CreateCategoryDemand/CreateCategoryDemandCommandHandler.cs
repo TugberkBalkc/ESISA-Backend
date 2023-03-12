@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ESISA.Core.Application.Constants.Response;
 using ESISA.Core.Application.Dtos;
+using ESISA.Core.Application.Extensions.String;
 using ESISA.Core.Application.Interfaces.Repositories;
 using ESISA.Core.Application.Rules.BusinessRules;
 using ESISA.Core.Application.Utilities.Response.ContentResponse;
@@ -12,23 +13,31 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Demands.CreateCategor
     public class CreateCategoryDemandCommandHandler : IRequestHandler<CreateCategoryDemandCommandRequest, CreateCategoryDemandCommandResponse>
     {
         private readonly ICategoryDemandCommandRepository _categoryDemandCommandRepository;
+        private readonly ICategoryDemandQueryRepository _categoryDemandQueryRepository;
+        private readonly ICategoryQueryRepository _categoryQueryRepository;
         private readonly CategoryDemandBusinessRules _categoryDemandBusinessRules;
         private readonly IMapper _mapper;
 
         public CreateCategoryDemandCommandHandler
-            (ICategoryDemandCommandRepository categoryDemandCommandRepository, CategoryDemandBusinessRules categoryDemandBusinessRules,
+            (ICategoryDemandCommandRepository categoryDemandCommandRepository, ICategoryDemandQueryRepository categoryDemandQueryRepository, ICategoryQueryRepository categoryQueryRepository, CategoryDemandBusinessRules categoryDemandBusinessRules,
              IMapper mapper)
         {
             _categoryDemandCommandRepository = categoryDemandCommandRepository;
+            _categoryDemandQueryRepository = categoryDemandQueryRepository;
+            _categoryQueryRepository = categoryQueryRepository;
             _categoryDemandBusinessRules = categoryDemandBusinessRules;
             _mapper = mapper;
         }
 
         public async Task<CreateCategoryDemandCommandResponse> Handle(CreateCategoryDemandCommandRequest request, CancellationToken cancellationToken)
         {
-            await _categoryDemandBusinessRules.CheckIfDemandedCategoryExistsByCategoryName(request.CategoryName);
+            var categoryToCheck = await _categoryQueryRepository.GetSingleAsync(e => e.Name.GetTrimmedLowered() == request.CategoryName.GetTrimmedLowered());
 
-            await _categoryDemandBusinessRules.CheckIfCategoryDemandExists(request.CategoryName);
+            await _categoryDemandBusinessRules.ExistsCheck(categoryToCheck);
+
+            var categoryDemandToCheck = await _categoryDemandQueryRepository.GetSingleAsync(e => e.CategoryName.GetTrimmedLowered() == request.CategoryName.GetTrimmedLowered());
+
+            await _categoryDemandBusinessRules.ExistsCheck(categoryDemandToCheck);
 
             var categoryDemand = _mapper.Map<CategoryDemand>(request);
 

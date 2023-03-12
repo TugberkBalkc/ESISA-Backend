@@ -9,18 +9,22 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Demands.DeleteCategor
     public class DeleteCategoryDemandCommandHandler : IRequestHandler<DeleteCategoryDemandCommandRequest, DeleteCategoryDemandCommandResponse>
     {
         private readonly ICategoryDemandCommandRepository _categoryDemandCommandRepository;
+        private readonly ICategoryDemandQueryRepository _categoryDemandQueryRepository;
         private readonly CategoryDemandBusinessRules _categoryDemandBusinessRules;
 
         public DeleteCategoryDemandCommandHandler
-            (ICategoryDemandCommandRepository categoryDemandCommandRepository, CategoryDemandBusinessRules categoryDemandBusinessRules)
+            (ICategoryDemandCommandRepository categoryDemandCommandRepository, ICategoryDemandQueryRepository categoryDemandQueryRepository, CategoryDemandBusinessRules categoryDemandBusinessRules)
         {
             _categoryDemandCommandRepository = categoryDemandCommandRepository;
+            _categoryDemandQueryRepository = categoryDemandQueryRepository;
             _categoryDemandBusinessRules = categoryDemandBusinessRules;
         }
 
         public async Task<DeleteCategoryDemandCommandResponse> Handle(DeleteCategoryDemandCommandRequest request, CancellationToken cancellationToken)
         {
-            await _categoryDemandBusinessRules.CheckIfCategoryDemandNull(request.CategoryDemandId);
+            var categoryDemandToCheck = await _categoryDemandQueryRepository.GetByIdAsync(request.CategoryDemandId);
+
+            await _categoryDemandBusinessRules.NullCheck(categoryDemandToCheck);
 
             await _categoryDemandCommandRepository.DeleteAsync(request.CategoryDemandId);
 

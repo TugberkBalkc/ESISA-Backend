@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ESISA.Core.Application.Constants.Response;
 using ESISA.Core.Application.Dtos;
+using ESISA.Core.Application.Extensions.String;
 using ESISA.Core.Application.Interfaces.Repositories;
 using ESISA.Core.Application.Rules.BusinessRules;
 using ESISA.Core.Application.Utilities.Response.ContentResponse;
@@ -17,21 +18,25 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Products.Create
     public class CreateProductCommandHandler : IRequestHandler<CreateProductCommandRequest, CreateProductCommandResponse>
     {
         private readonly IProductCommandRepository _productCommandRepository;
+        private readonly IProductQueryRepository _productQueryRepository;
         private readonly ProductBusinessRules _productBusinessRules;
         private readonly IMapper _mapper;
 
         public CreateProductCommandHandler
-            (IProductCommandRepository productCommandRepository, ProductBusinessRules productBusinessRules, 
+            (IProductCommandRepository productCommandRepository, IProductQueryRepository productQueryRepository, ProductBusinessRules productBusinessRules, 
              IMapper mapper)
         {
             _productCommandRepository = productCommandRepository;
+            _productQueryRepository = productQueryRepository;
             _productBusinessRules = productBusinessRules;
             _mapper = mapper;
         }
 
         public async Task<CreateProductCommandResponse> Handle(CreateProductCommandRequest request, CancellationToken cancellationToken)
         {
-            await _productBusinessRules.ExistsCheckByProductName(request.ProductName);
+            var productToCheck = await _productQueryRepository.GetSingleAsync(e => e.Name.GetTrimmedLowered() == request.ProductName.GetTrimmedLowered());
+
+            await _productBusinessRules.ExistsCheck(productToCheck);
 
             var product = _mapper.Map<Product>(request);
 

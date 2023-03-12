@@ -11,36 +11,24 @@ namespace ESISA.Core.Application.Rules.BusinessRules
 {
     public class ProductDemandBusinessRules
     {
-        private readonly IProductDemandQueryRepository _productDemandQueryRepository;
-        private readonly ProductBusinessRules _productBusinessRules;
         private readonly String _entityName;
 
-        public ProductDemandBusinessRules(IProductDemandQueryRepository productDemandQueryRepository, ProductBusinessRules productBusinessRules)
+        public ProductDemandBusinessRules()
         {
-            _productDemandQueryRepository = productDemandQueryRepository;
-            _productBusinessRules = productBusinessRules;
             _entityName = "Ürün Talebi";
         }
 
-        public async Task CheckIfDemandedProductExistsByProductName(String productName)
+        public virtual async Task NullCheck(object entity)
         {
-            await _productBusinessRules.ExistsCheckByProductName(productName);
+            if (entity is null)
+                throw new BusinessLogicException(ResponseTitles.Error, $"{_entityName} {ResponseMessages.NotFound}");
         }
 
-        public async Task CheckIfProductDemandExists(String productName)
+        public virtual async Task ExistsCheck(object entity)
         {
-            var productDemand = await _productDemandQueryRepository.GetSingleAsync(e => e.ProductName.Trim().ToLower() == productName.Trim().ToLower());
-
-            if (productDemand is not null)
-                throw new BusinessLogicException(ResponseTitles.Error, $"{_entityName} {ResponseMessages.AlreadyExists}. \n ({ResponseMessages.OtherUsersSentDemand})");
+            if (entity is not null)
+                throw new BusinessLogicException(ResponseTitles.Error, $"{_entityName} {ResponseMessages.AlreadyExists}");
         }
 
-        public async Task CheckIfProductDemandNull(Guid productDemandId)
-        {
-            var productDemand = await _productDemandQueryRepository.GetByIdAsync(productDemandId);
-
-            if (productDemand is null)
-                throw new BusinessLogicException(ResponseTitles.Error, $"{_entityName} {ResponseMessages.NotFound}.");
-        }
     }
 }
