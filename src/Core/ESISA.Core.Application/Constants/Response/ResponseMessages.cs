@@ -32,6 +32,11 @@ namespace ESISA.Core.Application.Constants.Response
         public const String RoleDeleted = "Rol Başarıyla Silindi.";
         public const String RoleUpdated = "Rol Başarıyla Güncellendi.";
 
+        public const String RoleOperationClaimNotFount = "Role Kayıtlı Böyle Bir Yetki Bulunamadı";
+        public const String RoleOperationClaimAlreadyExists = "Rol Zaten Bu Yetkiye Sahip";
+        public const String RoleOperationClaimCreated = "Role Yetki Başarıyla Eklendi.";
+        public const String RoleOperationCalimDeleted = "Rolden Yetki Başarıyla Silindi.";
+
         public const String DemandSent = "Talebiniz Alınmıştır.";
         public const String DemandDeleted = "Talep Başarıyla Silindi.";
         public const String OtherUsersSentDemand = "Farklı Kullanıcılar Tarafından Bildirim Sağlanmıştır.";
