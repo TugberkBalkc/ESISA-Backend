@@ -1,4 +1,5 @@
 ﻿using ESISA.Core.Application.Extensions.ClaimExtensions;
+using ESISA.Core.Application.Utilities.Response.Common;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -24,5 +25,13 @@ namespace ESISA.WebAPI.Controllers.Common
         protected String LastName => _httpContextAccessor.HttpContext.GetUsersLastName();
         protected String Email => _httpContextAccessor.HttpContext.GetUsersEmail();
         protected String[] Roles => _httpContextAccessor.HttpContext.GetUsersRoles();
+
+        protected IActionResult ActionResultInstanceByResponse(IResponse response) 
+        {
+            return new ObjectResult(response)
+            {
+                StatusCode = Convert.ToInt16(response.StatusCode)
+            };
+        }
     }
 }

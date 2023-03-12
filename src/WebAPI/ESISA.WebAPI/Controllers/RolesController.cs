@@ -24,9 +24,7 @@ namespace ESISA.WebAPI.Controllers
         {
             var response = await _mediator.Send(addOperationClaimToRoleCommandRequest);
 
-            return response.Response.IsSucceeded == true
-             ? Ok(response.Response)
-             : BadRequest(response.Response.Title + ":" + response.Response.Message);
+            return this.ActionResultInstanceByResponse(response.Response);
         }
 
         [HttpDelete("DeleteOperationClaimInRole")]
@@ -34,9 +32,7 @@ namespace ESISA.WebAPI.Controllers
         {
             var response = await _mediator.Send(deleteOperationClaimInRoleCommandRequest);
 
-            return response.Response.IsSucceeded == true
-             ? Ok(response.Response)
-             : BadRequest(response.Response.Title + ":" + response.Response.Message);
+            return this.ActionResultInstanceByResponse(response.Response);
         }
 
         [HttpPost("CreateRole")]
@@ -44,9 +40,7 @@ namespace ESISA.WebAPI.Controllers
         {
             var response = await _mediator.Send(createRoleCommandRequest);
 
-            return response.Response.IsSucceeded == true
-             ? Ok(response.Response)
-             : BadRequest(response.Response.Title + ":" + response.Response.Message);
+            return this.ActionResultInstanceByResponse(response.Response);
         }
 
         [HttpDelete("DeleteRole")]
@@ -54,9 +48,7 @@ namespace ESISA.WebAPI.Controllers
         {
             var response = await _mediator.Send(deleteRoleCommandRequest);
 
-            return response.Response.IsSucceeded == true
-             ? Ok(response.Response)
-             : BadRequest(response.Response.Title + ":" + response.Response.Message);
+            return this.ActionResultInstanceByResponse(response.Response);
         }
 
         [HttpDelete("DeleteRangeRole")]
@@ -64,9 +56,7 @@ namespace ESISA.WebAPI.Controllers
         {
             var response = await _mediator.Send(deleteRangeRoleCommandRequest);
 
-            return response.Response.IsSucceeded == true
-             ? Ok(response.Response)
-             : BadRequest(response.Response.Title + ":" + response.Response.Message);
+            return this.ActionResultInstanceByResponse(response.Response);
         }
 
         [HttpPut("UpdateRole")]
@@ -74,9 +64,7 @@ namespace ESISA.WebAPI.Controllers
         {
             var response = await _mediator.Send(updateRoleCommandRequest);
 
-            return response.Response.IsSucceeded == true
-             ? Ok(response.Response)
-             : BadRequest(response.Response.Title + ":" + response.Response.Message);
+            return this.ActionResultInstanceByResponse(response.Response);
         }
     }
 }

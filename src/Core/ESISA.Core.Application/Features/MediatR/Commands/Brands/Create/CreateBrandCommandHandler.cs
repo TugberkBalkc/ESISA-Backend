@@ -41,7 +41,7 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Brands.Create
 
             var brandDto = _mapper.Map<BrandDto>(brand);
 
-            return new CreateBrandCommandResponse(new SuccessfulContentResponse<BrandDto>(brandDto, ResponseTitles.Success, ResponseMessages.BrandCreated, System.Net.HttpStatusCode.OK));
+            return new CreateBrandCommandResponse(new SuccessfulContentResponse<BrandDto>(brandDto, ResponseTitles.Success, ResponseMessages.BrandCreated, System.Net.HttpStatusCode.Created));
         }
     }
 }

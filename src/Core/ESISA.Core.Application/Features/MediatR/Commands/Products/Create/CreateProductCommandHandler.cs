@@ -46,7 +46,7 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Products.Create
 
             var productDto = _mapper.Map<ProductDto>(product);
 
-            return new CreateProductCommandResponse(new SuccessfulContentResponse<ProductDto>(productDto, ResponseTitles.Success, ResponseMessages.ProductCreated, System.Net.HttpStatusCode.OK));
+            return new CreateProductCommandResponse(new SuccessfulContentResponse<ProductDto>(productDto, ResponseTitles.Success, ResponseMessages.ProductCreated, System.Net.HttpStatusCode.Created));
         }
     }
 }

@@ -53,7 +53,7 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Roles.AddOperationCla
 
             var roleOperationClaimDto = _mapper.Map<RoleOperationClaimDto>(roleOperationClaim);
 
-            return new AddOperationClaimToRoleCommandResponse(new SuccessfulContentResponse<RoleOperationClaimDto>(roleOperationClaimDto, ResponseTitles.Success, ResponseMessages.RoleOperationClaimCreated, System.Net.HttpStatusCode.OK));
+            return new AddOperationClaimToRoleCommandResponse(new SuccessfulContentResponse<RoleOperationClaimDto>(roleOperationClaimDto, ResponseTitles.Success, ResponseMessages.RoleOperationClaimCreated, System.Net.HttpStatusCode.Created));
         }
     }
 }

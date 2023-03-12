@@ -40,7 +40,7 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.OperationClaims.Creat
 
             var operationClaimDto = _mapper.Map<OperationClaimDto>(operationClaim);
 
-            return new CreateOperationClaimCommandResponse(new SuccessfulContentResponse<OperationClaimDto>(operationClaimDto, ResponseTitles.Success, ResponseMessages.OperationClaimCreated, System.Net.HttpStatusCode.OK));
+            return new CreateOperationClaimCommandResponse(new SuccessfulContentResponse<OperationClaimDto>(operationClaimDto, ResponseTitles.Success, ResponseMessages.OperationClaimCreated, System.Net.HttpStatusCode.Created));
         }
     }
 }

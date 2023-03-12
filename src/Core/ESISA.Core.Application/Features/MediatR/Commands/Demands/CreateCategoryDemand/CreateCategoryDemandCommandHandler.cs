@@ -35,7 +35,7 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Demands.CreateCategor
 
             await _categoryDemandBusinessRules.ExistsCheck(categoryToCheck);
 
-            var categoryDemandToCheck = await _categoryDemandQueryRepository.GetSingleAsync(e => e.CategoryName.GetTrimmedLowered() == request.CategoryName.GetTrimmedLowered());
+            var categoryDemandToCheck = await _categoryDemandQueryRepository.GetSingleAsync(e => e.CategoryName == request.CategoryName);
 
             await _categoryDemandBusinessRules.ExistsCheck(categoryDemandToCheck);
 
@@ -47,7 +47,7 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Demands.CreateCategor
 
             var categoryDemandDto = _mapper.Map<CategoryDemandDto>(categoryDemand);
 
-            return new CreateCategoryDemandCommandResponse(new SuccessfulContentResponse<CategoryDemandDto>(categoryDemandDto, ResponseTitles.Success, ResponseMessages.DemandSent, System.Net.HttpStatusCode.OK));
+            return new CreateCategoryDemandCommandResponse(new SuccessfulContentResponse<CategoryDemandDto>(categoryDemandDto, ResponseTitles.Success, ResponseMessages.DemandSent, System.Net.HttpStatusCode.Created));
         }
     }
 }

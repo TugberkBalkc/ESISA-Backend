@@ -22,9 +22,7 @@ namespace ESISA.WebAPI.Controllers
         {
             var response = await base._mediator.Send(createProductCommandRequest);
 
-            return response.Response.IsSucceeded == true 
-                ? Ok(response.Response)
-                : BadRequest(response.Response.Title + ":" + response.Response.Message);
+            return this.ActionResultInstanceByResponse(response.Response);
         }
 
         [HttpDelete("DeleteProduct")]
@@ -32,9 +30,7 @@ namespace ESISA.WebAPI.Controllers
         {
             var response = await base._mediator.Send(deleteProductCommandRequest);
 
-            return response.Response.IsSucceeded == true
-                ? Ok(response.Response)
-                : BadRequest(response.Response.Title + ":" + response.Response.Message);
+            return this.ActionResultInstanceByResponse(response.Response);
         }
 
         [HttpDelete("DeleteRangeProduct")]
@@ -42,9 +38,7 @@ namespace ESISA.WebAPI.Controllers
         {
             var response = await base._mediator.Send(deleteRangeProductCommandRequest);
 
-            return response.Response.IsSucceeded == true
-                ? Ok(response.Response)
-                : BadRequest(response.Response.Title + ":" + response.Response.Message);
+            return this.ActionResultInstanceByResponse(response.Response);
         }
 
         [HttpPut("UpdateProduct")]
@@ -52,9 +46,7 @@ namespace ESISA.WebAPI.Controllers
         {
             var response = await base._mediator.Send(updateProductCommandRequest);
 
-            return response.Response.IsSucceeded == true
-                ? Ok(response.Response)
-                : BadRequest(response.Response.Title + ":" + response.Response.Message);
+            return this.ActionResultInstanceByResponse(response.Response);
         }
     }
 }

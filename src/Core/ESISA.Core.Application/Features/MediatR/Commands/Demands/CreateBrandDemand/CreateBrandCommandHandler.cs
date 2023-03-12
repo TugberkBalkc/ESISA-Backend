@@ -36,7 +36,7 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Demands.CreateBrandDe
 
             await _brandDemandBusinessRules.ExistsCheck(brandToCheck);
 
-            var brandDemandToCheck = await _brandDemandQueryRepository.GetSingleAsync(e => e.BrandName.GetTrimmedLowered() == request.BrandName.GetTrimmedLowered());
+            var brandDemandToCheck = await _brandDemandQueryRepository.GetSingleAsync(e => e.BrandName == request.BrandName);
 
             await _brandDemandBusinessRules.ExistsCheck(brandDemandToCheck);
 
@@ -48,7 +48,7 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Demands.CreateBrandDe
 
             var brandDemandDto = _mapper.Map<BrandDemandDto>(brandDemand);
 
-            return new CreateBrandDemandCommandResponse(new SuccessfulContentResponse<BrandDemandDto>(brandDemandDto, ResponseTitles.Success, ResponseMessages.DemandSent, System.Net.HttpStatusCode.OK));
+            return new CreateBrandDemandCommandResponse(new SuccessfulContentResponse<BrandDemandDto>(brandDemandDto, ResponseTitles.Success, ResponseMessages.DemandSent, System.Net.HttpStatusCode.Created));
         }
     }
 }

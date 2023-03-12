@@ -23,9 +23,7 @@ namespace ESISA.WebAPI.Controllers
         {
             var response = await base._mediator.Send(createOperationClaimCommandRequest);
 
-            return response.Response.IsSucceeded == true
-                ? Ok(response.Response)
-                : BadRequest(response.Response.Title + ":" + response.Response.Message);
+            return this.ActionResultInstanceByResponse(response.Response);
         }
 
         [HttpDelete("DeleteOperationClaim")]
@@ -33,9 +31,7 @@ namespace ESISA.WebAPI.Controllers
         {
             var response = await base._mediator.Send(deleteOperationClaimCommandRequest);
 
-            return response.Response.IsSucceeded == true
-                ? Ok(response.Response)
-                : BadRequest(response.Response.Title + ":" + response.Response.Message);
+            return this.ActionResultInstanceByResponse(response.Response);
         }
 
         [HttpDelete("DeleteRangeOperationClaim")]
@@ -43,9 +39,7 @@ namespace ESISA.WebAPI.Controllers
         {
             var response = await base._mediator.Send(deleteRangeOperationClaimCommandRequest);
 
-            return response.Response.IsSucceeded == true
-                ? Ok(response.Response)
-                : BadRequest(response.Response.Title + ":" + response.Response.Message);
+            return this.ActionResultInstanceByResponse(response.Response);
         }
 
         [HttpPut("UpdateOperationClaim")]
@@ -53,9 +47,7 @@ namespace ESISA.WebAPI.Controllers
         {
             var response = await base._mediator.Send(updateOperationClaimCommandRequest);
 
-            return response.Response.IsSucceeded == true
-                ? Ok(response.Response)
-                : BadRequest(response.Response.Title + ":" + response.Response.Message);
+            return this.ActionResultInstanceByResponse(response.Response);
         }
     }
 }

@@ -41,7 +41,7 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Categories.CreateSubC
 
             var categoryDto = _mapper.Map<CategoryDto>(category);
 
-            return new CreateSubCategoryCommandResponse(new SuccessfulContentResponse<CategoryDto>(categoryDto, ResponseTitles.Success, ResponseMessages.SubCategoryCreated, System.Net.HttpStatusCode.OK));
+            return new CreateSubCategoryCommandResponse(new SuccessfulContentResponse<CategoryDto>(categoryDto, ResponseTitles.Success, ResponseMessages.SubCategoryCreated, System.Net.HttpStatusCode.Created));
         }
     }
 }

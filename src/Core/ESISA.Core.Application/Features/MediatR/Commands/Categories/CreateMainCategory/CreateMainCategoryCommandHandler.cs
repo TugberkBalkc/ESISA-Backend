@@ -49,7 +49,7 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Categories.CreateMain
 
             var categoryDto = _mapper.Map<CategoryDto>(category);
 
-            return new CreateMainCategoryCommandResponse(new SuccessfulContentResponse<CategoryDto>(categoryDto, ResponseTitles.Success, ResponseMessages.CategoryCreated, System.Net.HttpStatusCode.OK));
+            return new CreateMainCategoryCommandResponse(new SuccessfulContentResponse<CategoryDto>(categoryDto, ResponseTitles.Success, ResponseMessages.CategoryCreated, System.Net.HttpStatusCode.Created));
         }
 
         private void SetParentIdToDefault(Category category)

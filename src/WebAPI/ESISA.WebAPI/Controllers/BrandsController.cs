@@ -21,10 +21,8 @@ namespace ESISA.WebAPI.Controllers
         public async Task<IActionResult> CreateBrandAsync([FromBody] CreateBrandCommandRequest createBrandCommandRequest)
         {
             var response = await base._mediator.Send(createBrandCommandRequest);
-
-            return response.Response.IsSucceeded == true
-                ? Ok(response.Response)
-                : BadRequest(response.Response.Title + ":" + response.Response.Message);
+            
+            return this.ActionResultInstanceByResponse(response.Response);
         }
 
         [HttpDelete("DeleteBrand")]
@@ -32,9 +30,7 @@ namespace ESISA.WebAPI.Controllers
         {
             var response = await base._mediator.Send(deleteBrandCommandRequest);
 
-            return response.Response.IsSucceeded == true
-                ? Ok(response.Response)
-                : BadRequest(response.Response.Title + ":" + response.Response.Message);
+            return this.ActionResultInstanceByResponse(response.Response);
         }
 
         [HttpDelete("DeleteRangeBrand")]
@@ -42,9 +38,7 @@ namespace ESISA.WebAPI.Controllers
         {
             var response = await base._mediator.Send(deleteRangeBrandCommandRequest);
 
-            return response.Response.IsSucceeded == true
-                ? Ok(response.Response)
-                : BadRequest(response.Response.Title + ":" + response.Response.Message);
+            return this.ActionResultInstanceByResponse(response.Response);
         }
 
         [HttpPut("UpdateBrand")]
@@ -52,9 +46,7 @@ namespace ESISA.WebAPI.Controllers
         {
             var response = await base._mediator.Send(updateBrandCommandRequest);
 
-            return response.Response.IsSucceeded == true
-                ? Ok(response.Response)
-                : BadRequest(response.Response.Title + ":" + response.Response.Message);
+            return this.ActionResultInstanceByResponse(response.Response);
         }
     }
 }

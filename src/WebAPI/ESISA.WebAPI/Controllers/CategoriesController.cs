@@ -24,9 +24,7 @@ namespace ESISA.WebAPI.Controllers
         {
             var response = await base._mediator.Send(createMainCategoryCommandRequest);
 
-            return response.Response.IsSucceeded == true
-                ? Ok(response.Response)
-                : BadRequest(response.Response.Title + ":" + response.Response.Message);
+            return this.ActionResultInstanceByResponse(response.Response);
         }
 
         [HttpPost("CreateSubCategory")]
@@ -34,9 +32,7 @@ namespace ESISA.WebAPI.Controllers
         {
             var response = await base._mediator.Send(createSubCategoryCommandRequest);
 
-            return response.Response.IsSucceeded == true
-                ? Ok(response.Response)
-                : BadRequest(response.Response.Title + ":" + response.Response.Message);
+            return this.ActionResultInstanceByResponse(response.Response);
         }
 
         [HttpDelete("DeleteCategory")]
@@ -44,9 +40,7 @@ namespace ESISA.WebAPI.Controllers
         {
             var response = await base._mediator.Send(deleteCategoryCommandRequest);
 
-            return response.Response.IsSucceeded == true
-                ? Ok(response.Response)
-                : BadRequest(response.Response.Title + ":" + response.Response.Message);
+            return this.ActionResultInstanceByResponse(response.Response);
         }
 
         [HttpDelete("DeleteRangeCategory")]
@@ -54,9 +48,7 @@ namespace ESISA.WebAPI.Controllers
         {
             var response = await base._mediator.Send(deleteRangeCategoryCommandRequest);
 
-            return response.Response.IsSucceeded == true
-                ? Ok(response.Response)
-                : BadRequest(response.Response.Title + ":" + response.Response.Message);
+            return this.ActionResultInstanceByResponse(response.Response);
         }
 
         [HttpPut("UpdateSubCategory")]
@@ -64,9 +56,7 @@ namespace ESISA.WebAPI.Controllers
         {
             var response = await base._mediator.Send(updateCategoryCommandRequest);
 
-            return response.Response.IsSucceeded == true
-                ? Ok(response.Response)
-                : BadRequest(response.Response.Title + ":" + response.Response.Message);
+            return this.ActionResultInstanceByResponse(response.Response);
         }
 
         [HttpPut("UpdateMainCategory")]
@@ -74,9 +64,7 @@ namespace ESISA.WebAPI.Controllers
         {
             var response = await base._mediator.Send(updateMainCategoryCommandRequest);
 
-            return response.Response.IsSucceeded == true
-                ? Ok(response.Response)
-                : BadRequest(response.Response.Title + ":" + response.Response.Message);
+            return this.ActionResultInstanceByResponse(response.Response);
         }
     }
 }

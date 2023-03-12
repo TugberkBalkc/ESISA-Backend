@@ -38,7 +38,7 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Roles.Create
 
             var roleDto = _mapper.Map<RoleDto>(role);
 
-            return new CreateRoleCommandResponse(new SuccessfulContentResponse<RoleDto>(roleDto, ResponseTitles.Success, ResponseMessages.RoleCreated, System.Net.HttpStatusCode.OK));
+            return new CreateRoleCommandResponse(new SuccessfulContentResponse<RoleDto>(roleDto, ResponseTitles.Success, ResponseMessages.RoleCreated, System.Net.HttpStatusCode.Created));
         }
     }
 }

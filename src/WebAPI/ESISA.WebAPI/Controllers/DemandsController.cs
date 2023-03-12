@@ -27,9 +27,7 @@ namespace ESISA.WebAPI.Controllers
         {
             var response = await _mediator.Send(createBrandDemandCommandRequest);
 
-            return response.Response.IsSucceeded == true
-                ? Ok(response.Response)
-                : BadRequest(response.Response.Title + ":" + response.Response.Message);
+            return this.ActionResultInstanceByResponse(response.Response);
         }
 
         [HttpDelete("DeleteBrandDemand")]
@@ -37,9 +35,7 @@ namespace ESISA.WebAPI.Controllers
         {
             var response = await _mediator.Send(deleteBrandDemandCommandRequest);
 
-            return response.Response.IsSucceeded == true
-                ? Ok(response.Response)
-                : BadRequest(response.Response.Title + ":" + response.Response.Message);
+            return this.ActionResultInstanceByResponse(response.Response);
         }
 
         [HttpDelete("DeleteRangeBrandDemand")]
@@ -47,9 +43,7 @@ namespace ESISA.WebAPI.Controllers
         {
             var response = await _mediator.Send(deleteRangeBrandDemandCommandRequest);
 
-            return response.Response.IsSucceeded == true
-                ? Ok(response.Response)
-                : BadRequest(response.Response.Title + ":" + response.Response.Message);
+            return this.ActionResultInstanceByResponse(response.Response);
         }
 
         [HttpPost("CreateCategoryDemand")]
@@ -57,9 +51,7 @@ namespace ESISA.WebAPI.Controllers
         {
             var response = await _mediator.Send(createCategoryDemandCommand);
 
-            return response.Response.IsSucceeded == true
-                ? Ok(response.Response)
-                : BadRequest(response.Response.Title + ":" + response.Response.Message);
+            return this.ActionResultInstanceByResponse(response.Response);
         }
 
         [HttpDelete("DeleteCategoryDemand")]
@@ -67,9 +59,7 @@ namespace ESISA.WebAPI.Controllers
         {
             var response = await _mediator.Send(deleteCategoryDemandCommandRequest);
 
-            return response.Response.IsSucceeded == true
-                ? Ok(response.Response)
-                : BadRequest(response.Response.Title + ":" + response.Response.Message);
+            return this.ActionResultInstanceByResponse(response.Response);
         }
 
         [HttpDelete("DeleteRangeCategoryDemand")]
@@ -77,9 +67,7 @@ namespace ESISA.WebAPI.Controllers
         {
             var response = await _mediator.Send(deleteRangeCategoryDemandCommandRequest);
 
-            return response.Response.IsSucceeded == true
-                ? Ok(response.Response)
-                : BadRequest(response.Response.Title + ":" + response.Response.Message);
+            return this.ActionResultInstanceByResponse(response.Response);
         }
 
         [HttpPost("CreateProductDemand")]
@@ -87,9 +75,7 @@ namespace ESISA.WebAPI.Controllers
         {
             var response = await _mediator.Send(createProductDemandCommand);
 
-            return response.Response.IsSucceeded == true
-                ? Ok(response.Response)
-                : BadRequest(response.Response.Title + ":" + response.Response.Message);
+            return this.ActionResultInstanceByResponse(response.Response);
         }
 
         [HttpDelete("DeleteProductDemand")]
@@ -97,9 +83,7 @@ namespace ESISA.WebAPI.Controllers
         {
             var response = await _mediator.Send(deleteProductDemandCommandRequest);
 
-            return response.Response.IsSucceeded == true
-                ? Ok(response.Response)
-                : BadRequest(response.Response.Title + ":" + response.Response.Message);
+            return this.ActionResultInstanceByResponse(response.Response);
         }
 
         [HttpDelete("DeleteRangeProductDemand")]
@@ -107,9 +91,7 @@ namespace ESISA.WebAPI.Controllers
         {
             var response = await _mediator.Send(deleteRangeProductDemandCommandRequest);
 
-            return response.Response.IsSucceeded == true
-                ? Ok(response.Response)
-                : BadRequest(response.Response.Title + ":" + response.Response.Message);
+            return this.ActionResultInstanceByResponse(response.Response);
         }
     }
 }

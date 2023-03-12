@@ -35,7 +35,7 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Demands.CreateProduct
 
             await _productDemandBusinessRules.ExistsCheck(productToCheck);
 
-            var productDemandToCheck = await _productDemandQueryRepository.GetSingleAsync(e => e.ProductName.GetTrimmedLowered() == request.ProductName.GetTrimmedLowered());
+            var productDemandToCheck = await _productDemandQueryRepository.GetSingleAsync(e => e.ProductName == request.ProductName);
 
             await _productDemandBusinessRules.ExistsCheck(productDemandToCheck);
 
@@ -47,7 +47,7 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Demands.CreateProduct
 
             var productDemandDto = _mapper.Map<ProductDemandDto>(productDemand);
 
-            return new CreateProductDemandCommandResponse(new SuccessfulContentResponse<ProductDemandDto>(productDemandDto, ResponseTitles.Success, ResponseMessages.DemandSent, System.Net.HttpStatusCode.OK));
+            return new CreateProductDemandCommandResponse(new SuccessfulContentResponse<ProductDemandDto>(productDemandDto, ResponseTitles.Success, ResponseMessages.DemandSent, System.Net.HttpStatusCode.Created));
         }
     }
 }
