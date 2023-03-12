@@ -1,5 +1,6 @@
 ﻿using ESISA.Core.Application.Constants.Response;
 using ESISA.Core.Application.Interfaces.Repositories;
+using ESISA.Core.Application.Rules.BusinessRules.Common;
 using ESISA.Core.Domain.Exceptions.BusinessLogic;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ESISA.Core.Application.Rules.BusinessRules
 {
-    public class BrandBusinessRules
+    public class BrandBusinessRules : BusinessRulesBase
     {
         private readonly String _entityName;
 
@@ -22,6 +23,17 @@ namespace ESISA.Core.Application.Rules.BusinessRules
         {
             if (entity is null)
                 throw new BusinessLogicException(ResponseTitles.Error, $"{_entityName} {ResponseMessages.NotFound}");
+        }
+
+        public virtual async Task NullCheck(object[] entities)
+        {
+            for (int i = 0; i < entities.Length; i++)
+            {
+                if (entities[i] is null)
+                {
+                    throw new BusinessLogicException(ResponseTitles.Error, $"{_entityName} {ResponseMessages.NotFound}");
+                }
+            }
         }
 
         public virtual async Task ExistsCheck(object entity)

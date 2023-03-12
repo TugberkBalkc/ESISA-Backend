@@ -46,6 +46,16 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Repositories.Common
 
             return this.Delete(entity);
         }
+        public async Task<bool> DeleteRangeAsync(Guid[] ids)
+        {
+            for (int i = 0; i < ids.Length; i++)
+            {
+                await this.DeleteAsync(ids[i]);
+            }
+
+            return true;
+
+        }
 
         public bool Delete(TEntity entity)
         {

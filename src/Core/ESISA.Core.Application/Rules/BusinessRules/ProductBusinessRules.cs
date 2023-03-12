@@ -23,6 +23,17 @@ namespace ESISA.Core.Application.Rules.BusinessRules
                 throw new BusinessLogicException(ResponseTitles.Error, $"{_entityName} {ResponseMessages.NotFound}");
         }
 
+        public virtual async Task NullCheck(object[] entities)
+        {
+            for (int i = 0; i < entities.Length; i++)
+            {
+                if (entities[i] is null)
+                {
+                    throw new BusinessLogicException(ResponseTitles.Error, $"{_entityName} {ResponseMessages.NotFound}");
+                }
+            }
+        }
+
         public virtual async Task ExistsCheck(object entity)
         {
             if (entity is not null)
