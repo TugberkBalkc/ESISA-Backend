@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESISA.Core.Application.Features.MediatR.Queries.Products.GetAll
+namespace ESISA.Core.Application.Features.MediatR.Queries.Products.GetAllProducts
 {
     public class GetAllProductsQueryRequest : IRequest<GetAllProductsQueryResponse>, IPageableQueryRequest
     {

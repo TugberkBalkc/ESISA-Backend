@@ -3,7 +3,7 @@ using ESISA.Core.Application.Features.MediatR.Requests.Common;
 using ESISA.Core.Application.Utilities.Paging;
 using ESISA.Core.Application.Utilities.Response.Common;
 
-namespace ESISA.Core.Application.Features.MediatR.Queries.Products.GetAll
+namespace ESISA.Core.Application.Features.MediatR.Queries.Products.GetAllProducts
 {
     public class GetAllProductsQueryResponse : PluralQueryResponse<ProductDto>
     {

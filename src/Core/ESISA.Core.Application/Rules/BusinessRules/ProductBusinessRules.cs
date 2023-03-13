@@ -25,13 +25,8 @@ namespace ESISA.Core.Application.Rules.BusinessRules
 
         public virtual async Task NullCheck(object[] entities)
         {
-            for (int i = 0; i < entities.Length; i++)
-            {
-                if (entities[i] is null)
-                {
-                    throw new BusinessLogicException(ResponseTitles.Error, $"{_entityName} {ResponseMessages.NotFound}");
-                }
-            }
+            if(entities is null || entities.Count() == 0)
+                throw new BusinessLogicException(ResponseTitles.Error, ResponseMessages.NothingFoundAccordingToFilter);
         }
 
         public virtual async Task ExistsCheck(object entity)

@@ -6,18 +6,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESISA.Core.Application.Features.MediatR.Queries.Products.GetDetailsById
+namespace ESISA.Core.Application.Features.MediatR.Queries.Products.GetProductDetailsById
 {
-    public class GetDetailsByIdProductQueryRequest : IRequest<GetDetailsByIdProductQueryResponse>
+    public class GetProductDetailsByIdQueryRequest : IRequest<GetProductDetailsByIdQueryResponse>
     {
         public Guid ProductId { get; set; }
 
-        public GetDetailsByIdProductQueryRequest()
+        public GetProductDetailsByIdQueryRequest()
         {
 
         }
 
-        public GetDetailsByIdProductQueryRequest(Guid productId)
+        public GetProductDetailsByIdQueryRequest(Guid productId)
         {
             ProductId = productId;
         }

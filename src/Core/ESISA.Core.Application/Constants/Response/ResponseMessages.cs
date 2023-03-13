@@ -8,9 +8,10 @@ namespace ESISA.Core.Application.Constants.Response
 {
     public static class ResponseMessages
     {
-        public const String NotFound = "Bulunamadı";
-        public const String AlreadyExists = "Zaten Mevcut";
-        public const String ValidationError = "Doğrulama Hatası";
+        public const String NotFound = "Bulunamadı.";
+        public const String NothingFoundAccordingToFilter = "Aradığınız Filtreye Uygun Sonuç Bulunamadı.";
+        public const String AlreadyExists = "Zaten Mevcut.";
+        public const String ValidationError = "Doğrulama Hatası.";
 
         public const String ProductCreated = "Ürün Başarıyla Oluşturuldu.";
         public const String ProductDeleted = "Ürün Başarıyla Silindi.";

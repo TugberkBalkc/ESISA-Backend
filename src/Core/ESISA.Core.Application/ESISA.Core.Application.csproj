@@ -25,7 +25,6 @@
   <ItemGroup>
     <Folder Include="Dtos\Security\Authentication\Logins\" />
     <Folder Include="Features\MediatR\Commands\CorporateUsers\" />
-    <Folder Include="Features\MediatR\Queries\Products\GetDetailsByCategoryId\" />
     <Folder Include="Interfaces\Repositories\Payment\" />
     <Folder Include="Rules\ValidationRules\FluentValidation\" />
   </ItemGroup>

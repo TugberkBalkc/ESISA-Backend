@@ -3,12 +3,12 @@ using ESISA.Core.Application.Features.MediatR.Commands.Products.Create;
 using ESISA.Core.Application.Features.MediatR.Commands.Products.Delete;
 using ESISA.Core.Application.Features.MediatR.Commands.Products.DeleteRange;
 using ESISA.Core.Application.Features.MediatR.Commands.Products.Update;
-using ESISA.Core.Application.Features.MediatR.Queries.Products.GetAll;
-using ESISA.Core.Application.Features.MediatR.Queries.Products.GetAllDetails;
-using ESISA.Core.Application.Features.MediatR.Queries.Products.GetByDynamic;
-using ESISA.Core.Application.Features.MediatR.Queries.Products.GetDetailsByBrandContains;
-using ESISA.Core.Application.Features.MediatR.Queries.Products.GetDetailsByCategoryNameContains;
-using ESISA.Core.Application.Features.MediatR.Queries.Products.GetDetailsByNameContains;
+using ESISA.Core.Application.Features.MediatR.Queries.Products.GetAllProductDetails;
+using ESISA.Core.Application.Features.MediatR.Queries.Products.GetAllProducts;
+using ESISA.Core.Application.Features.MediatR.Queries.Products.GetProductDetailsByBrandId;
+using ESISA.Core.Application.Features.MediatR.Queries.Products.GetProductDetailsByCategoryId;
+using ESISA.Core.Application.Features.MediatR.Queries.Products.GetProductDetailsByDynamic;
+using ESISA.Core.Application.Features.MediatR.Queries.Products.GetProductDetailsById;
 using ESISA.WebAPI.Controllers.Common;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -57,49 +57,49 @@ namespace ESISA.WebAPI.Controllers
         }
 
         [HttpGet("GetAllProducts")]
-        public async Task<IActionResult> GetAllProductsAsyc([FromQuery] GetAllProductsQueryRequest getAllProductsQueryRequest) 
+        public async Task<IActionResult> GetAllProductsAsync([FromQuery] GetAllProductsQueryRequest getAllProductsQueryRequest) 
         {
             var response = await base._mediator.Send(getAllProductsQueryRequest);
 
             return this.ActionResultInstanceByResponse(response.Response);
         }
 
-        [HttpPost("GetProductDynamicQuery")]
-        public async Task<IActionResult> GetProductDynamicQueryAsync([FromBody] GetByDynamicProductQueryRequest getByDynamicProductQueryRequest)
+        [HttpGet("GetAllProductDetails")]
+        public async Task<IActionResult> GetAllProductDetailsAsync([FromQuery] GetAllProductDetailsQueryRequest getAllProductDetailsQueryRequest)
         {
-            var response = await base._mediator.Send(getByDynamicProductQueryRequest);
+            var response = await base._mediator.Send(getAllProductDetailsQueryRequest);
 
             return this.ActionResultInstanceByResponse(response.Response);
         }
 
-        [HttpGet("GetAllProductsDetails")]
-        public async Task<IActionResult> GetAllProductsDetailsAsync([FromQuery] GetAllDetailsProductQueryRequest getAllDetailsProductQueryRequest)
+        [HttpPost("GetProductDetailsByDynamic")]
+        public async Task<IActionResult> GetProductDetailsByDynamicAsync([FromBody] GetProductDetailsByDynamicQueryRequest getProductDetailsByDynamicQueryRequest)
         {
-            var response = await base._mediator.Send(getAllDetailsProductQueryRequest);
+            var response = await base._mediator.Send(getProductDetailsByDynamicQueryRequest);
 
             return this.ActionResultInstanceByResponse(response.Response);
         }
 
-        [HttpGet("GetDetailsNameContains")]
-        public async Task<IActionResult> GetDetailsNameContainsAsync([FromQuery] GetDetailsByNameContainsProductQueryRequest getDetailsByNameContainsProductQueryRequest)
+        [HttpGet("GetProductDetailsByCategoryId")]
+        public async Task<IActionResult> GetProductDetailsByCategoryIdAsync([FromQuery] GetProductDetailsByCategoryIdQueryRequest getProductDetailsByCategoryIdQueryRequest)
         {
-            var response = await base._mediator.Send(getDetailsByNameContainsProductQueryRequest);
+            var response = await base._mediator.Send(getProductDetailsByCategoryIdQueryRequest);
 
             return this.ActionResultInstanceByResponse(response.Response);
         }
 
-        [HttpGet("GetDetailsByCategoryNameContains")]
-        public async Task<IActionResult> GetDetailsByCategoryNameContains([FromQuery] GetDetailsByCategoryNameProductQueryRequest getDetailsByCategoryNameProductQueryRequest)
+        [HttpGet("GetProductDetailsByBrandId")]
+        public async Task<IActionResult> GetProductDetailsByBrandIdAsync([FromQuery] GetProductDetailsByBrandIdQueryRequest getProductDetailsByBrandIdQueryRequest)
         {
-            var response = await base._mediator.Send(getDetailsByCategoryNameProductQueryRequest);
+            var response = await base._mediator.Send(getProductDetailsByBrandIdQueryRequest);
 
             return this.ActionResultInstanceByResponse(response.Response);
         }
 
-        [HttpGet("GetDetailsByBrandNameContains")]
-        public async Task<IActionResult> GetDetailsByBrandNameContainsAsync([FromQuery] GetDetailsByBrandNameContainsProductQueryRequest getDetailsByBrandContainsProductQueryRequest)
+        [HttpGet("GetProductDetailsById")]
+        public async Task<IActionResult> GetProductDetailsByIdAsync([FromQuery] GetProductDetailsByIdQueryRequest getProductDetailsByIdQueryRequest)
         {
-            var response = await base._mediator.Send(getDetailsByBrandContainsProductQueryRequest);
+            var response = await base._mediator.Send(getProductDetailsByIdQueryRequest);
 
             return this.ActionResultInstanceByResponse(response.Response);
         }

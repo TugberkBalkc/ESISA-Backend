@@ -6,19 +6,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESISA.Core.Application.Features.MediatR.Queries.Products.GetAllDetails
+namespace ESISA.Core.Application.Features.MediatR.Queries.Products.GetAllProductDetails
 {
-    public class GetAllDetailsProductQueryRequest : IRequest<GetAllDetailsProductQueryResponse>, IPageableQueryRequest
+    public class GetAllProductDetailsQueryRequest : IRequest<GetAllProductDetailsQueryResponse>, IPageableQueryRequest
     {
         public int PageIndex { get; set; }
         public int PageSize { get; set; }
 
-        public GetAllDetailsProductQueryRequest()
+        public GetAllProductDetailsQueryRequest()
         {
 
         }
 
-        public GetAllDetailsProductQueryRequest(int pageIndex, int pageSize)
+        public GetAllProductDetailsQueryRequest(int pageIndex, int pageSize)
         {
             PageIndex = pageIndex;
             PageSize = pageSize;
