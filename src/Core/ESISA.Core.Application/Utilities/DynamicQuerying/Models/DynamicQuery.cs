@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESISA.Core.Application.Utilities.DynamicQuerying
+namespace ESISA.Core.Application.Utilities.DynamicQuerying.Models
 {
     public class DynamicQuery
     {

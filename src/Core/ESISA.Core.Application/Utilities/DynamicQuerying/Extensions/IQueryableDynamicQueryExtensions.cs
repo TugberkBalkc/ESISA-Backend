@@ -1,4 +1,5 @@
 ﻿using ESISA.Core.Application.Utilities.DynamicQuerying.Constants;
+using ESISA.Core.Application.Utilities.DynamicQuerying.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

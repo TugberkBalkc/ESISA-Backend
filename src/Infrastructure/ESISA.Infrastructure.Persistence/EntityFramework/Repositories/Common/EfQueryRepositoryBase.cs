@@ -1,6 +1,6 @@
 ﻿using ESISA.Core.Application.Interfaces.Repositories.Common;
-using ESISA.Core.Application.Utilities.DynamicQuerying;
 using ESISA.Core.Application.Utilities.DynamicQuerying.Extensions;
+using ESISA.Core.Application.Utilities.DynamicQuerying.Models;
 using ESISA.Core.Application.Utilities.Paging.Extensions;
 using ESISA.Core.Domain.Entities.Common;
 using ESISA.Infrastructure.Persistence.EntityFramework.Contexts;

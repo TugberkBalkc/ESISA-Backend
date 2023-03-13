@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESISA.Core.Application.Utilities.DynamicQuerying
+namespace ESISA.Core.Application.Utilities.DynamicQuerying.Models
 {
     public class Sort
     {
-        public String Field { get; set; }
-        public String Direction { get; set; }
+        public string Field { get; set; }
+        public string Direction { get; set; }
 
         public Sort()
         {

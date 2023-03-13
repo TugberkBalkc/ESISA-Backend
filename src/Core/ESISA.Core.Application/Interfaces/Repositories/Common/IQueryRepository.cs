@@ -1,4 +1,4 @@
-﻿using ESISA.Core.Application.Utilities.DynamicQuerying;
+﻿using ESISA.Core.Application.Utilities.DynamicQuerying.Models;
 using ESISA.Core.Domain.Entities.Common;
 using System;
 using System.Collections.Generic;

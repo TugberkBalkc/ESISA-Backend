@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESISA.Core.Application.Utilities.DynamicQuerying
+namespace ESISA.Core.Application.Utilities.DynamicQuerying.Models
 {
     public class Filter
     {
-        public String Field { get; set; }
-        public String Value { get; set; }
-        public String? Operator { get; set; }
-        public String? Logic { get; set; }
+        public string Field { get; set; }
+        public string Value { get; set; }
+        public string? Operator { get; set; }
+        public string? Logic { get; set; }
 
         public IEnumerable<Filter>? Filters { get; set; }
 

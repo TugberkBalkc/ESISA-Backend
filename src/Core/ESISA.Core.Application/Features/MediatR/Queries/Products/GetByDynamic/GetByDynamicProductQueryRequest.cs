@@ -1,5 +1,5 @@
 ﻿using ESISA.Core.Application.Features.MediatR.Requests.Common;
-using ESISA.Core.Application.Utilities.DynamicQuerying;
+using ESISA.Core.Application.Utilities.DynamicQuerying.Models;
 using MediatR;
 using System;
 using System.Collections.Generic;
