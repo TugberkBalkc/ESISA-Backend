@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESISA.Core.Application.Dtos
+namespace ESISA.Core.Application.Dtos.Product
 {
     public class ProductDto
     {

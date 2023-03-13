@@ -1,4 +1,6 @@
 ﻿using ESISA.Core.Application.Interfaces.Repositories.Common;
+using ESISA.Core.Application.Utilities.DynamicQuerying;
+using ESISA.Core.Application.Utilities.DynamicQuerying.Extensions;
 using ESISA.Core.Application.Utilities.Paging.Extensions;
 using ESISA.Core.Domain.Entities.Common;
 using ESISA.Infrastructure.Persistence.EntityFramework.Contexts;
@@ -23,6 +25,24 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Repositories.Common
         }
 
         public DbSet<TEntity> _entities => _dbContext.Set<TEntity>();
+
+        public IQueryable<TEntity> GetByDynamicQuery(DynamicQuery dynamicQuery,
+                                                          Expression<Func<TEntity, bool>> predicate = null, 
+                                                          bool trackingStatus = false, 
+                                                          params Expression<Func<TEntity, object>>[] includes)
+        {
+            IQueryable<TEntity> query = this._entities.ToDynamic<TEntity>(dynamicQuery);
+
+            if (trackingStatus is not true)
+                query = query.AsNoTracking();
+
+            query = ApplyInclude(query, includes);
+
+            if (predicate is not null)
+                query = query.Where(predicate);
+
+            return query;
+        }
 
         public IQueryable<TEntity> GetAll(bool trackingStatus = false,
                                           Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,

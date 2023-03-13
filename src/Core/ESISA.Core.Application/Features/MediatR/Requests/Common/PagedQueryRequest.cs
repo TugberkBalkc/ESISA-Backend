@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 
 namespace ESISA.Core.Application.Features.MediatR.Requests.Common
 {
-    public class PageableQueryRequest
+    public class PagedQueryRequest
     {
-        public int PageIndex { get; set; }
         public int PageSize { get; set; }
+        public int PageIndex { get; set; }
 
-        public PageableQueryRequest()
+        public PagedQueryRequest()
         {
 
         }
 
-        public PageableQueryRequest(int pageIndex, int pageSize)
+        public PagedQueryRequest(int pageSize, int pageIndex)
         {
-            PageIndex = pageIndex;
             PageSize = pageSize;
+            PageIndex = pageIndex;
         }
     }
 }

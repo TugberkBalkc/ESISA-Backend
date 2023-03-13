@@ -16,6 +16,8 @@ namespace ESISA.Core.Application.Constants.Response
         public const String ProductDeleted = "Ürün Başarıyla Silindi.";
         public const String ProductsDeleted = "Ürünler Başarıyla Silindi.";
         public const String ProductUpdated = "Ürün Başarıyla Güncellendi.";
+        public const String ProductsListed = "Ürünler Başarıyla Listelendi.";
+        public const String ProductListed = "Ürün Başarıyla Listelendi.";
 
         public const String CategoryCreated = "Kategori Başarıyla Oluşturuldu.";
         public const String CategoryDeleted = "Kategori Başarıyla Silindi.";

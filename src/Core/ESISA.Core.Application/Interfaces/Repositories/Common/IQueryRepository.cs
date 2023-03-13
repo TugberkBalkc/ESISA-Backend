@@ -1,4 +1,5 @@
-﻿using ESISA.Core.Domain.Entities.Common;
+﻿using ESISA.Core.Application.Utilities.DynamicQuerying;
+using ESISA.Core.Domain.Entities.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,11 @@ namespace ESISA.Core.Application.Interfaces.Repositories.Common
         IQueryable<TEntity> GetWhere(Expression<Func<TEntity, bool>> predicate,
                                      bool trackingStatus = false,
                                      Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
+                                     params Expression<Func<TEntity, object>>[] includes);
+
+        IQueryable<TEntity> GetByDynamicQuery(DynamicQuery dynamicQuery,
+                                     Expression<Func<TEntity, bool>> predicate = null,
+                                     bool trackingStatus = false,
                                      params Expression<Func<TEntity, object>>[] includes);
 
         Task<TEntity> GetByIdAsync(Guid id,
