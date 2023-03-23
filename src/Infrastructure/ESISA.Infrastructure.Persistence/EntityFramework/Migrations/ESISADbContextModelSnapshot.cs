@@ -331,7 +331,7 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
 
                     b.HasIndex("ParentId");
 
-                    b.ToTable("Cagtegories", (string)null);
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("ESISA.Core.Domain.Entities.CategoryDemand", b =>

@@ -13,7 +13,7 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
         {
             migrationBuilder.AlterColumn<Guid>(
                 name: "ParentId",
-                table: "Cagtegories",
+                table: "Categories",
                 type: "uniqueidentifier",
                 nullable: true,
                 oldClrType: typeof(Guid),
@@ -25,7 +25,7 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
         {
             migrationBuilder.AlterColumn<Guid>(
                 name: "ParentId",
-                table: "Cagtegories",
+                table: "Categories",
                 type: "uniqueidentifier",
                 nullable: false,
                 defaultValue: new Guid("00000000-0000-0000-0000-000000000000"),

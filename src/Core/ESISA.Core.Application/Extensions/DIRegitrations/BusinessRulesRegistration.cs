@@ -1,4 +1,5 @@
 ﻿using ESISA.Core.Application.Rules.BusinessRules;
+using ESISA.Core.Application.Rules.BusinessRules.Common;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -12,18 +13,30 @@ namespace ESISA.Core.Application.Extensions.DIRegitrations
     {
         internal static void RegisterBusinessRules(this IServiceCollection services)
         {
+            services.AddScoped<AdressBusinessRules>();
+
+            services.AddScoped<IndividualCustomerAddressBusinessRules>();
+
             services.AddScoped<ProductBusinessRules>();
             services.AddScoped<ProductDemandBusinessRules>();   
 
             services.AddScoped<CategoryBusinessRules>();
             services.AddScoped<CategoryDemandBusinessRules>();
-            
+
+            services.AddScoped<CityBusinessRules>();
+            services.AddScoped<CountryBusinessRules>();
+
+            services.AddScoped<DistrictBusinessRules>();
+
+
             services.AddScoped<BrandBusinessRules>();
             services.AddScoped<BrandDemandBusinessRules>(); 
 
             services.AddScoped<RoleBusinessRules>();
             services.AddScoped<OperationClaimBusinessRules>();
             services.AddScoped<RoleOperationClaimBusinessRules>();
+
+               
         }
     }
 }

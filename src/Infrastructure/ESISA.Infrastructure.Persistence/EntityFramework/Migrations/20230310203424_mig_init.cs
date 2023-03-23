@@ -46,7 +46,7 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Cagtegories",
+                name: "Categories",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -60,11 +60,11 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Cagtegories", x => x.Id);
+                    table.PrimaryKey("PK_Categories", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Cagtegories_Cagtegories_ParentId",
+                        name: "FK_Categories_Categories_ParentId",
                         column: x => x.ParentId,
-                        principalTable: "Cagtegories",
+                        principalTable: "Categories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -241,9 +241,9 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                 {
                     table.PrimaryKey("PK_CategoryPhotoPaths", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CategoryPhotoPaths_Cagtegories_CategoryId",
+                        name: "FK_CategoryPhotoPaths_Categories_CategoryId",
                         column: x => x.CategoryId,
-                        principalTable: "Cagtegories",
+                        principalTable: "Categories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -271,9 +271,9 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Products_Cagtegories_CategoryId",
+                        name: "FK_Products_Categories_CategoryId",
                         column: x => x.CategoryId,
-                        principalTable: "Cagtegories",
+                        principalTable: "Categories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -827,9 +827,9 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_CorporateDealers_Cagtegories_CategoryId",
+                        name: "FK_CorporateDealers_Categories_CategoryId",
                         column: x => x.CategoryId,
-                        principalTable: "Cagtegories",
+                        principalTable: "Categories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -915,9 +915,9 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                 {
                     table.PrimaryKey("PK_SwapAdvertSwapableCategories", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_SwapAdvertSwapableCategories_Cagtegories_CategoryId",
+                        name: "FK_SwapAdvertSwapableCategories_Categories_CategoryId",
                         column: x => x.CategoryId,
-                        principalTable: "Cagtegories",
+                        principalTable: "Categories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -1518,8 +1518,8 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                 column: "BrandId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cagtegories_ParentId",
-                table: "Cagtegories",
+                name: "IX_Categories_ParentId",
+                table: "Categories",
                 column: "ParentId");
 
             migrationBuilder.CreateIndex(
@@ -2067,7 +2067,7 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                 name: "Brands");
 
             migrationBuilder.DropTable(
-                name: "Cagtegories");
+                name: "Categories");
 
             migrationBuilder.DropTable(
                 name: "Customers");

@@ -17,7 +17,7 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Configurations.Entity
             base.Configure(builder);
 
 
-            builder.ToTable("Cagtegories");
+            builder.ToTable("Categories");
 
             builder.Property(e => e.ParentId)
                    .HasColumnName("ParentId")

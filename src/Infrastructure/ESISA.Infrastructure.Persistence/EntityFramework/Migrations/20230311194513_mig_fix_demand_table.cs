@@ -24,10 +24,10 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                 column: "CategoryId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_ProductDemands_Cagtegories_CategoryId",
+                name: "FK_ProductDemands_Categories_CategoryId",
                 table: "ProductDemands",
                 column: "CategoryId",
-                principalTable: "Cagtegories",
+                principalTable: "Categories",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Restrict);
         }
@@ -36,7 +36,7 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_ProductDemands_Cagtegories_CategoryId",
+                name: "FK_ProductDemands_Categories_CategoryId",
                 table: "ProductDemands");
 
             migrationBuilder.DropIndex(
