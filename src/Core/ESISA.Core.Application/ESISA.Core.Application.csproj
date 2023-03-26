@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Features\MediatR\Queries\Addresses\GetAllIndividualCustomerAdresses\**" />
+    <EmbeddedResource Remove="Features\MediatR\Queries\Addresses\GetAllIndividualCustomerAdresses\**" />
+    <None Remove="Features\MediatR\Queries\Addresses\GetAllIndividualCustomerAdresses\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
     <PackageReference Include="FluentValidation" Version="11.4.0" />
@@ -26,7 +32,6 @@
     <Folder Include="Dtos\Security\Authentication\Logins\" />
     <Folder Include="Features\MediatR\Commands\CorporateUsers\" />
     <Folder Include="Features\MediatR\Commands\Addresses\" />
-    <Folder Include="Features\MediatR\Queries\Addresses\GetAllIndividualCustomerAdresses\" />
     <Folder Include="Interfaces\Repositories\Payment\" />
     <Folder Include="Rules\ValidationRules\FluentValidation\" />
   </ItemGroup>
