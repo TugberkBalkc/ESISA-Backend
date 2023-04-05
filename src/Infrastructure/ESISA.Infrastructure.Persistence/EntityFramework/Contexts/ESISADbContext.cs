@@ -167,6 +167,8 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Contexts
         {
             this.SetAddedEntities(this.GetEntitiesByState(EntityState.Added));
             this.SetUpdatedEntities(this.GetEntitiesByState(EntityState.Modified));
+            this.SetAddedUsers(this.GetEntitiesByState<User>(EntityState.Added));
+           
             return base.SaveChanges();
         }
 
@@ -174,6 +176,8 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Contexts
         {
             this.SetAddedEntities(this.GetEntitiesByState(EntityState.Added));
             this.SetUpdatedEntities(this.GetEntitiesByState(EntityState.Modified));
+            this.SetAddedUsers(this.GetEntitiesByState<User>(EntityState.Added));
+
             return base.SaveChanges(acceptAllChangesOnSuccess);
         }
 
@@ -181,6 +185,8 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Contexts
         {
             this.SetAddedEntities(this.GetEntitiesByState(EntityState.Added));
             this.SetUpdatedEntities(this.GetEntitiesByState(EntityState.Modified));
+            this.SetAddedUsers(this.GetEntitiesByState<User>(EntityState.Added));
+
             return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
         }
 
@@ -188,9 +194,23 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Contexts
         {
             this.SetAddedEntities(this.GetEntitiesByState(EntityState.Added));
             this.SetUpdatedEntities(this.GetEntitiesByState(EntityState.Modified));
+            this.SetAddedUsers(this.GetEntitiesByState<User>(EntityState.Added));
+
             return base.SaveChangesAsync(cancellationToken);
         }
 
+        private IEnumerable<TEntity> GetEntitiesByState<TEntity>(EntityState entityState) where TEntity : EntityBase
+        {
+            return ChangeTracker.Entries<TEntity>().Where(e => e.State == entityState).Select(e => (TEntity)e.Entity).ToList();
+        }
+
+        private void SetAddedUsers(IEnumerable<User> users)
+        {
+            users.ToList().ForEach(user =>
+            {
+                user.Status = true;
+            });
+        }
 
         private IEnumerable<EntityBase> GetEntitiesByState(EntityState entityState)
         {

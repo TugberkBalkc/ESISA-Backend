@@ -7,8 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Features\MediatR\Commands\Addresses\**" />
     <Compile Remove="Features\MediatR\Queries\Addresses\GetAllIndividualCustomerAdresses\**" />
+    <EmbeddedResource Remove="Features\MediatR\Commands\Addresses\**" />
     <EmbeddedResource Remove="Features\MediatR\Queries\Addresses\GetAllIndividualCustomerAdresses\**" />
+    <None Remove="Features\MediatR\Commands\Addresses\**" />
     <None Remove="Features\MediatR\Queries\Addresses\GetAllIndividualCustomerAdresses\**" />
   </ItemGroup>
 
@@ -30,8 +33,6 @@
 
   <ItemGroup>
     <Folder Include="Dtos\Security\Authentication\Logins\" />
-    <Folder Include="Features\MediatR\Commands\CorporateUsers\" />
-    <Folder Include="Features\MediatR\Commands\Addresses\" />
     <Folder Include="Interfaces\Repositories\Payment\" />
     <Folder Include="Rules\ValidationRules\FluentValidation\" />
   </ItemGroup>

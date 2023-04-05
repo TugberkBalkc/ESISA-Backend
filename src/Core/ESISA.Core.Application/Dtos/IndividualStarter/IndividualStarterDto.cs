@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESISA.Core.Application.Dtos.Security.Authentication.Registrations
+namespace ESISA.Core.Application.Dtos.IndividualStarter
 {
-    public class RegisterIndividualStarterDto
+    public class IndividualStarterDto
     {
         public String StarterEmail { get; set; }
         public String StarterUserName { get; set; }

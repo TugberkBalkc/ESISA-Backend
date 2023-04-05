@@ -20,14 +20,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\ESISA.Core.Application\ESISA.Core.Application.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Constants\" />
     <Folder Include="EntityFramework\Migrations\" />
     <Folder Include="EntityFramework\Repositories\Payment\" />
     <Folder Include="Handlers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\ESISA.Core.Application\ESISA.Core.Application.csproj" />
   </ItemGroup>
 
 </Project>

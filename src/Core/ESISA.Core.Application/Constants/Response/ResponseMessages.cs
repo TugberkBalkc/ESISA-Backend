@@ -55,5 +55,9 @@ namespace ESISA.Core.Application.Constants.Response
         public const String DemandDeleted = "Talep Başarıyla Silindi.";
         public const String DemandsDeleted = "Talepler Başarıyla Silindi.";
         public const String OtherUsersSentDemand = "Farklı Kullanıcılar Tarafından Bildirim Sağlanmıştır.";
+
+        public const String AddressesListed = "Adresler Başarıyla Listelendi.";
+
+        public const String Registered = "Başarıyla Kayıt Oldunuz.";
     }
 }

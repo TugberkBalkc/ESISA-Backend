@@ -9,7 +9,7 @@ namespace ESISA.Core.Domain.Exceptions.BusinessLogic
 {
     public class BusinessLogicException : Exception
     {
-        public BusinessLogicException() : base(DefaultDomainExceptionTitles.AuthorizationExceptionTitle + "," + DefaultDomainExceptionMessages.AuthorizationExceptionMessage)
+        public BusinessLogicException() : base(DefaultDomainExceptionTitles.BusinessExceptionTitle + "," + DefaultDomainExceptionMessages.InternalExceptionMessage)
         {
         }
 

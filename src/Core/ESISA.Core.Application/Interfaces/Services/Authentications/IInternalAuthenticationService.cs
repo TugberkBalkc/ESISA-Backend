@@ -1,4 +1,5 @@
 ﻿using ESISA.Core.Application.Dtos;
+using ESISA.Core.Application.Dtos.IndividualStarter;
 using ESISA.Core.Application.Dtos.Security.Authentication;
 using ESISA.Core.Application.Dtos.Security.Authentication.Registrations;
 using ESISA.Core.Application.Dtos.User;
@@ -15,6 +16,7 @@ namespace ESISA.Core.Application.Interfaces.Services.Authentications
     {
         Task<Token> LoginAsync(UserLoginDto userLoginDto, int tokenLifeTimeInSeconds);
 
+        Task<UserDto> GetUserByEmailAsync(String userEmail);
 
         Task<IndividualStarterDto> RegisterAsIndividualStarterAsync(RegisterIndividualStarterDto registerIndividualStarterDto);
         Task<CorporateCustomerDto> RegisterAsCorporateCustomerAsync(RegisterCorporateCustomerDto registerCorporateCustomerDto);

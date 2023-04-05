@@ -17,6 +17,7 @@ namespace ESISA.Core.Application.Dtos.Adress
         public string DistrictName { get; set; }
         public string Details { get; set; }
         public String PostalCode { get; set; }
+
         public AdressDetailsDto()
         {
 

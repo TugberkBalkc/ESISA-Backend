@@ -16,7 +16,9 @@ namespace ESISA.Infrastructure.Persistence.Extensions.DIRegistrations
         public static void RegisterPersistenceDependencies(this IServiceCollection services, IConfiguration configuration)
         {
             services.RegisterDbContext(NonInjectableOptionsTool.GetDatabaseOptions(configuration).ConnectionString);
-            
+
+            services.RegisterManagers();
+
             services.RegisterAddressDomainEntitiesRepositories();
             services.RegisterAdvertDomainEntitiesRepositories();
             services.RegisterCategoryDomainEntitiesRepositories();
