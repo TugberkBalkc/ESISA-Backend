@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESISA.Core.Application.Dtos
+namespace ESISA.Core.Application.Dtos.Demand
 {
     public class BrandDemandDto
     {
@@ -15,7 +15,7 @@ namespace ESISA.Core.Application.Dtos
         public bool BrandDemandIsDeleted { get; set; }
 
         public Guid CorporateDealerId { get; set; }
-        public String SenderNote { get; set; }
-        public String BrandName { get; set; }
+        public string SenderNote { get; set; }
+        public string BrandName { get; set; }
     }
 }

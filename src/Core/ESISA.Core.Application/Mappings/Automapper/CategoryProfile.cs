@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using ESISA.Core.Application.Dtos;
+using ESISA.Core.Application.Dtos.Category;
 using ESISA.Core.Application.Features.MediatR.Commands.Categories.CreateMainCategory;
 using ESISA.Core.Application.Features.MediatR.Commands.Categories.CreateSubCategory;
 using ESISA.Core.Application.Features.MediatR.Commands.Categories.Update;

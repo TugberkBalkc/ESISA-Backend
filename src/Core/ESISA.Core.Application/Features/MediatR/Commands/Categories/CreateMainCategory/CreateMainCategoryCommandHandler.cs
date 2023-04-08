@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using ESISA.Core.Application.Constants.EntityConstantValues;
 using ESISA.Core.Application.Constants.Response;
-using ESISA.Core.Application.Dtos;
+using ESISA.Core.Application.Dtos.Category;
 using ESISA.Core.Application.Extensions;
 using ESISA.Core.Application.Interfaces.Repositories;
 using ESISA.Core.Application.Rules.BusinessRules;

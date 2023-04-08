@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
-using ESISA.Core.Application.Dtos.IndividualStarter;
 using ESISA.Core.Application.Dtos.Security.Authentication.Registrations;
-using ESISA.Core.Application.Utilities.Security.Hashing;
+using ESISA.Core.Application.Dtos.User;
 using ESISA.Core.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -20,8 +19,7 @@ namespace ESISA.Core.Application.Mappings.Automapper
             this.CreateMap<RegisterIndividualStarterDto, User>()
                 .ForMember(e => e.UserName, e => e.MapFrom(e => e.StarterUserName))
                 .ForMember(e => e.Email, e => e.MapFrom(e => e.StarterEmail))
-                .ForMember(e => e.ContactNumber, e => e.MapFrom(e => e.StarterContactNumber))
-                .ForMember(e=>e.Status, e=>e.MapFrom(e=>e.StarterStatus));
+                .ForMember(e => e.ContactNumber, e => e.MapFrom(e => e.StarterContactNumber));
 
             this.CreateMap<RegisterIndividualStarterDto, IndividualCustomer>()
                 .ForMember(e => e.FirstName, e => e.MapFrom(e => e.StarterFirstName))

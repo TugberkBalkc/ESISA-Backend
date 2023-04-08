@@ -39,6 +39,8 @@ namespace ESISA.Core.Application.Extensions.DIRegitrations
             services.AddScoped<IndividualCustomerAddressBusinessRules>();
 
             services.AddScoped<IndividualStarterBusinessRules>();
+            services.AddScoped<CorporateCustomerBusinessRules>();
+            services.AddScoped<CorporateDealerBusinessRules>();
         }
     }
 }

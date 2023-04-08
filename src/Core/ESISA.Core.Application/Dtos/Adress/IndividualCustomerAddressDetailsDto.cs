@@ -29,17 +29,17 @@ namespace ESISA.Core.Application.Dtos.Adress
 
         public AdressDetailsDto AdressDetailsDto { get; set; }
 
-        public IndividualCustomerDto IndividualCustomerDto { get; set; }
+     //   public IndividualCustomerDto IndividualCustomerDto { get; set; }
 
         public IndividualCustomerAddressDetailsDto()
         {
 
         }
         public IndividualCustomerAddressDetailsDto(Guid individualCustomerId, AdressDetailsDto adressDetailsDto, 
-            bool isResidence, Guid addressId, IndividualCustomerDto indvidualCustomerDto, Guid id)
+            bool isResidence, Guid addressId,/* IndividualCustomerDto indvidualCustomerDto,*/ Guid id)
         {
             Id = id;
-            IndividualCustomerDto = indvidualCustomerDto;
+         //   IndividualCustomerDto = indvidualCustomerDto;
             AddressId = addressId;    
             IsResidence = isResidence;    
             AddressId = addressId;

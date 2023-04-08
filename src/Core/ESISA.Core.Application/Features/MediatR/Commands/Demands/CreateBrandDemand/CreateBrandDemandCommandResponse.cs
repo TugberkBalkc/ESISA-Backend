@@ -1,4 +1,4 @@
-﻿using ESISA.Core.Application.Dtos;
+﻿using ESISA.Core.Application.Dtos.Demand;
 using ESISA.Core.Application.Features.MediatR.Requests.Common;
 using ESISA.Core.Application.Utilities.Response.Common;
 

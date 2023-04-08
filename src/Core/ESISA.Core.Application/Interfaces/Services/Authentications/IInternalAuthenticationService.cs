@@ -1,20 +1,19 @@
-﻿using ESISA.Core.Application.Dtos;
-using ESISA.Core.Application.Dtos.IndividualStarter;
-using ESISA.Core.Application.Dtos.Security.Authentication;
+﻿using ESISA.Core.Application.Dtos.Security.Authentication;
 using ESISA.Core.Application.Dtos.Security.Authentication.Registrations;
+using ESISA.Core.Application.Dtos.CorporateCustomer;
+using ESISA.Core.Application.Dtos.Security.Authentication.Logins;
 using ESISA.Core.Application.Dtos.User;
-using ESISA.Core.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ESISA.Core.Application.Interfaces.Services.Authentications
 {
     public interface IInternalAuthenticationService
     {
-        Task<Token> LoginAsync(UserLoginDto userLoginDto, int tokenLifeTimeInSeconds);
+        Task<Token> LoginAsStarterAsync(StarterLoginDto starterLoginDto, int tokenLifeTimeInSeconds);
+        Task<Token> LoginAsCorporateCustomerAsync(CorporateCustomerLoginDto customerLoginDto, int tokenLifeTimeInSeconds);
+        Task<Token> LoginAsCorporateDealerAsync(CorporateDealerLoginDto corporateDealerLoginDto, int tokenLifeTimeInSeconds);
+        Task<Token> LoginAsSupportAsync(SupportLoginDto supportLoginDto, int tokenLifeTimeInSeconds);
+        Task<Token> LoginAsModeratorAsync(ModeratorLoginDto moderatorLoginDto, int tokenLifeTimeInSeconds);
+
 
         Task<UserDto> GetUserByEmailAsync(String userEmail);
 

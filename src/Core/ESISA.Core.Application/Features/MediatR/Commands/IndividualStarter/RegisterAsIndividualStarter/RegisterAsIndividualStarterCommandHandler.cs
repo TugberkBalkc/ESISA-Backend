@@ -1,5 +1,5 @@
 ﻿using ESISA.Core.Application.Constants.Response;
-using ESISA.Core.Application.Dtos.IndividualStarter;
+using ESISA.Core.Application.Dtos.User;
 using ESISA.Core.Application.Interfaces.Services.Authentications;
 using ESISA.Core.Application.Rules.BusinessRules;
 using ESISA.Core.Application.Utilities.Response.ContentResponse;

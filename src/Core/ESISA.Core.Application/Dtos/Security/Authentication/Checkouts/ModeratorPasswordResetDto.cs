@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESISA.Core.Application.Dtos.User
+namespace ESISA.Core.Application.Dtos.Security.Authentication.Checkouts
 {
-    public class IndividualCustomerDto
+    public class ModeratorPasswordResetDto
     {
     }
 }

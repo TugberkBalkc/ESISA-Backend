@@ -17,7 +17,5 @@ namespace ESISA.Core.Application.Dtos.Security.Authentication.Registrations
         public String StarterLastName { get; set; }
         public String StarterNationalIdentity { get; set; }
         public DateTime StarterDateOfBirth { get; set; }
-
-        public bool StarterStatus { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿using ESISA.Core.Application.Dtos;
+﻿using ESISA.Core.Application.Dtos.Demand;
 using ESISA.Core.Application.Features.MediatR.Requests.Common;
 
 namespace ESISA.Core.Application.Features.MediatR.Commands.Demands.CreateCategoryDemand

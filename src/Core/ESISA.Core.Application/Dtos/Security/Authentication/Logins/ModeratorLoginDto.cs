@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESISA.Core.Application.Dtos
+namespace ESISA.Core.Application.Dtos.Security.Authentication.Logins
 {
-    public class UserResetPasswordDto
+    public class ModeratorLoginDto
     {
-        public String UserEmailAddress { get; set; }
     }
 }

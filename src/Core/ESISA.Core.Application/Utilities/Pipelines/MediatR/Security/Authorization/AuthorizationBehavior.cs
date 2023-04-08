@@ -1,6 +1,7 @@
 ﻿using ESISA.Core.Application.Extensions.ClaimExtensions;
 using ESISA.Core.Application.Features.MediatR.Requests.Common;
 using ESISA.Core.Domain.Constants;
+using ESISA.Core.Domain.Entities;
 using ESISA.Core.Domain.Exceptions.Authorization;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -27,15 +28,23 @@ namespace ESISA.Core.Application.Utilities.Pipelines.MediatR.Security.Authorizat
             var usersRoles = _httpContextAccessor.HttpContext.GetUsersRoles();
             var usersEmail = _httpContextAccessor.HttpContext.GetUsersEmail();
 
+            this.CheckIfUserHasAnyRoles(usersRoles, usersEmail);
+
+            this.CheckIfUserRolesSatisfiesRequest(request, usersRoles, usersEmail);
+            
+            return await next();
+        }
+
+        private void CheckIfUserHasAnyRoles(String[] usersRoles, String usersEmail)
+        {
             if (usersRoles is null || usersRoles.Length == 0)
                 throw new AuthorizationException(DefaultDomainExceptionTitles.AuthorizationExceptionTitle, DefaultDomainExceptionMessages.AuthorizationExceptionMessage, usersEmail);
+        }
 
-            if(this.CheckIfUsersRolesNotSatisfiesRequestsRoles(request, usersRoles) is true)
+        private void CheckIfUserRolesSatisfiesRequest(TRequest request, String[] usersRoles, String usersEmail)
+        {
+            if (this.CheckIfUsersRolesNotSatisfiesRequestsRoles(request, usersRoles) is true)
                 throw new AuthorizationException(DefaultDomainExceptionTitles.AuthorizationExceptionTitle, DefaultDomainExceptionMessages.AuthorizationExceptionMessage, usersEmail);
-
-            TResponse response = await next();
-
-            return response;
         }
 
         private bool CheckIfUsersRolesNotSatisfiesRequestsRoles(TRequest request, String[] usersRoles)

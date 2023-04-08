@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using ESISA.Core.Application.Dtos;
+using ESISA.Core.Application.Dtos.Demand;
 using ESISA.Core.Application.Features.MediatR.Commands.Demands.CreateCategoryDemand;
 using ESISA.Core.Domain.Entities;
 using System;

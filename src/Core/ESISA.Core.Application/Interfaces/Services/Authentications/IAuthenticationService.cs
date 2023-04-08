@@ -1,4 +1,5 @@
 ﻿using ESISA.Core.Application.Dtos;
+using ESISA.Core.Application.Dtos.Security.Authentication.Checkouts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,11 @@ namespace ESISA.Core.Application.Interfaces.Services.Authentications
 {
     public interface IAuthenticationService : IInternalAuthenticationService, IExternalAuthenticationService
     {
-        Task ResetPasswordAsync(UserResetPasswordDto userResetPasswordDto);
+        Task StarterPasswordResetAsync(StarterPasswordResetDto starterPasswordResetDto);
+        Task CorporateCustomerPasswordResetAsync(CorporateCustomerPasswordResetDto corporateCustomerPasswordResetDto);
+        Task CorporateDealerPasswordResetAsync(CorporateDealerPasswordResetDto corporateDealerPasswordResetDto);
+        Task SupportPasswordResetAsync(SupportPasswordResetDto supportPasswordResetDto);
+        Task ModeratorPasswordResetAsync(ModeratorPasswordResetDto moderatorPasswordResetDto);
 
         Task<bool> VerifyResetTokenAsync(String resetToken, Guid userId);
     }

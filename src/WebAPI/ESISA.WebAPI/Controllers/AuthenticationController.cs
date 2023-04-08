@@ -1,4 +1,6 @@
-﻿using ESISA.Core.Application.Features.MediatR.Commands.IndividualStarter.RegisterAsIndividualStarter;
+﻿using ESISA.Core.Application.Features.MediatR.Commands.CorporateCustomer.RegisterAsCorporateCustomer;
+using ESISA.Core.Application.Features.MediatR.Commands.CorporateDealer.RegisterAsCorporateDealer;
+using ESISA.Core.Application.Features.MediatR.Commands.IndividualStarter.RegisterAsIndividualStarter;
 using ESISA.WebAPI.Controllers.Common;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -18,6 +20,22 @@ namespace ESISA.WebAPI.Controllers
         public async Task<IActionResult> RegisterAsIndividualStarter([FromBody] RegisterAsIndividualStarterCommandRequest registerAsIndividualStarterCommandRequest)
         {
             var response = await _mediator.Send(registerAsIndividualStarterCommandRequest);
+
+            return base.ActionResultInstanceByResponse(response.Response);
+        }
+
+        [HttpPost("RegisterAsCorporateCustomer")]
+        public async Task<IActionResult> RegisterAsCorporateCustomer([FromBody] RegisterAsCorporateCustomerCommandRequest registerAsCorporateCustomerCommandRequest)
+        {
+            var response = await _mediator.Send(registerAsCorporateCustomerCommandRequest);
+
+            return base.ActionResultInstanceByResponse(response.Response);
+        }
+
+        [HttpPost("RegisterAsCorporateDealer")]
+        public async Task<IActionResult> RegisterAsCorporateDealer([FromBody] RegisterAsCorporateDealerCommandRequest registerAsCorporateDealerCommandRequest)
+        {
+            var response = await _mediator.Send(registerAsCorporateDealerCommandRequest);
 
             return base.ActionResultInstanceByResponse(response.Response);
         }
