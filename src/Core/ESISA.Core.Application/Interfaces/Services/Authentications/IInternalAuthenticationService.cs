@@ -22,7 +22,7 @@ namespace ESISA.Core.Application.Interfaces.Services.Authentications
 
         Task<CorporateDealerDto> RegisterAsCorporateDealerAsync(RegisterCorporateDealerDto registerCorporateDealerDto);
 
-        Task<ModeratorDto> RegisterAsCorporateDealerAsync(RegisterModeratorDto registerModeratorDto);
-        Task<SupportDto> RegisterAsCorporateDealerAsync(RegisterSupportDto registerSupportDto);
+        Task<ModeratorDto> RegisterAsModeratorAsync(RegisterModeratorDto registerModeratorDto);
+        Task<SupportDto> RegisterAsSupportAsync(RegisterSupportDto registerSupportDto);
     }
 }

@@ -57,6 +57,32 @@ namespace ESISA.Infrastructure.Persistence.Services
         }
 
 
+        public async Task<UserDto> GetUserByEmailAsync(String userEmail)
+        {
+            var user = await _userQueryRepository.GetSingleAsync(e => e.Email == userEmail);
+
+            var userDto = _mapper.Map<UserDto>(user);
+
+            return userDto;
+        }
+
+        public Task<bool> VerifyResetTokenAsync(string resetToken, Guid userId)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public Task<Token> GoogleLoginAsync(string idToken, int tokenLifeTimeInSeconds)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Token> FacebookLoginAsync(string authToken, int tokenLifeTimeInSeconds)
+        {
+            throw new NotImplementedException();
+        }
+
+
         public Task<Token> LoginAsStarterAsync(StarterLoginDto starterLoginDto, int tokenLifeTimeInSeconds)
         {
             throw new NotImplementedException();
@@ -72,39 +98,16 @@ namespace ESISA.Infrastructure.Persistence.Services
             throw new NotImplementedException();
         }
 
-        public Task<Token> LoginAsSupportAsync(SupportLoginDto supportLoginDto, int tokenLifeTimeInSeconds)
-        {
-            throw new NotImplementedException();
-        }
-
         public Task<Token> LoginAsModeratorAsync(ModeratorLoginDto moderatorLoginDto, int tokenLifeTimeInSeconds)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Token> GoogleLoginAsync(string idToken, int tokenLifeTimeInSeconds)
+        public Task<Token> LoginAsSupportAsync(SupportLoginDto supportLoginDto, int tokenLifeTimeInSeconds)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Token> FacebookLoginAsync(string authToken, int tokenLifeTimeInSeconds)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<UserDto> GetUserByEmailAsync(String userEmail)
-        {
-            var user = await _userQueryRepository.GetSingleAsync(e=>e.Email == userEmail);
-
-            var userDto = _mapper.Map<UserDto>(user);
-
-            return userDto;
-        }
-
-        public Task<bool> VerifyResetTokenAsync(string resetToken, Guid userId)
-        {
-            throw new NotImplementedException();
-        }
 
         public async Task<IndividualStarterDto> RegisterAsIndividualStarterAsync(RegisterIndividualStarterDto registerIndividualStarterDto)
         {
@@ -179,12 +182,12 @@ namespace ESISA.Infrastructure.Persistence.Services
             return corporateDealerDto;
         }
 
-        public Task<ModeratorDto> RegisterAsCorporateDealerAsync(RegisterModeratorDto registerModeratorDto)
+        public Task<ModeratorDto> RegisterAsModeratorAsync(RegisterModeratorDto registerModeratorDto)
         {
             throw new NotImplementedException();
         }
 
-        public Task<SupportDto> RegisterAsCorporateDealerAsync(RegisterSupportDto registerSupportDto)
+        public Task<SupportDto> RegisterAsSupportAsync(RegisterSupportDto registerSupportDto)
         {
             throw new NotImplementedException();
         }
