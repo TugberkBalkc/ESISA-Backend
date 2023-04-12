@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ESISA.Core.Domain.Entities
 {
-    //todo abstract yapılacak
+   
     public class Discount : EntityBase
     {
         public String Description { get; set; }

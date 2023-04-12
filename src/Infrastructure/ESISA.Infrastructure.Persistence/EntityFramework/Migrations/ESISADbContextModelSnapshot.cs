@@ -980,9 +980,6 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                     b.Property<Guid>("AddressId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CategoryId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("CompanyName")
                         .IsRequired()
                         .HasColumnType("nvarchar(MAX)");
@@ -1024,10 +1021,10 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
 
                     b.HasIndex("AddressId");
 
-                    b.HasIndex("CategoryId");
-
                     b.HasIndex("DealerId")
                         .IsUnique();
+
+                    b.HasIndex("SalesCategoryId");
 
                     b.ToTable("CorporateDealers", (string)null);
                 });
@@ -2848,18 +2845,18 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                     b.HasOne("ESISA.Core.Domain.Entities.Address", "Address")
                         .WithMany("CorporateDealers")
                         .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("ESISA.Core.Domain.Entities.Category", "Category")
-                        .WithMany("CorporateDealersSalesCategory")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ESISA.Core.Domain.Entities.Dealer", "Dealer")
                         .WithOne("CorporateDealer")
                         .HasForeignKey("ESISA.Core.Domain.Entities.CorporateDealer", "DealerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("ESISA.Core.Domain.Entities.Category", "Category")
+                        .WithMany("CorporateDealersSalesCategory")
+                        .HasForeignKey("SalesCategoryId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 

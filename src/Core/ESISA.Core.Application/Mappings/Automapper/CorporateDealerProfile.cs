@@ -22,7 +22,6 @@ namespace ESISA.Core.Application.Mappings.Automapper
                 .ForMember(e => e.ContactNumber, e => e.MapFrom(e => e.CorporateDealerContactNumber));
 
             this.CreateMap<RegisterCorporateDealerDto, CorporateDealer>()
-                .ForMember(e => e.SalesCategoryId, e => e.MapFrom(e => e.CorporateDealerSalesCategoryId))
                 .ForMember(e => e.CompanyName, e => e.MapFrom(e => e.CorporateDealerCompanyName))
                 .ForMember(e => e.TaxIdentityNumber, e => e.MapFrom(e => e.CorporateDealerTaxIdentityNumber))
                 .ForMember(e => e.CompanyType, e => e.MapFrom(e => e.CorporateDealerCompanyType));

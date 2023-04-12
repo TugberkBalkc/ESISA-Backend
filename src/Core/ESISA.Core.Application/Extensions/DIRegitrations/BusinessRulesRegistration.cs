@@ -28,6 +28,8 @@ namespace ESISA.Core.Application.Extensions.DIRegitrations
 
             services.AddScoped<DistrictBusinessRules>();
 
+            services.AddScoped<UserBusinessRules>();
+            services.AddScoped<CustomerBusinessRules>();
 
             services.AddScoped<BrandBusinessRules>();
             services.AddScoped<BrandDemandBusinessRules>(); 

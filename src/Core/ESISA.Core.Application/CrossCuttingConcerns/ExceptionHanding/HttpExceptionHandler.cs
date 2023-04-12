@@ -167,7 +167,7 @@ namespace ESISA.Core.Application.CrossCuttingConcerns.ExceptionHanding
         {
             httpContext.Response.StatusCode = Convert.ToInt32(HttpStatusCode.BadRequest);
 
-            ExceptionResponse exceptionResponse = new ExceptionResponse(exception, new Domain.Exceptions.Common.ExceptionDetailsBase() { ThrownDate = DateTime.Now} ,DefaultDomainExceptionTitles.InternalExceptionTitle,exception.Message, HttpStatusCode.BadRequest);
+            ExceptionResponse exceptionResponse = new ExceptionResponse(exception, new Domain.Exceptions.Common.ExceptionDetailsBase() { ThrownDate = DateTime.Now},exception.Source, exception.Message, HttpStatusCode.BadRequest);
 
             await httpContext.Response.WriteAsync(exceptionResponse.GetDetails());
         }

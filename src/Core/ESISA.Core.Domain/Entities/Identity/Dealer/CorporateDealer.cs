@@ -1,4 +1,5 @@
-﻿using ESISA.Core.Domain.Entities.Common;
+﻿using ESISA.Core.Domain.Constants;
+using ESISA.Core.Domain.Entities.Common;
 using ESISA.Core.Domain.Enums;
 using System;
 using System.Collections.Generic;
@@ -11,8 +12,8 @@ namespace ESISA.Core.Domain.Entities
     public class CorporateDealer : EntityBase
     {
         public Guid DealerId { get; set; }
-        public Guid SalesCategoryId { get; set; }
-        public Guid AddressId { get; set; }
+        public Guid SalesCategoryId { get; set; } = Guid.Parse(DefaultCategoryValues.DefaultCategoryId);
+        public Guid AddressId { get; set; } = Guid.Parse(DefaultAddressValues.DefaultAddressId);
 
         public String CompanyName { get; set; }
         public String TaxIdentityNumber { get; set; }

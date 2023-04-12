@@ -32,6 +32,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features\MediatR\Commands\IndividualAdvert\" />
+    <Folder Include="Features\MediatR\Commands\CorporateAdvert\" />
+    <Folder Include="Features\MediatR\Commands\SwapAdvert\" />
+    <Folder Include="Features\MediatR\Commands\WholesaleAdvert\" />
     <Folder Include="Interfaces\Repositories\Payment\" />
     <Folder Include="Rules\ValidationRules\FluentValidation\" />
   </ItemGroup>

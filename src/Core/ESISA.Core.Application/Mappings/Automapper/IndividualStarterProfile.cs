@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ESISA.Core.Application.Dtos.Security.Authentication.Registrations;
 using ESISA.Core.Application.Dtos.User;
+using ESISA.Core.Application.Features.MediatR.Commands.IndividualStarter.UpdateIndividualStarter;
 using ESISA.Core.Domain.Entities;
 using System;
 using System.Collections.Generic;

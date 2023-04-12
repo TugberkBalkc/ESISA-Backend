@@ -16,7 +16,6 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Configurations.Entity
         {
             base.Configure(builder);
 
-
             builder.ToTable("Categories");
 
             builder.Property(e => e.ParentId)
@@ -43,8 +42,6 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Configurations.Entity
             builder.HasMany(e => e.CorporateDealersSalesCategory);
 
             builder.HasMany(e => e.SwapAdvertSwapableCategories);
-
-           
         }
     }
 }

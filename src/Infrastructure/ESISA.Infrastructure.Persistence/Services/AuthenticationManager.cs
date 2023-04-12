@@ -134,7 +134,7 @@ namespace ESISA.Infrastructure.Persistence.Services
             await _individualCustomerCommandRepository.SaveChangesAsync();
 
             var individualStarterDto = _mapper.Map<IndividualStarterDto>(registerIndividualStarterDto);
-            this.SetIndividualCustomerDto(individualStarterDto, individualCustomer);
+            this.SetIndividualStarterDto(individualStarterDto, user, customer.Id, dealer.Id, individualCustomer.Id, individualDealer.Id);
 
             return individualStarterDto;
         }
@@ -156,7 +156,7 @@ namespace ESISA.Infrastructure.Persistence.Services
             await _corporateCustomerCommandRepository.SaveChangesAsync();
 
             var corporateCustomerDto = _mapper.Map<CorporateCustomerDto>(registerCorporateCustomerDto);
-            this.SetCorporateCustomer(corporateCustomerDto, corporateCustomer);
+            this.SetCorporateCustomerDto(corporateCustomerDto, user, customer.Id, corporateCustomer.Id);
 
             return corporateCustomerDto;
         }
@@ -178,7 +178,7 @@ namespace ESISA.Infrastructure.Persistence.Services
             await _corporateDealerCommandRepository.SaveChangesAsync();
 
             var corporateDealerDto = _mapper.Map<CorporateDealerDto>(registerCorporateDealerDto);
-            this.SetCorporateDealer(corporateDealerDto, corporateDealer);
+            this.SetCorporateDealerDto(corporateDealerDto, user, dealer.Id, corporateDealer.Id);
             return corporateDealerDto;
         }
 
@@ -217,6 +217,7 @@ namespace ESISA.Infrastructure.Persistence.Services
             throw new NotImplementedException();
         }
 
+
         private void SetUserPassword(User user, String password)
         {
             var hashResult = HashingHelper.ComputeHashByKeyValue(password);
@@ -225,42 +226,55 @@ namespace ESISA.Infrastructure.Persistence.Services
             user.PasswordSalt = hashResult.Salt;
         }
 
+
         private void SetIndividualCustomer(IndividualCustomer individualCustomer, Guid customerId)
         {
             individualCustomer.CustomerId = customerId;
         }
-        private void SetIndividualCustomerDto(IndividualStarterDto individualStarterDto, IndividualCustomer individualCustomer)
+        private void SetIndividualStarterDto(IndividualStarterDto individualStarterDto, User user, Guid customerId, Guid dealerId, Guid individualCustomerId, Guid individualDealerId)
         {
-            individualStarterDto.StarterCreatedDate = individualCustomer.CreatedDate;
-            individualStarterDto.StarterModifiedDate = individualCustomer.ModifiedDate;
-            individualStarterDto.StarterIsActive = individualCustomer.IsActive;
-            individualStarterDto.StarterIsDeleted = individualCustomer.IsDeleted;
+            individualStarterDto.StarterUserCreatedDate = user.CreatedDate;
+            individualStarterDto.StarterUserModifiedDate = user.ModifiedDate;
+            individualStarterDto.StarterUserIsDeleted = user.IsDeleted;
+            individualStarterDto.StarterUserIsActive = user.IsActive;
+
+            individualStarterDto.StarterUserId = user.Id;
+            individualStarterDto.StarterCustomerId = customerId;
+            individualStarterDto.StarterDealerId = dealerId;
+            individualStarterDto.StarterIndividualCustomerId = individualCustomerId;
+            individualStarterDto.StarterIndividualDealerId = individualDealerId;
         }
+
 
         private void SetCorporateCustomer(CorporateCustomer corporateCustomer, Guid customerId)
         {
             corporateCustomer.CustomerId = customerId;
         }
-        private void SetCorporateCustomer(CorporateCustomerDto corporateCustomerDto, CorporateCustomer corporateCustomer)
+        private void SetCorporateCustomerDto(CorporateCustomerDto corporateCustomerDto, User user, Guid customerId, Guid corporateCustomerId)
         {
-            corporateCustomerDto.CorporateCustomerCreatedDate = corporateCustomer.CreatedDate;
-            corporateCustomerDto.CorporateCustomerModifiedDate = corporateCustomer.ModifiedDate;
-            corporateCustomerDto.CorporateCustomerIsActive = corporateCustomer.IsActive;
-            corporateCustomerDto.CorporateCustomerIsDeleted = corporateCustomer.IsDeleted;
-            
+            corporateCustomerDto.CorporateCustomerUserCreatedDate = user.CreatedDate;
+            corporateCustomerDto.CorporateCustomerUserModifiedDate = user.ModifiedDate;
+            corporateCustomerDto.CorporateCustomerUserIsActive = user.IsActive;
+            corporateCustomerDto.CorporateCustomerUserIsDeleted = user.IsDeleted;
+            corporateCustomerDto.CorporateCustomerUserId = user.Id;
+            corporateCustomerDto.CorporateCustomerCustomerId = customerId;
+            corporateCustomerDto.CorporateCustomerId = corporateCustomerId;
         }
+
 
         private void SetCorporateDealer(CorporateDealer corporateDealer, Guid dealerId)
         {
             corporateDealer.DealerId = dealerId;
         }
-        private void SetCorporateDealer(CorporateDealerDto corporateDealerDto, CorporateDealer corporateDealer)
+        private void SetCorporateDealerDto(CorporateDealerDto corporateDealerDto, User user, Guid dealerId, Guid corporateDealerId)
         {
-            corporateDealerDto.CorporateDealerCreatedDate = corporateDealer.CreatedDate;
-            corporateDealerDto.CorporateDealerModifiedDate = corporateDealer.ModifiedDate;
-            corporateDealerDto.CorporateDealerIsActive = corporateDealer.IsActive;
-            corporateDealerDto.CorporateDealerIsDeleted = corporateDealer.IsDeleted;
+            corporateDealerDto.CorporateDealerUserCreatedDate = user.CreatedDate;
+            corporateDealerDto.CorporateDealerUserModifiedDate = user.ModifiedDate;
+            corporateDealerDto.CorporateDealerUserIsActive = user.IsActive;
+            corporateDealerDto.CorporateDealerUserIsDeleted = user.IsDeleted;
+            corporateDealerDto.CorporateDealerUserId = user.Id;
+            corporateDealerDto.CorporateDealerId = dealerId;
+            corporateDealerDto.CorporateDealerId = corporateDealerId;
         }
-
     }
 }

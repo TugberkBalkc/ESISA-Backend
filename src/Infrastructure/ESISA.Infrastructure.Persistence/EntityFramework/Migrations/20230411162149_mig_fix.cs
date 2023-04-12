@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
 {
     /// <inheritdoc />
-    public partial class mig_init : Migration
+    public partial class mig_fix : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -52,7 +52,7 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(MAX)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(MAX)", nullable: false),
-                    ParentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ParentId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
@@ -811,7 +811,6 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                     CompanyName = table.Column<string>(type: "nvarchar(MAX)", nullable: false),
                     TaxIdentityNumber = table.Column<string>(type: "nvarchar(MAX)", nullable: false),
                     CompanyType = table.Column<int>(type: "int", nullable: false),
-                    CategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
@@ -825,10 +824,10 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                         column: x => x.AddressId,
                         principalTable: "Addresses",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CorporateDealers_Categories_CategoryId",
-                        column: x => x.CategoryId,
+                        name: "FK_CorporateDealers_Categories_SalesCategoryId",
+                        column: x => x.SalesCategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -1132,6 +1131,7 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ProductName = table.Column<string>(type: "nvarchar(MAX)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: false),
@@ -1143,6 +1143,12 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ProductDemands", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProductDemands_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_ProductDemands_CorporateDealers_CorporateDealerId",
                         column: x => x.CorporateDealerId,
@@ -1657,15 +1663,15 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                 column: "AddressId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CorporateDealers_CategoryId",
-                table: "CorporateDealers",
-                column: "CategoryId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_CorporateDealers_DealerId",
                 table: "CorporateDealers",
                 column: "DealerId",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CorporateDealers_SalesCategoryId",
+                table: "CorporateDealers",
+                column: "SalesCategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Customers_UserId",
@@ -1807,6 +1813,11 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                 name: "IX_Orders_UpperOrderPriceDiscountId",
                 table: "Orders",
                 column: "UpperOrderPriceDiscountId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductDemands_CategoryId",
+                table: "ProductDemands",
+                column: "CategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductDemands_CorporateDealerId",

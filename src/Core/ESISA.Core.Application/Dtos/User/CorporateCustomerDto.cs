@@ -9,11 +9,14 @@ namespace ESISA.Core.Application.Dtos.CorporateCustomer
 {
     public class CorporateCustomerDto
     {
+        public Guid CorporateCustomerUserId { get; set; }
+        public Guid CorporateCustomerCustomerId { get; set; }
         public Guid CorporateCustomerId { get; set; }
-        public DateTime CorporateCustomerCreatedDate { get; set; }
-        public DateTime CorporateCustomerModifiedDate { get; set; }
-        public bool CorporateCustomerIsDeleted { get; set; }
-        public bool CorporateCustomerIsActive { get; set; }
+
+        public DateTime CorporateCustomerUserCreatedDate { get; set; }
+        public DateTime CorporateCustomerUserModifiedDate { get; set; }
+        public bool CorporateCustomerUserIsDeleted { get; set; }
+        public bool CorporateCustomerUserIsActive { get; set; }
 
         public String CorporateCustomerEmail { get; set; }
         public String CorporateCustomerUserName { get; set; }

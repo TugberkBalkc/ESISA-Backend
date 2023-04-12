@@ -35,6 +35,16 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Configurations.Entity
             builder.Property(e => e.TaxIdentityNumber)
                .HasColumnType("TaxIdentityNumber")
                .HasColumnType("nvarchar(MAX)");
+
+            builder.HasOne(e => e.Address)
+                .WithMany(e => e.CorporateDealers)
+                .HasForeignKey(e => e.AddressId)
+                   .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasOne(e => e.Category)
+                .WithMany(e => e.CorporateDealersSalesCategory)
+                .HasForeignKey(e => e.SalesCategoryId)
+                   .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

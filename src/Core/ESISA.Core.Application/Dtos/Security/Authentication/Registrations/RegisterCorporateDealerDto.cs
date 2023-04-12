@@ -14,7 +14,6 @@ namespace ESISA.Core.Application.Dtos.Security.Authentication.Registrations
         public String CorporateDealerContactNumber { get; set; }
         public String CorporateDealerPassword { get; set; }
 
-        public Guid CorporateDealerSalesCategoryId { get; set; }
         public String CorporateDealerCompanyName { get; set; }
         public String CorporateDealerTaxIdentityNumber { get; set; }
         public CompanyType CorporateDealerCompanyType { get; set; }
