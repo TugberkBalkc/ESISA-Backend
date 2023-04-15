@@ -22,7 +22,7 @@ namespace ESISA.Core.Domain.Entities
         public decimal DiscountedUnitPrice { get; set; }
 
         public virtual Advert Advert { get; set; }
-        public virtual CorporateDealer CorporateDealer { get; set; }
+        public virtual CorporateDealer CorporateDealer { get; set; } 
         public virtual Product Product { get; set; }
 
         public virtual PurchaseQuantityDiscount PurchaseQuantityDiscount { get; set; }

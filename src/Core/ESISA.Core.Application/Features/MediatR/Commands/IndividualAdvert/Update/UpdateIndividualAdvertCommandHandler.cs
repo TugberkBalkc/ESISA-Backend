@@ -1,15 +1,15 @@
 ﻿using AutoMapper;
 using ESISA.Core.Application.Constants.Response;
-using ESISA.Core.Application.Dtos.Advert;
+using ESISA.Core.Application.Dtos.Advert.IndividualAdverts;
 using ESISA.Core.Application.Interfaces.Repositories;
 using ESISA.Core.Application.Rules.BusinessRules;
 using ESISA.Core.Application.Utilities.Response.ContentResponse;
 using ESISA.Core.Domain.Entities;
 using MediatR;
 
-namespace ESISA.Core.Application.Features.MediatR.Commands.IndividualAdverts.CreateIndividualAdvert
+namespace ESISA.Core.Application.Features.MediatR.Commands.IndividualAdverts.Update
 {
-    public class CreateIndividualAdvertCommandHandler : IRequestHandler<CreateIndividualAdvertCommandRequest, CreateIndividualAdvertCommandResponse>
+    public class UpdateIndividualAdvertCommandHandler : IRequestHandler<UpdateIndividualAdvertCommandRequest, UpdateIndividualAdvertCommandResponse>
     {
         private readonly IAdvertCommandRepository _advertCommandRepository;
         private readonly IAdvertQueryRepository _advertQueryRepository;
@@ -17,50 +17,42 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.IndividualAdverts.Cre
         private readonly IIndividualAdvertCommandRepository _individualAdvertCommandRepository;
         private readonly IIndividualAdvertQueryRepository _individualAdvertQueryRepository;
         private readonly IndividualAdvertBusinessRules _individualAdvertBusinessRules;
-
         private readonly IMapper _mapper;
 
-        public CreateIndividualAdvertCommandHandler(IAdvertCommandRepository advertCommandRepository, IAdvertQueryRepository advertQueryRepository, IIndividualAdvertCommandRepository individualAdvertCommandRepository, IIndividualAdvertQueryRepository individualAdvertQueryRepository, IndividualAdvertBusinessRules individualAdvertBusinessRules,IMapper mapper)
+        public UpdateIndividualAdvertCommandHandler(IAdvertCommandRepository advertCommandRepository, IAdvertQueryRepository advertQueryRepository, IIndividualAdvertCommandRepository individualAdvertCommandRepository, IIndividualAdvertQueryRepository individualAdvertQueryRepository,IndividualAdvertBusinessRules individualAdvertBusinessRules, IMapper mapper)
         {
             _advertCommandRepository = advertCommandRepository;
             _advertQueryRepository = advertQueryRepository;
             _individualAdvertCommandRepository = individualAdvertCommandRepository;
             _individualAdvertQueryRepository = individualAdvertQueryRepository;
             _individualAdvertBusinessRules = individualAdvertBusinessRules;
-
             _mapper = mapper;
         }
 
-        public async Task<CreateIndividualAdvertCommandResponse> Handle(CreateIndividualAdvertCommandRequest request, CancellationToken cancellationToken)
+        public async Task<UpdateIndividualAdvertCommandResponse> Handle(UpdateIndividualAdvertCommandRequest request, CancellationToken cancellationToken)
         {
-            var advertToCheck = await _advertQueryRepository.GetSingleAsync(e => e.Title == request.AdvertTitle && e.Description == request.AdvertDescription);
+            var advert = await _advertQueryRepository.GetSingleAsync(e => e.Id == request.AdvertId);
 
-            await _individualAdvertBusinessRules.ExistsCheck(advertToCheck);
+            await _individualAdvertBusinessRules.NullCheck(advert);
 
-            var advert = _mapper.Map<Advert>(request);
+            _mapper.Map(request, advert);
 
-            await _advertCommandRepository.AddAsync(advert);
+            _advertCommandRepository.Update(advert);
             await _advertCommandRepository.SaveChangesAsync();
 
-            var individualAdvertToCheck = await _individualAdvertQueryRepository.GetSingleAsync(e => e.AdvertId == advert.Id);
+            var individualAdvert = await _individualAdvertQueryRepository.GetSingleAsync(e => e.Id == request.IndividualAdvertId);
 
-            await _individualAdvertBusinessRules.ExistsCheck(individualAdvertToCheck);
+            await _individualAdvertBusinessRules.NullCheck(individualAdvert);
 
-            var individualAdvert = _mapper.Map<IndividualAdvert>(request);
-            this.SetIndividualAdvert(individualAdvert, advert.Id);
+            _mapper.Map(request, individualAdvert);
 
-            await _individualAdvertCommandRepository.AddAsync(individualAdvert);
+            _individualAdvertCommandRepository.Update(individualAdvert);
             await _individualAdvertCommandRepository.SaveChangesAsync();
 
             var individualAdvertDto = _mapper.Map<IndividualAdvertDto>(request);
             this.SetIndividualAdvertDto(individualAdvertDto, advert, individualAdvert.Id);
 
-            return new CreateIndividualAdvertCommandResponse(new SuccessfulContentResponse<IndividualAdvertDto>(individualAdvertDto, ResponseTitles.Success, ResponseMessages.IndividualAdvertCreated, System.Net.HttpStatusCode.Created));
-        }
-
-        private void SetIndividualAdvert(IndividualAdvert individualAdvert, Guid advertId)
-        {
-            individualAdvert.AdvertId = advertId;
+            return new UpdateIndividualAdvertCommandResponse(new SuccessfulContentResponse<IndividualAdvertDto>(individualAdvertDto, ResponseTitles.Success, ResponseMessages.IndividualAdvertUpdated, System.Net.HttpStatusCode.OK));
         }
 
         private void SetIndividualAdvertDto(IndividualAdvertDto individualAdvertDto, Advert advert, Guid individualAdvertId)

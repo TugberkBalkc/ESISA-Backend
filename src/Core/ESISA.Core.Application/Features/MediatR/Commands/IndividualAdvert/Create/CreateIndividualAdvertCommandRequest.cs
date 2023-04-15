@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESISA.Core.Application.Features.MediatR.Commands.IndividualAdverts.CreateIndividualAdvert
+namespace ESISA.Core.Application.Features.MediatR.Commands.IndividualAdverts.Create
 {
     public class CreateIndividualAdvertCommandRequest : IRequest<CreateIndividualAdvertCommandResponse>
     {
@@ -16,7 +16,7 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.IndividualAdverts.Cre
         public Guid IndividualAdvertIndividualDealerId { get; set; }
         public Guid IndividualAdvertProductId { get; set; }
 
-        public decimal IndividualAdvertPrice { get; set; }<
+        public decimal IndividualAdvertPrice { get; set; }
         public bool IndividualAdvertBargain { get; set; }
         public ProductConditionType IndividualAdvertProductConditionType { get; set; }
 

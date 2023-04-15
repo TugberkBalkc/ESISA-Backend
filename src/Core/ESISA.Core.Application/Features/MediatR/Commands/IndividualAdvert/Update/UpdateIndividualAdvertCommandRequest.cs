@@ -1,39 +1,37 @@
 ﻿using ESISA.Core.Domain.Enums;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESISA.Core.Application.Dtos.Advert
+namespace ESISA.Core.Application.Features.MediatR.Commands.IndividualAdverts.Update
 {
-    public class CreateIndividualAdvertDto
+    public class UpdateIndividualAdvertCommandRequest : IRequest<UpdateIndividualAdvertCommandResponse>
     {
+        public Guid AdvertId { get; set; }
+        public Guid IndividualAdvertId { get; set; }
+
         public String AdvertTitle { get; set; }
         public String AdvertDescription { get; set; }
-
-        public Guid IndividualAdvertIndividualDealerId { get; set; }
-        public Guid IndividualAdvertProductId { get; set; }
 
         public decimal IndividualAdvertPrice { get; set; }
         public bool IndividualAdvertBargain { get; set; }
         public ProductConditionType IndividualAdvertProductConditionType { get; set; }
 
-        public CreateIndividualAdvertDto()
+        public UpdateIndividualAdvertCommandRequest()
         {
 
         }
 
-        public CreateIndividualAdvertDto(string advertTitle, string advertDescription, Guid individualAdvertIndividualDealerId, Guid individualAdvertProductId, decimal individualAdvertPrice, bool individualAdvertBargain, ProductConditionType individualAdvertProductConditionType)
+        public UpdateIndividualAdvertCommandRequest(Guid advertId, Guid individualAdvertId, string advertTitle, string advertDescription, decimal individualAdvertPrice, bool individualAdvertBargain, ProductConditionType individualAdvertProductConditionType)
         {
             AdvertTitle = advertTitle;
             AdvertDescription = advertDescription;
-            IndividualAdvertIndividualDealerId = individualAdvertIndividualDealerId;
-            IndividualAdvertProductId = individualAdvertProductId;
             IndividualAdvertPrice = individualAdvertPrice;
             IndividualAdvertBargain = individualAdvertBargain;
             IndividualAdvertProductConditionType = individualAdvertProductConditionType;
         }
-
     }
 }

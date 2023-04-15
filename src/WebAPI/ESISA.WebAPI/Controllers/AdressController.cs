@@ -13,6 +13,7 @@ namespace ESISA.WebAPI.Controllers
         public AdressController(IHttpContextAccessor httpContextAccessor, IMediator mediator) : base(httpContextAccessor, mediator)
         {
         }
+
         [HttpGet("GetAllAdresses")]
         public async Task<IActionResult> GetAllAdresses([FromQuery] GetAllAdressesQueryRequest getAllAdressesQueryRequest)
         {

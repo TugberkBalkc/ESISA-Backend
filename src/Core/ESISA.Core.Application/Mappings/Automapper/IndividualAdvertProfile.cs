@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
-using ESISA.Core.Application.Dtos.Advert;
-using ESISA.Core.Application.Features.MediatR.Commands.IndividualAdverts.CreateIndividualAdvert;
+using ESISA.Core.Application.Dtos.Advert.IndividualAdverts;
+using ESISA.Core.Application.Features.MediatR.Commands.IndividualAdverts.Create;
+using ESISA.Core.Application.Features.MediatR.Commands.IndividualAdverts.Update;
 using ESISA.Core.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,15 @@ namespace ESISA.Core.Application.Mappings.Automapper
                 .ForMember(e => e.IndividualAdvertIndividualDealerId, e => e.MapFrom(e => e.IndividualAdvertIndividualDealerId))
                 .ForMember(e => e.IndividualAdvertProductId, e => e.MapFrom(e => e.IndividualAdvertProductId))
                 .ForMember(e => e.IndividualAdvertProductConditionType, e => e.MapFrom(e => e.IndividualAdvertProductConditionType));
-               
+
+            this.CreateMap<UpdateIndividualAdvertCommandRequest, Advert>()
+                .ForMember(e => e.Title, e => e.MapFrom(e => e.AdvertTitle))
+                .ForMember(e => e.Description, e => e.MapFrom(e => e.AdvertDescription));
+
+            this.CreateMap<UpdateIndividualAdvertCommandRequest, IndividualAdvert>()
+            .ForMember(e => e.Price, e => e.MapFrom(e => e.IndividualAdvertPrice))
+            .ForMember(e => e.Bargain, e => e.MapFrom(e => e.IndividualAdvertBargain))
+            .ForMember(e => e.ProductConditionType, e => e.MapFrom(e => e.IndividualAdvertProductConditionType));
         }
     }
 }
