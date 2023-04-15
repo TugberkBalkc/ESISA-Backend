@@ -1,5 +1,6 @@
 ﻿using ESISA.Core.Application.Rules.BusinessRules;
 using ESISA.Core.Application.Rules.BusinessRules.Common;
+using ESISA.Core.Domain.Entities;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -43,6 +44,8 @@ namespace ESISA.Core.Application.Extensions.DIRegitrations
             services.AddScoped<IndividualStarterBusinessRules>();
             services.AddScoped<CorporateCustomerBusinessRules>();
             services.AddScoped<CorporateDealerBusinessRules>();
+
+            services.AddScoped<IndividualAdvertBusinessRules>();
         }
     }
 }

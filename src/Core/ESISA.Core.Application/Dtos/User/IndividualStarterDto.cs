@@ -22,7 +22,6 @@ namespace ESISA.Core.Application.Dtos.User
         public string StarterUserEmail { get; set; }
         public string StarterUserName { get; set; }
         public string StarterUserContactNumber { get; set; }
-        public string StarterUserPassword { get; set; }
 
         public string StarterFirstName { get; set; }
         public string StarterLastName { get; set; }

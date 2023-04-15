@@ -241,8 +241,11 @@ namespace ESISA.Infrastructure.Persistence.Services
             individualStarterDto.StarterUserId = user.Id;
             individualStarterDto.StarterCustomerId = customerId;
             individualStarterDto.StarterDealerId = dealerId;
+
+            individualStarterDto.StarterStatus = user.Status;
             individualStarterDto.StarterIndividualCustomerId = individualCustomerId;
             individualStarterDto.StarterIndividualDealerId = individualDealerId;
+            individualStarterDto.StarterStatus = user.Status;
         }
 
 

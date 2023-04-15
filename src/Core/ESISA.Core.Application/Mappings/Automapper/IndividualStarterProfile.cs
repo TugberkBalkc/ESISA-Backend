@@ -15,7 +15,10 @@ namespace ESISA.Core.Application.Mappings.Automapper
     {
         public IndividualStarterProfile()
         {
-            this.CreateMap<RegisterIndividualStarterDto, IndividualStarterDto>();
+            this.CreateMap<RegisterIndividualStarterDto, IndividualStarterDto>()
+                .ForMember(e => e.StarterUserEmail, e => e.MapFrom(e => e.StarterEmail))
+                .ForMember(e => e.StarterUserContactNumber, e => e.MapFrom(e => e.StarterContactNumber))
+                .ForMember(e => e.StarterNationalIdentity, e => e.MapFrom(e => e.StarterNationalIdentity));
 
             this.CreateMap<RegisterIndividualStarterDto, User>()
                 .ForMember(e => e.UserName, e => e.MapFrom(e => e.StarterUserName))

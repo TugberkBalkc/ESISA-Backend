@@ -13,6 +13,9 @@ namespace ESISA.Core.Application.Constants.Response
         public const String AlreadyExists = "Zaten Mevcut.";
         public const String ValidationError = "Doğrulama Hatası.";
 
+
+        public const String IndividualAdvertCreated = "Bireysel İlan Oluşturuldu.";
+
         public const String ProductCreated = "Ürün Başarıyla Oluşturuldu.";
         public const String ProductDeleted = "Ürün Başarıyla Silindi.";
         public const String ProductsDeleted = "Ürünler Başarıyla Silindi.";
