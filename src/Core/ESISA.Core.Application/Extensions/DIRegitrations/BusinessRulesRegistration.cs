@@ -47,6 +47,8 @@ namespace ESISA.Core.Application.Extensions.DIRegitrations
 
             services.AddScoped<IndividualAdvertBusinessRules>();
             services.AddScoped<CorporateAdvertBusinessRules>();
+
+            services.AddScoped<PhotoPathBusinessRules>();
         }
     }
 }

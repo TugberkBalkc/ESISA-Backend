@@ -13,12 +13,22 @@ namespace ESISA.Core.Application.Constants.Response
         public const String AlreadyExists = "Zaten Mevcut.";
         public const String ValidationError = "Doğrulama Hatası.";
 
-        
+        public const String PriceUpdated = "Fiyat Güncellendi.";
+        public const String PriceRaised = "Fiyat Arttırıldı.";
+        public const String PriceReduced = "Fiyat Düşürüldü.";
+
+        public const String AdvertMarkedAsSold = "İlan Satıldı Olarak İşaretlendi.";
+        public const String AdvertMarkedAsUnsold = "İlan Satışa Geri Açıldı.";
+        public const String RelatedAdvertSold = "Satılmış İlan Üzerinde Düzenleme Yapılamaz.";
+        public const String RelatedAdvertAlreadyMarkedSold = "İlan Zaten Satıldı Olarak İşaretlenmiş.";
+        public const String PhotoAddedToAdvert = "İlana Fotoğraf Eklendi.";
+        public const String PhotoDeletedInAdvert = "Fotoğraf İlandan Silindi.";
 
         public const String IndividualAdvertCreated = "Bireysel İlan Oluşturuldu.";
         public const String IndividualAdvertUpdated = "Bireysel İlan Güncellendi.";
         public const String InidividualAdvertDeleted = "Bireysel İlan Silindi.";
-      
+        public const String IndividualAdvertsListed = "Bireysel İlanlar Listelendi.";
+
         public const String CorporateAdvertCreated = "Kurumsal İlan Oluşturuldu.";
         public const String CorporateAdvertUpdated = "Kurumsal İlan Güncellendi.";
         public const String CorporateAdvertDeleted = "Kurumsal İlan Silindi.";

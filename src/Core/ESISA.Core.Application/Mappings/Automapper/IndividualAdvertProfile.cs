@@ -2,6 +2,7 @@
 using ESISA.Core.Application.Dtos.Advert.IndividualAdverts;
 using ESISA.Core.Application.Features.MediatR.Commands.IndividualAdverts.Create;
 using ESISA.Core.Application.Features.MediatR.Commands.IndividualAdverts.Update;
+using ESISA.Core.Application.Features.MediatR.Commands.IndividualAdverts.UpdatePrice;
 using ESISA.Core.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -41,6 +42,11 @@ namespace ESISA.Core.Application.Mappings.Automapper
             .ForMember(e => e.Price, e => e.MapFrom(e => e.IndividualAdvertPrice))
             .ForMember(e => e.Bargain, e => e.MapFrom(e => e.IndividualAdvertBargain))
             .ForMember(e => e.ProductConditionType, e => e.MapFrom(e => e.IndividualAdvertProductConditionType));
+
+            this.CreateMap<UpdateIndividualAdvertCommandRequest, IndividualAdvertDto>()
+              .ForMember(e => e.AdvertTitle, e => e.MapFrom(e => e.AdvertTitle))
+              .ForMember(e => e.AdvertDescription, e => e.MapFrom(e => e.AdvertDescription))
+              .ForMember(e => e.IndividualAdvertProductConditionType, e => e.MapFrom(e => e.IndividualAdvertProductConditionType));
         }
     }
 }

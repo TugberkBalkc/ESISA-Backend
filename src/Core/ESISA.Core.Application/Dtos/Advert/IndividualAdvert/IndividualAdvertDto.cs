@@ -10,6 +10,16 @@ namespace ESISA.Core.Application.Dtos.Advert.IndividualAdverts
 {
     public class IndividualAdvertDto : AdvertDto
     {
+        public bool IsIndividualAdvertSold 
+        {
+            get 
+            {
+                return !this.IsIndividualAdvertActive;
+            } 
+        }
+
+        public bool IsIndividualAdvertActive { get; set; }
+
         public Guid IndividualAdvertIndividualDealerId { get; set; }
         public Guid IndividualAdvertProductId { get; set; }
 

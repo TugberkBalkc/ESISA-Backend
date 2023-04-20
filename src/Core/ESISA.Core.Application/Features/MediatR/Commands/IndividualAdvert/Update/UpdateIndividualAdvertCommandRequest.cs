@@ -13,12 +13,12 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.IndividualAdverts.Upd
         public Guid AdvertId { get; set; }
         public Guid IndividualAdvertId { get; set; }
 
-        public String AdvertTitle { get; set; }
-        public String AdvertDescription { get; set; }
+        public String? AdvertTitle { get; set; }
+        public String? AdvertDescription { get; set; }
 
-        public decimal IndividualAdvertPrice { get; set; }
-        public bool IndividualAdvertBargain { get; set; }
-        public ProductConditionType IndividualAdvertProductConditionType { get; set; }
+        public decimal? IndividualAdvertPrice { get; set; }
+        public bool? IndividualAdvertBargain { get; set; }
+        public ProductConditionType? IndividualAdvertProductConditionType { get; set; }
 
         public UpdateIndividualAdvertCommandRequest()
         {

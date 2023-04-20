@@ -50,21 +50,23 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.IndividualAdverts.Upd
             await _individualAdvertCommandRepository.SaveChangesAsync();
 
             var individualAdvertDto = _mapper.Map<IndividualAdvertDto>(request);
-            this.SetIndividualAdvertDto(individualAdvertDto, advert, individualAdvert.Id);
+            this.SetIndividualAdvertDto(individualAdvertDto, advert, individualAdvert);
 
             return new UpdateIndividualAdvertCommandResponse(new SuccessfulContentResponse<IndividualAdvertDto>(individualAdvertDto, ResponseTitles.Success, ResponseMessages.IndividualAdvertUpdated, System.Net.HttpStatusCode.OK));
         }
 
-        private void SetIndividualAdvertDto(IndividualAdvertDto individualAdvertDto, Advert advert, Guid individualAdvertId)
+        private void SetIndividualAdvertDto(IndividualAdvertDto individualAdvertDto, Advert advert, IndividualAdvert individualAdvert)
         {
             individualAdvertDto.AdvertId = advert.Id;
-            individualAdvertDto.IndividualAdvertId = individualAdvertId;
+            individualAdvertDto.IndividualAdvertId = individualAdvert.Id;
 
             individualAdvertDto.AdvertCreatedDate = advert.CreatedDate;
             individualAdvertDto.AdvertModifiedDate = advert.ModifiedDate;
             individualAdvertDto.AdvertIsActive = advert.IsActive;
             individualAdvertDto.AdvertIsDeleted = advert.IsDeleted;
 
+            individualAdvertDto.IndividualAdvertIndividualDealerId = individualAdvert.IndividualDealerId;
+            individualAdvertDto.IndividualAdvertProductId = individualAdvert.ProductId;
         }
     }
 }
