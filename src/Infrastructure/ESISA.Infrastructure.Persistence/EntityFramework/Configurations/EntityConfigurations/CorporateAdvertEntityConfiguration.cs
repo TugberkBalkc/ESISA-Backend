@@ -44,11 +44,6 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Configurations.Entity
                 .HasColumnName("UnitPrice")
                 .HasColumnType("decimal(10,2)");
 
-            builder.Property(e => e.DiscountedUnitPrice)
-                .HasColumnName("DiscountedUnitPrice")
-                .HasColumnType("decimal(10,2)");
-
-
             builder.HasOne(e => e.Advert)
                 .WithOne(e => e.CorporateAdvert)
                 .HasForeignKey<CorporateAdvert>(e => e.AdvertId)

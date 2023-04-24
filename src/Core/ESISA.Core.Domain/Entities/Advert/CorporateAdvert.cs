@@ -14,12 +14,10 @@ namespace ESISA.Core.Domain.Entities
         public Guid AdvertId { get; set; }
         public Guid CorporateDealerId { get; set; }
         public Guid ProductId { get; set; }
-        //todo rate 0 sorgusundanS kurtul
         public Guid PurchaseQuantityDiscountId { get; set; } = Guid.Parse(DefaultDiscountValues.DefaultPurchaseQuantityDiscountId);
 
         public int StockAmount { get; set; }
         public decimal UnitPrice { get; set; }
-        public decimal DiscountedUnitPrice { get; set; }
 
         public virtual Advert Advert { get; set; }
         public virtual CorporateDealer CorporateDealer { get; set; } 

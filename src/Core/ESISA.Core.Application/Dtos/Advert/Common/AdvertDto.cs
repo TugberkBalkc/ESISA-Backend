@@ -9,7 +9,6 @@ namespace ESISA.Core.Application.Dtos.Advert.Common
     public class AdvertDto
     {
         public Guid AdvertId { get; set; }
-        public Guid IndividualAdvertId { get; set; }
 
         public DateTime AdvertCreatedDate { get; set; }
         public DateTime AdvertModifiedDate { get; set; }
