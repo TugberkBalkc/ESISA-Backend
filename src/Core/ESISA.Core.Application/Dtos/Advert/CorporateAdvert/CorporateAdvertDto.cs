@@ -10,26 +10,24 @@ namespace ESISA.Core.Application.Dtos.Advert.CorporateAdverts
 {
     public class CorporateAdvertDto : AdvertDto
     {
-        public Guid CorporateDealerId { get; set; }
-        public Guid ProductId { get; set; }
-        public Guid PurchaseQuantityDiscountId { get; set; } = Guid.Parse(DefaultDiscountValues.DefaultPurchaseQuantityDiscountId);
+        public bool IsCorporateAdvertActive { get; set; }
+        public Guid CorporateAdvertId { get; set; }
+        public Guid CorporateAdvertCorporateDealerId { get; set; }
+        public Guid CorporateAdvertProductId { get; set; }
+        public Guid CorporateAdvertPurchaseQuantityDiscountId { get; set; }
 
-        public int StockAmount { get; set; }
-        public decimal UnitPrice { get; set; }
-
-        public CorporateAdvertDto()
+        public int CorporateAdvertStockAmount { get; set; }
+        public bool IsCorporateAdvertOutOfStock
         {
+            get
+            {
+                if (this.CorporateAdvertStockAmount == 0)
+                    return true;
 
+                return false;
+            }
         }
 
-        public CorporateAdvertDto(Guid advertId, Guid corporateDealerId, Guid productId, Guid purchaseQuantityDiscountId, int stockAmount, decimal unitPrice)
-        {
-            AdvertId = advertId;
-            CorporateDealerId = corporateDealerId;
-            ProductId = productId;
-            PurchaseQuantityDiscountId = purchaseQuantityDiscountId;
-            StockAmount = stockAmount;
-            UnitPrice = unitPrice;
-        }
+        public decimal CorporateAdvertUnitPrice { get; set; }    
     }
 }

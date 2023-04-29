@@ -63,6 +63,7 @@ namespace ESISA.WebAPI.Controllers
             return base.ActionResultInstanceByResponse(response.Response);
         }
 
+        //TODO UPDATE HTTP METHOD TYPE
         [HttpPost("UpdateIndividualAdvertPrice")]
         public async Task<IActionResult> UpdateIndividualAdvertPrice([FromBody] UpdateIndividualAdvertPriceCommandRequest individualAdvertPriceCommandRequest)
         {

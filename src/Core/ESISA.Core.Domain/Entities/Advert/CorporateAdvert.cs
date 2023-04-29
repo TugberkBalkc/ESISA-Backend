@@ -14,7 +14,17 @@ namespace ESISA.Core.Domain.Entities
         public Guid AdvertId { get; set; }
         public Guid CorporateDealerId { get; set; }
         public Guid ProductId { get; set; }
-        public Guid PurchaseQuantityDiscountId { get; set; } = Guid.Parse(DefaultDiscountValues.DefaultPurchaseQuantityDiscountId);
+        public Guid PurchaseQuantityDiscountId 
+        { 
+            get 
+            {
+                return Guid.Parse(DefaultDiscountValues.DefaultPurchaseQuantityDiscountId);
+            }
+            set
+            {
+                value = this.PurchaseQuantityDiscountId;
+            }
+        } 
 
         public int StockAmount { get; set; }
         public decimal UnitPrice { get; set; }

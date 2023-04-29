@@ -1,4 +1,5 @@
-﻿using ESISA.Core.Application.Dtos.Advert.IndividualAdverts;
+﻿using ESISA.Core.Application.Dtos.Advert.CorporateAdverts;
+using ESISA.Core.Application.Dtos.Advert.IndividualAdverts;
 using ESISA.Core.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,31 @@ namespace ESISA.Core.Application.Mappings.CustomMapper
             individualAdvertDto.IndividualAdvertProductConditionType = individualAdvert.ProductConditionType;
 
             return individualAdvertDto;
+        }
+
+        public static CorporateAdvertDto MapToCorporateAdvertDto(Advert advert, CorporateAdvert corporateAdvert)
+        {
+            var corporateAdvertDto = new CorporateAdvertDto();
+
+            corporateAdvertDto.AdvertId = advert.Id;
+            corporateAdvertDto.CorporateAdvertId = corporateAdvert.Id;
+
+            corporateAdvertDto.AdvertCreatedDate = advert.CreatedDate;
+            corporateAdvertDto.AdvertModifiedDate = advert.ModifiedDate;
+            corporateAdvertDto.AdvertIsActive = advert.IsActive;
+            corporateAdvertDto.IsCorporateAdvertActive = corporateAdvert.IsActive;
+            corporateAdvertDto.AdvertIsDeleted = advert.IsDeleted;
+
+            corporateAdvertDto.AdvertTitle = advert.Title;
+            corporateAdvertDto.AdvertDescription = advert.Description;
+
+            corporateAdvertDto.CorporateAdvertCorporateDealerId = corporateAdvert.CorporateDealerId;
+            corporateAdvertDto.CorporateAdvertProductId = corporateAdvert.ProductId;
+
+            corporateAdvertDto.CorporateAdvertStockAmount = corporateAdvert.StockAmount;
+            corporateAdvertDto.CorporateAdvertUnitPrice = corporateAdvert.UnitPrice;
+
+            return corporateAdvertDto;
         }
 
         public static IQueryable<IndividualAdvertDto> MapIndividualAdvertDtosWithCustomMapper(List<Advert> adverts, List<IndividualAdvert> individualAdverts)

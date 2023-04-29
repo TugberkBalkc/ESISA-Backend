@@ -23,6 +23,8 @@ namespace ESISA.Core.Application.Constants.Response
         public const String RelatedAdvertAlreadyMarkedSold = "İlan Zaten Satıldı Olarak İşaretlenmiş.";
         public const String PhotoAddedToAdvert = "İlana Fotoğraf Eklendi.";
         public const String PhotoDeletedInAdvert = "Fotoğraf İlandan Silindi.";
+        public const String AdvertMarkedAsOutOfStock = "İlan Tedarik Edilemiyor Olarak İşaretlendi.";
+        public const String StockUpdated = "Stok Güncellendi.";
 
         public const String IndividualAdvertCreated = "Bireysel İlan Oluşturuldu.";
         public const String IndividualAdvertUpdated = "Bireysel İlan Güncellendi.";
@@ -32,6 +34,8 @@ namespace ESISA.Core.Application.Constants.Response
         public const String CorporateAdvertCreated = "Kurumsal İlan Oluşturuldu.";
         public const String CorporateAdvertUpdated = "Kurumsal İlan Güncellendi.";
         public const String CorporateAdvertDeleted = "Kurumsal İlan Silindi.";
+        public const String CorporateAdvertAlreadyOutOfStock = "Stok Zaten Mevcut Değil.";
+        public const String CorporateAdvertAlreadyNotOutOfStock = "Stok Zaten Mevcut.";
 
         public const String ProductCreated = "Ürün Başarıyla Oluşturuldu.";
         public const String ProductDeleted = "Ürün Başarıyla Silindi.";
