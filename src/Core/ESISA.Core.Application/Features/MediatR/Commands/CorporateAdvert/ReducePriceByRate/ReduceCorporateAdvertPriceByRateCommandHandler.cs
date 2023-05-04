@@ -6,9 +6,9 @@ using ESISA.Core.Application.Rules.BusinessRules;
 using ESISA.Core.Application.Utilities.Response.ContentResponse;
 using MediatR;
 
-namespace ESISA.Core.Application.Features.MediatR.Commands.CorporateAdverts.RaisePriceByRate
+namespace ESISA.Core.Application.Features.MediatR.Commands.CorporateAdverts.ReducePriceByRate
 {
-    public class RaiseCorporateAdvertPriceByRateCommandHandler : IRequestHandler<RaiseCorporateAdvertPriceByRateCommandRequest, RaiseCorporateAdvertPriceByRateCommandResponse>
+    public class ReduceCorporateAdvertPriceByRateCommandHandler : IRequestHandler<ReduceCorporateAdvertPriceByRateCommandRequest, ReduceCorporateAdvertPriceByRateCommandResponse>
     {
         private readonly IAdvertQueryRepository _advertQueryRepository;
 
@@ -16,7 +16,7 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.CorporateAdverts.Rais
         private readonly ICorporateAdvertQueryRepository _corporateAdvertQueryRepository;
         private readonly CorporateAdvertBusinessRules _corporateAdvertBusinessRules;
 
-        public RaiseCorporateAdvertPriceByRateCommandHandler(IAdvertQueryRepository advertQueryRepository, ICorporateAdvertCommandRepository corporateAdvertCommandRepository, ICorporateAdvertQueryRepository corporateAdvertQueryRepository, CorporateAdvertBusinessRules corporateAdvertBusinessRules)
+        public ReduceCorporateAdvertPriceByRateCommandHandler(IAdvertQueryRepository advertQueryRepository, ICorporateAdvertCommandRepository corporateAdvertCommandRepository, ICorporateAdvertQueryRepository corporateAdvertQueryRepository, CorporateAdvertBusinessRules corporateAdvertBusinessRules)
         {
             _advertQueryRepository = advertQueryRepository;
 
@@ -24,15 +24,14 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.CorporateAdverts.Rais
             _corporateAdvertQueryRepository = corporateAdvertQueryRepository;
             _corporateAdvertBusinessRules = corporateAdvertBusinessRules;
         }
-
-        public async Task<RaiseCorporateAdvertPriceByRateCommandResponse> Handle(RaiseCorporateAdvertPriceByRateCommandRequest request, CancellationToken cancellationToken)
+        public async Task<ReduceCorporateAdvertPriceByRateCommandResponse> Handle(ReduceCorporateAdvertPriceByRateCommandRequest request, CancellationToken cancellationToken)
         {
             var corporateAdvert = await _corporateAdvertQueryRepository.GetSingleAsync(e => e.Id == request.CorporateAdvertId);
 
             await _corporateAdvertBusinessRules.NullCheck(corporateAdvert);
             await _corporateAdvertBusinessRules.CheckIfCorporateAdvertSold(corporateAdvert);
 
-            corporateAdvert.UnitPrice = corporateAdvert.UnitPrice + (corporateAdvert.UnitPrice * Convert.ToInt32(request.RaiseRate) / 100);
+            corporateAdvert.UnitPrice = corporateAdvert.UnitPrice - (corporateAdvert.UnitPrice * Convert.ToInt32(request.RaiseRate) / 100);
 
             _corporateAdvertCommandRepository.Update(corporateAdvert);
             await _corporateAdvertCommandRepository.SaveChangesAsync();
@@ -41,7 +40,7 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.CorporateAdverts.Rais
 
             var corporateAdvertDto = CustomMappingTool.MapToCorporateAdvertDto(advert, corporateAdvert);
 
-            return new RaiseCorporateAdvertPriceByRateCommandResponse(new SuccessfulContentResponse<CorporateAdvertDto>(corporateAdvertDto, ResponseTitles.Success, ResponseMessages.PriceRaised, System.Net.HttpStatusCode.OK));
+            return new ReduceCorporateAdvertPriceByRateCommandResponse(new SuccessfulContentResponse<CorporateAdvertDto>(corporateAdvertDto, ResponseTitles.Success, ResponseMessages.PriceReduced, System.Net.HttpStatusCode.OK));
         }
     }
 }

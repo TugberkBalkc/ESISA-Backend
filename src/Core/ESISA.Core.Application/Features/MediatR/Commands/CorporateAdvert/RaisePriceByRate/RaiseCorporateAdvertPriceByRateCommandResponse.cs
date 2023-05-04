@@ -2,7 +2,7 @@
 using ESISA.Core.Application.Features.MediatR.Requests.Common;
 using ESISA.Core.Application.Utilities.Response.Common;
 
-namespace ESISA.Core.Application.Features.MediatR.Commands.CorporateAdvert.RaisePriceByRate
+namespace ESISA.Core.Application.Features.MediatR.Commands.CorporateAdverts.RaisePriceByRate
 {
     public class RaiseCorporateAdvertPriceByRateCommandResponse : CommandResponseBase<CorporateAdvertDto>
     {

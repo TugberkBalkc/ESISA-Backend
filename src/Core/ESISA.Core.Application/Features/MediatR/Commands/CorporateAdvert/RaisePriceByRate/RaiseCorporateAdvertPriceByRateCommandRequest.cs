@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESISA.Core.Application.Features.MediatR.Commands.CorporateAdvert.RaisePriceByRate
+namespace ESISA.Core.Application.Features.MediatR.Commands.CorporateAdverts.RaisePriceByRate
 {
     public class RaiseCorporateAdvertPriceByRateCommandRequest : IRequest<RaiseCorporateAdvertPriceByRateCommandResponse>
     {

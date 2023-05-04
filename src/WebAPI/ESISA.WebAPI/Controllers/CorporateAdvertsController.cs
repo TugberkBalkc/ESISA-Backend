@@ -10,6 +10,8 @@ using ESISA.WebAPI.Controllers.Common;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using ESISA.Core.Application.Features.MediatR.Commands.CorporateAdverts.RaisePriceByRate;
+using ESISA.Core.Application.Features.MediatR.Commands.IndividualAdverts.UpdatePrice;
+using ESISA.Core.Application.Features.MediatR.Commands.CorporateAdverts.UpdatePrice;
 
 namespace ESISA.WebAPI.Controllers
 {
@@ -81,6 +83,14 @@ namespace ESISA.WebAPI.Controllers
         public async Task<IActionResult> RaiseCorporateAdvertPriceByRate([FromBody] RaiseCorporateAdvertPriceByRateCommandRequest raiseCorporateAdvertPriceByRateCommandRequest)
         {
             var response = await _mediator.Send(raiseCorporateAdvertPriceByRateCommandRequest);
+
+            return base.ActionResultInstanceByResponse(response.Response);
+        }
+
+        [HttpPut("UpdateCorporateAdvertPrice")]
+        public async Task<IActionResult> UpdateCorporateAdvertPrice([FromBody] UpdateCorporateAdvertPriceCommandRequest updateCorporateAdvertPriceCommandRequest)
+        {
+            var response = await _mediator.Send(updateCorporateAdvertPriceCommandRequest);
 
             return base.ActionResultInstanceByResponse(response.Response);
         }

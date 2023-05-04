@@ -34,7 +34,6 @@
   <ItemGroup>
     <Folder Include="Dtos\Advert\WholesaleAdvert\" />
     <Folder Include="Dtos\Advert\SwapAdvert\" />
-    <Folder Include="Features\MediatR\Commands\CorporateAdvert\ReducePriceByRate\" />
     <Folder Include="Features\MediatR\Commands\SwapAdvert\" />
     <Folder Include="Features\MediatR\Commands\WholesaleAdvert\" />
     <Folder Include="Interfaces\Repositories\Payment\" />
