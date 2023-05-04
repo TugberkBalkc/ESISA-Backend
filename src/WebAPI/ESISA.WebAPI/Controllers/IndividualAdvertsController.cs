@@ -24,7 +24,7 @@ namespace ESISA.WebAPI.Controllers
         }
 
         [HttpPost("CreateIndividualAdvert")]
-        public async Task<IActionResult> CretaeIndividualAdvert([FromBody] CreateIndividualAdvertCommandRequest createIndividualAdvertCommandRequest)
+        public async Task<IActionResult> CretaeIndividualAdvertAsync([FromBody] CreateIndividualAdvertCommandRequest createIndividualAdvertCommandRequest)
         {
             var response = await _mediator.Send(createIndividualAdvertCommandRequest);
 
@@ -32,7 +32,7 @@ namespace ESISA.WebAPI.Controllers
         }
 
         [HttpPost("AddPhotoToIndividualAdvert")]
-        public async Task<IActionResult> AddPhotoToIndividualAdvert([FromBody] AddPhotoToIndividualAdvertCommandRequest addPhotoToIndividualAdvertCommandRequest)
+        public async Task<IActionResult> AddPhotoToIndividualAdvertAsync([FromBody] AddPhotoToIndividualAdvertCommandRequest addPhotoToIndividualAdvertCommandRequest)
         {
             var response = await _mediator.Send(addPhotoToIndividualAdvertCommandRequest);
 
@@ -40,7 +40,7 @@ namespace ESISA.WebAPI.Controllers
         }
 
         [HttpPost("DeletePhotoInIndividualAdvert")]
-        public async Task<IActionResult> DeletePhotoInIndividualAdvert([FromBody] DeletePhotoInIndividualAdvertCommandRequest deletePhotoInIndividualAdvertCommandRequest)
+        public async Task<IActionResult> DeletePhotoInIndividualAdvertAsync([FromBody] DeletePhotoInIndividualAdvertCommandRequest deletePhotoInIndividualAdvertCommandRequest)
         {
             var response = await _mediator.Send(deletePhotoInIndividualAdvertCommandRequest);
 
@@ -48,7 +48,7 @@ namespace ESISA.WebAPI.Controllers
         }
 
         [HttpPost("DeleteIndividualAdvert")]
-        public async Task<IActionResult> DeleteIndividualAdvert([FromBody] DeleteIndividualAdvertCommandRequest deleteIndividualAdvertCommandRequest)
+        public async Task<IActionResult> DeleteIndividualAdvertAsync([FromBody] DeleteIndividualAdvertCommandRequest deleteIndividualAdvertCommandRequest)
         {
             var response = await _mediator.Send(deleteIndividualAdvertCommandRequest);
 
@@ -56,7 +56,7 @@ namespace ESISA.WebAPI.Controllers
         }
 
         [HttpPost("UpdateIndividualAdvert")]
-        public async Task<IActionResult> UpdateIndividualAdvert([FromBody] UpdateIndividualAdvertCommandRequest updateIndividualAdvertCommandRequest)
+        public async Task<IActionResult> UpdateIndividualAdvertAsync([FromBody] UpdateIndividualAdvertCommandRequest updateIndividualAdvertCommandRequest)
         {
             var response = await _mediator.Send(updateIndividualAdvertCommandRequest);
 
@@ -64,7 +64,7 @@ namespace ESISA.WebAPI.Controllers
         }
 
         [HttpPut("UpdateIndividualAdvertPrice")]
-        public async Task<IActionResult> UpdateIndividualAdvertPrice([FromBody] UpdateIndividualAdvertPriceCommandRequest individualAdvertPriceCommandRequest)
+        public async Task<IActionResult> UpdateIndividualAdvertPriceAsync([FromBody] UpdateIndividualAdvertPriceCommandRequest individualAdvertPriceCommandRequest)
         {
             var response = await _mediator.Send(individualAdvertPriceCommandRequest);
 
@@ -72,7 +72,7 @@ namespace ESISA.WebAPI.Controllers
         }
 
         [HttpPut("RaiseIndividualAdvertPriceByRate")]
-        public async Task<IActionResult> RaiseIndividualAdvertPriceByRate([FromBody] RaiseIndividualAdvertPriceByRateCommandRequest raiseIndividualAdvertPriceByRateCommandRequest)
+        public async Task<IActionResult> RaiseIndividualAdvertPriceByRateAsync([FromBody] RaiseIndividualAdvertPriceByRateCommandRequest raiseIndividualAdvertPriceByRateCommandRequest)
         {
             var response = await _mediator.Send(raiseIndividualAdvertPriceByRateCommandRequest);
 
@@ -80,7 +80,7 @@ namespace ESISA.WebAPI.Controllers
         }
 
         [HttpPut("ReduceIndividualAdvertPriceByRate")]
-        public async Task<IActionResult> ReduceIndividualAdvertPriceByRate([FromBody] ReduceIndividualAdvertPriceByRateCommandRequest reduceIndividualAdvertPriceByRateCommandRequest)
+        public async Task<IActionResult> ReduceIndividualAdvertPriceByRateAsync([FromBody] ReduceIndividualAdvertPriceByRateCommandRequest reduceIndividualAdvertPriceByRateCommandRequest)
         {
             var response = await _mediator.Send(reduceIndividualAdvertPriceByRateCommandRequest);
 
@@ -88,7 +88,7 @@ namespace ESISA.WebAPI.Controllers
         }
 
         [HttpPut("MarkAsSold")]
-        public async Task<IActionResult> MarkAsSold([FromBody] MarkIndividualAdvertAsSoldCommandRequest markIndividualAdvertAsSoldCommandRequest)
+        public async Task<IActionResult> MarkAsSoldAsync([FromBody] MarkIndividualAdvertAsSoldCommandRequest markIndividualAdvertAsSoldCommandRequest)
         {
             var response = await _mediator.Send(markIndividualAdvertAsSoldCommandRequest);
 
@@ -96,7 +96,7 @@ namespace ESISA.WebAPI.Controllers
         }
 
         [HttpGet("GetAllIndividualAdverts")]
-        public async Task<IActionResult> GetAllIndividualAdverts([FromQuery] GetAllIndividualAdvertsQueryRequest getAllIndividualAdvertsQueryRequest)
+        public async Task<IActionResult> GetAllIndividualAdvertsAsync([FromQuery] GetAllIndividualAdvertsQueryRequest getAllIndividualAdvertsQueryRequest)
         {
             var response = await _mediator.Send(getAllIndividualAdvertsQueryRequest);
 

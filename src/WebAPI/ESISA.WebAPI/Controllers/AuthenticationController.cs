@@ -17,7 +17,7 @@ namespace ESISA.WebAPI.Controllers
         }
 
         [HttpPost("RegisterAsIndividualStarter")]
-        public async Task<IActionResult> RegisterAsIndividualStarter([FromBody] RegisterAsIndividualStarterCommandRequest registerAsIndividualStarterCommandRequest)
+        public async Task<IActionResult> RegisterAsIndividualStarterAsync([FromBody] RegisterAsIndividualStarterCommandRequest registerAsIndividualStarterCommandRequest)
         {
             var response = await _mediator.Send(registerAsIndividualStarterCommandRequest);
 
@@ -25,7 +25,7 @@ namespace ESISA.WebAPI.Controllers
         }
 
         [HttpPost("RegisterAsCorporateCustomer")]
-        public async Task<IActionResult> RegisterAsCorporateCustomer([FromBody] RegisterAsCorporateCustomerCommandRequest registerAsCorporateCustomerCommandRequest)
+        public async Task<IActionResult> RegisterAsCorporateCustomerAsync([FromBody] RegisterAsCorporateCustomerCommandRequest registerAsCorporateCustomerCommandRequest)
         {
             var response = await _mediator.Send(registerAsCorporateCustomerCommandRequest);
 
@@ -33,7 +33,7 @@ namespace ESISA.WebAPI.Controllers
         }
 
         [HttpPost("RegisterAsCorporateDealer")]
-        public async Task<IActionResult> RegisterAsCorporateDealer([FromBody] RegisterAsCorporateDealerCommandRequest registerAsCorporateDealerCommandRequest)
+        public async Task<IActionResult> RegisterAsCorporateDealerAsync([FromBody] RegisterAsCorporateDealerCommandRequest registerAsCorporateDealerCommandRequest)
         {
             var response = await _mediator.Send(registerAsCorporateDealerCommandRequest);
 

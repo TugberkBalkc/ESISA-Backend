@@ -15,7 +15,7 @@ namespace ESISA.WebAPI.Controllers
         }
 
         [HttpGet("GetAllAdresses")]
-        public async Task<IActionResult> GetAllAdresses([FromQuery] GetAllAdressesQueryRequest getAllAdressesQueryRequest)
+        public async Task<IActionResult> GetAllAdressesAsync([FromQuery] GetAllAdressesQueryRequest getAllAdressesQueryRequest)
         {
             var response = await base._mediator.Send(getAllAdressesQueryRequest);
 

@@ -10,8 +10,8 @@ using ESISA.WebAPI.Controllers.Common;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using ESISA.Core.Application.Features.MediatR.Commands.CorporateAdverts.RaisePriceByRate;
-using ESISA.Core.Application.Features.MediatR.Commands.IndividualAdverts.UpdatePrice;
 using ESISA.Core.Application.Features.MediatR.Commands.CorporateAdverts.UpdatePrice;
+using ESISA.Core.Application.Features.MediatR.Commands.CorporateAdverts.UpdateStock;
 
 namespace ESISA.WebAPI.Controllers
 {
@@ -24,7 +24,7 @@ namespace ESISA.WebAPI.Controllers
         }
 
         [HttpPost("CreateCorporateAdvert")]
-        public async Task<IActionResult> CreateCorporateAdvert([FromBody] CreateCorporateAdvertCommandRequest createCorporateAdvertCommandRequest)
+        public async Task<IActionResult> CreateCorporateAdvertAsync([FromBody] CreateCorporateAdvertCommandRequest createCorporateAdvertCommandRequest)
         {
             var response = await _mediator.Send(createCorporateAdvertCommandRequest);
 
@@ -32,7 +32,7 @@ namespace ESISA.WebAPI.Controllers
         }
 
         [HttpPost("AddPhotoToCorporateAdvert")]
-        public async Task<IActionResult> AddPhotoToCorporateAdvert([FromBody] AddPhotoToCorporateAdvertCommandRequest addPhotoToCorporateAdvertCommandRequest)
+        public async Task<IActionResult> AddPhotoToCorporateAdvertAsync([FromBody] AddPhotoToCorporateAdvertCommandRequest addPhotoToCorporateAdvertCommandRequest)
         {
             var response = await _mediator.Send(addPhotoToCorporateAdvertCommandRequest);
 
@@ -40,7 +40,7 @@ namespace ESISA.WebAPI.Controllers
         }
 
         [HttpPost("DeletePhotoInCorporateAdvert")]
-        public async Task<IActionResult> DeletePhotoInCorporateAdvert([FromBody] DeletePhotoInCorporateAdvertCommandRequest deletePhotoInCorporateAdvertCommandRequest)
+        public async Task<IActionResult> DeletePhotoInCorporateAdvertAsync([FromBody] DeletePhotoInCorporateAdvertCommandRequest deletePhotoInCorporateAdvertCommandRequest)
         {
             var response = await _mediator.Send(deletePhotoInCorporateAdvertCommandRequest);
 
@@ -48,7 +48,7 @@ namespace ESISA.WebAPI.Controllers
         }
 
         [HttpPut("MarkAsOutOfStock")]
-        public async Task<IActionResult> MarkAsOutOfStock([FromBody] MarkCorporateAdvertAsOutOfStockCommandRequest  markCorporateAdvertAsOutOfStockCommandRequest)
+        public async Task<IActionResult> MarkAsOutOfStockAsync([FromBody] MarkCorporateAdvertAsOutOfStockCommandRequest  markCorporateAdvertAsOutOfStockCommandRequest)
         {
             var response = await _mediator.Send(markCorporateAdvertAsOutOfStockCommandRequest);
 
@@ -56,7 +56,7 @@ namespace ESISA.WebAPI.Controllers
         }
 
         [HttpPut("UndoOutOfStock")]
-        public async Task<IActionResult> UndoOutOfStock([FromBody] UndoCorporateAdvertOutOfStockCommandRequest  undoCorporateAdvertOutOfStockCommandRequest)
+        public async Task<IActionResult> UndoOutOfStockAsync([FromBody] UndoCorporateAdvertOutOfStockCommandRequest  undoCorporateAdvertOutOfStockCommandRequest)
         {
             var response = await _mediator.Send(undoCorporateAdvertOutOfStockCommandRequest);
 
@@ -64,7 +64,7 @@ namespace ESISA.WebAPI.Controllers
         }
 
         [HttpPost("DeleteCorporateAdvert")]
-        public async Task<IActionResult> DeleteCorporateAdvert([FromBody] DeleteCorporateAdvertCommandRequest deleteCorporateAdvertCommandRequest)
+        public async Task<IActionResult> DeleteCorporateAdvertAsync([FromBody] DeleteCorporateAdvertCommandRequest deleteCorporateAdvertCommandRequest)
         {
             var response = await _mediator.Send(deleteCorporateAdvertCommandRequest);
 
@@ -72,7 +72,7 @@ namespace ESISA.WebAPI.Controllers
         }
 
         [HttpPost("UpdateCorporateAdvert")]
-        public async Task<IActionResult> UpdateCorporateAdvert([FromBody] UpdateCorporateAdvertCommandRequest updateCorporateAdvertCommandRequest)
+        public async Task<IActionResult> UpdateCorporateAdvertAsync([FromBody] UpdateCorporateAdvertCommandRequest updateCorporateAdvertCommandRequest)
         {
             var response = await _mediator.Send(updateCorporateAdvertCommandRequest);
 
@@ -80,7 +80,7 @@ namespace ESISA.WebAPI.Controllers
         }
 
         [HttpPut("RaiseCorporateAdvertPriceByRate")]
-        public async Task<IActionResult> RaiseCorporateAdvertPriceByRate([FromBody] RaiseCorporateAdvertPriceByRateCommandRequest raiseCorporateAdvertPriceByRateCommandRequest)
+        public async Task<IActionResult> RaiseCorporateAdvertPriceByRateAsync([FromBody] RaiseCorporateAdvertPriceByRateCommandRequest raiseCorporateAdvertPriceByRateCommandRequest)
         {
             var response = await _mediator.Send(raiseCorporateAdvertPriceByRateCommandRequest);
 
@@ -88,9 +88,17 @@ namespace ESISA.WebAPI.Controllers
         }
 
         [HttpPut("UpdateCorporateAdvertPrice")]
-        public async Task<IActionResult> UpdateCorporateAdvertPrice([FromBody] UpdateCorporateAdvertPriceCommandRequest updateCorporateAdvertPriceCommandRequest)
+        public async Task<IActionResult> UpdateCorporateAdvertPriceAsync([FromBody] UpdateCorporateAdvertPriceCommandRequest updateCorporateAdvertPriceCommandRequest)
         {
             var response = await _mediator.Send(updateCorporateAdvertPriceCommandRequest);
+
+            return base.ActionResultInstanceByResponse(response.Response);
+        }
+
+        [HttpPut("UpdateCorporateAdvertStock")]
+        public async Task<IActionResult> UpdateCorporateAdvertStockAsync([FromBody] UpdateCorporateAdvertStockCommandRequest updateCorporateAdvertStockCommandRequest)
+        {
+            var response = await _mediator.Send(updateCorporateAdvertStockCommandRequest);
 
             return base.ActionResultInstanceByResponse(response.Response);
         }
