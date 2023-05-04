@@ -16,6 +16,7 @@ namespace ESISA.Core.Application.Rules.BusinessRules.Common
         {
 
         }
+
         public BusinessRulesBase(string entityName)
         {
             _entityName = entityName;

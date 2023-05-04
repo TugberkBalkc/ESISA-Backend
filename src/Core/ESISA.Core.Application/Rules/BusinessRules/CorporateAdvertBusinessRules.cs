@@ -32,5 +32,16 @@ namespace ESISA.Core.Application.Rules.BusinessRules
             }
         }
 
+        public async Task CheckIfCorporateAdvertSold(CorporateAdvert corporateAdvert)
+        {
+            if (!corporateAdvert.IsActive)
+                throw new BusinessLogicException(ResponseTitles.Error, ResponseMessages.RelatedAdvertSold);
+        }
+        public async Task CheckIfCorporateAdvertAlreadySold(CorporateAdvert corporateAdvert)
+        {
+            if (!corporateAdvert.IsActive)
+                throw new BusinessLogicException(ResponseTitles.Error, ResponseMessages.RelatedAdvertAlreadyMarkedSold);
+        }
+
     }
 }
