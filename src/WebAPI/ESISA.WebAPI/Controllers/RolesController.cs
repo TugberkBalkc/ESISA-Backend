@@ -6,7 +6,6 @@ using ESISA.Core.Application.Features.MediatR.Commands.Roles.DeleteRange;
 using ESISA.Core.Application.Features.MediatR.Commands.Roles.Update;
 using ESISA.WebAPI.Controllers.Common;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ESISA.WebAPI.Controllers

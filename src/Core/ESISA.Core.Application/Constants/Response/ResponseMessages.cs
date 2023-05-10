@@ -8,11 +8,17 @@ namespace ESISA.Core.Application.Constants.Response
 {
     public static class ResponseMessages
     {
+        public const String Vote = "Oy";
+
         public const String NotFound = "Bulunamadı.";
         public const String NothingFoundAccordingToFilter = "Aradığınız Filtreye Uygun Sonuç Bulunamadı.";
         public const String AlreadyExists = "Zaten Mevcut.";
         public const String ValidationError = "Doğrulama Hatası.";
 
+        public const String AdvertVoted = "İlan Başarıyla Oylandı.";
+        public const String DealerVoted = "Satıcı Başarıyla Oylandı.";
+        public const String VoteDeleted = "Oy Silindi.";
+      
         public const String PriceUpdated = "Fiyat Güncellendi.";
         public const String PriceRaised = "Fiyat Arttırıldı.";
         public const String PriceReduced = "Fiyat Düşürüldü.";

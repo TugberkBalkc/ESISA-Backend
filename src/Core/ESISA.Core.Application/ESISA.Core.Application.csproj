@@ -28,12 +28,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\buildingBlocks\BuildingBlocks\BuildingBlocks.csproj" />
     <ProjectReference Include="..\ESISA.Core.Domain\ESISA.Core.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Dtos\Advert\WholesaleAdvert\" />
     <Folder Include="Dtos\Advert\SwapAdvert\" />
+    <Folder Include="Features\MediatR\Commands\Comments\ToDealer\" />
+    <Folder Include="Features\MediatR\Commands\Comments\ToAdvert\" />
+    <Folder Include="Features\MediatR\Commands\Favorites\ToAdvert\" />
     <Folder Include="Features\MediatR\Commands\SwapAdvert\" />
     <Folder Include="Features\MediatR\Commands\WholesaleAdvert\" />
     <Folder Include="Interfaces\Repositories\Payment\" />

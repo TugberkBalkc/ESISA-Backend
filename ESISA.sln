@@ -11,15 +11,29 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebAPI", "WebAPI", "{D120511B-1284-4677-A406-2CD5530BCBE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESISA.Core.Domain", "src\Core\ESISA.Core.Domain\ESISA.Core.Domain.csproj", "{D6044D87-3E87-48DF-A788-498828E75BD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESISA.Core.Domain", "src\Core\ESISA.Core.Domain\ESISA.Core.Domain.csproj", "{D6044D87-3E87-48DF-A788-498828E75BD4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESISA.Core.Application", "src\Core\ESISA.Core.Application\ESISA.Core.Application.csproj", "{ED5B8B09-FFD6-4590-AC1B-B7427D66C250}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESISA.Core.Application", "src\Core\ESISA.Core.Application\ESISA.Core.Application.csproj", "{ED5B8B09-FFD6-4590-AC1B-B7427D66C250}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESISA.Infrastructure", "src\Infrastructure\ESISA.Infrastructure\ESISA.Infrastructure.csproj", "{57068214-EF49-4623-9FDB-CD4543264033}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESISA.Infrastructure", "src\Infrastructure\ESISA.Infrastructure\ESISA.Infrastructure.csproj", "{57068214-EF49-4623-9FDB-CD4543264033}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESISA.Infrastructure.Persistence", "src\Infrastructure\ESISA.Infrastructure.Persistence\ESISA.Infrastructure.Persistence.csproj", "{1E13309E-F79F-4F50-BF9D-E65DBD527278}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESISA.Infrastructure.Persistence", "src\Infrastructure\ESISA.Infrastructure.Persistence\ESISA.Infrastructure.Persistence.csproj", "{1E13309E-F79F-4F50-BF9D-E65DBD527278}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESISA.WebAPI", "src\WebAPI\ESISA.WebAPI\ESISA.WebAPI.csproj", "{4F30F986-1ADB-4166-AF51-C6957B528A7D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESISA.WebAPI", "src\WebAPI\ESISA.WebAPI\ESISA.WebAPI.csproj", "{4F30F986-1ADB-4166-AF51-C6957B528A7D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "consumers", "consumers", "{922FBE17-3A73-4F08-9984-B216C3C44C32}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WorkerServices", "WorkerServices", "{37EDF9E7-3649-43B8-9988-4D98FD199612}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkerServices.ESISAVoteService", "consumers\WorkerServices\WorkerServices.ESISAVoteService\WorkerServices.ESISAVoteService.csproj", "{2B98CCA3-5D51-4303-87D6-B7A39C935AAE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "buildingBlocks", "buildingBlocks", "{B9DCC7A4-B53A-46B9-848D-CBF1EA1CC247}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildingBlocks", "buildingBlocks\BuildingBlocks\BuildingBlocks.csproj", "{D2F7449F-9B30-4867-A481-531F396C520C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkerServices.ESISAFavoriteService", "consumers\WorkerServices\WorkerServices.ESISAFavoriteService\WorkerServices.ESISAFavoriteService.csproj", "{3FABD92F-BD0F-4620-8079-BC423B783243}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkerServices.ESISACommentService", "consumers\WorkerServices\WorkerServices.ESISACommentService\WorkerServices.ESISACommentService.csproj", "{74C85E1C-5AF2-4755-8F6A-60333BDF069E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +61,22 @@ Global
 		{4F30F986-1ADB-4166-AF51-C6957B528A7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F30F986-1ADB-4166-AF51-C6957B528A7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F30F986-1ADB-4166-AF51-C6957B528A7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B98CCA3-5D51-4303-87D6-B7A39C935AAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B98CCA3-5D51-4303-87D6-B7A39C935AAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B98CCA3-5D51-4303-87D6-B7A39C935AAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B98CCA3-5D51-4303-87D6-B7A39C935AAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2F7449F-9B30-4867-A481-531F396C520C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2F7449F-9B30-4867-A481-531F396C520C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2F7449F-9B30-4867-A481-531F396C520C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2F7449F-9B30-4867-A481-531F396C520C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FABD92F-BD0F-4620-8079-BC423B783243}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FABD92F-BD0F-4620-8079-BC423B783243}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FABD92F-BD0F-4620-8079-BC423B783243}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FABD92F-BD0F-4620-8079-BC423B783243}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74C85E1C-5AF2-4755-8F6A-60333BDF069E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74C85E1C-5AF2-4755-8F6A-60333BDF069E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74C85E1C-5AF2-4755-8F6A-60333BDF069E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74C85E1C-5AF2-4755-8F6A-60333BDF069E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +90,11 @@ Global
 		{57068214-EF49-4623-9FDB-CD4543264033} = {D499E53B-09FF-4A90-93C2-ED5C2DEECDCB}
 		{1E13309E-F79F-4F50-BF9D-E65DBD527278} = {D499E53B-09FF-4A90-93C2-ED5C2DEECDCB}
 		{4F30F986-1ADB-4166-AF51-C6957B528A7D} = {D120511B-1284-4677-A406-2CD5530BCBE7}
+		{37EDF9E7-3649-43B8-9988-4D98FD199612} = {922FBE17-3A73-4F08-9984-B216C3C44C32}
+		{2B98CCA3-5D51-4303-87D6-B7A39C935AAE} = {37EDF9E7-3649-43B8-9988-4D98FD199612}
+		{D2F7449F-9B30-4867-A481-531F396C520C} = {B9DCC7A4-B53A-46B9-848D-CBF1EA1CC247}
+		{3FABD92F-BD0F-4620-8079-BC423B783243} = {37EDF9E7-3649-43B8-9988-4D98FD199612}
+		{74C85E1C-5AF2-4755-8F6A-60333BDF069E} = {37EDF9E7-3649-43B8-9988-4D98FD199612}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {878E1419-7B4D-4057-881F-B583B9668459}

@@ -29,6 +29,8 @@ namespace ESISA.Core.Application.Extensions.DIRegitrations
 
             services.AddScoped<DistrictBusinessRules>();
 
+            services.AddScoped<EvaluationBusinessRules>();
+
             services.AddScoped<UserBusinessRules>();
             services.AddScoped<CustomerBusinessRules>();
 
@@ -47,6 +49,7 @@ namespace ESISA.Core.Application.Extensions.DIRegitrations
 
             services.AddScoped<IndividualAdvertBusinessRules>();
             services.AddScoped<CorporateAdvertBusinessRules>();
+            services.AddScoped<WholesaleAdvertBusinessRules>();
 
             services.AddScoped<PhotoPathBusinessRules>();
         }
