@@ -1,7 +1,13 @@
-﻿using ESISA.Core.Application.Features.MediatR.Commands.Vote.ToAdvert.CreateCorporateAdvertVote;
+﻿using ESISA.Core.Application.Features.MediatR.Commands.Vote.ToAdvert.CreateCorporateAdvertDownVote;
+using ESISA.Core.Application.Features.MediatR.Commands.Vote.ToAdvert.CreateCorporateAdvertUpVote;
+using ESISA.Core.Application.Features.MediatR.Commands.Vote.ToAdvert.CreateCorporateAdvertVote;
+using ESISA.Core.Application.Features.MediatR.Commands.Vote.ToAdvert.CreateWholesaleAdvertDownVote;
+using ESISA.Core.Application.Features.MediatR.Commands.Vote.ToAdvert.CreateWholesaleAdvertUpVote;
 using ESISA.Core.Application.Features.MediatR.Commands.Vote.ToAdvert.CreateWholesaleAdvertVote;
 using ESISA.Core.Application.Features.MediatR.Commands.Vote.ToAdvert.DeleteCorporateAdvertVote;
 using ESISA.Core.Application.Features.MediatR.Commands.Vote.ToAdvert.DeleteWholesaleAdvertVote;
+using ESISA.Core.Application.Features.MediatR.Commands.Vote.ToDealer.CreateIndividualDealerDownVote;
+using ESISA.Core.Application.Features.MediatR.Commands.Vote.ToDealer.CreateIndividualDealerUpVote;
 using ESISA.Core.Application.Features.MediatR.Commands.Vote.ToDealer.CreateIndividualDealerVote;
 using ESISA.Core.Application.Features.MediatR.Commands.Vote.ToDealer.DeleteIndividualDealerVote;
 using ESISA.WebAPI.Controllers.Common;
@@ -27,6 +33,22 @@ namespace ESISA.WebAPI.Controllers
             return this.ActionResultInstanceByResponse(response.Response);
         }
 
+        [HttpPost("CreateCorporateCustomerWholesaleAdvertUpVote")]
+        public async Task<IActionResult> CreateCorporateCustomerWholesaleAdvertUpVoteAsync(CreateCorporateCustomerWholesaleAdvertUpVoteCommandRequest createCorporateCustomerWholesaleAdvertUpVoteCommandRequest)
+        {
+            var response = await _mediator.Send(createCorporateCustomerWholesaleAdvertUpVoteCommandRequest);
+
+            return this.ActionResultInstanceByResponse(response.Response);
+        }
+
+        [HttpPost("CreateCorporateCustomerWholesaleAdvertDownVote")]
+        public async Task<IActionResult> CreateCorporateCustomerWholesaleAdvertDownVoteAsync(CreateCorporateCustomerWholesaleAdveretDownVoteCommandRequest createCorporateCustomerWholesaleAdvertDownVoteCommandRequest)
+        {
+            var response = await _mediator.Send(createCorporateCustomerWholesaleAdvertDownVoteCommandRequest);
+
+            return this.ActionResultInstanceByResponse(response.Response);
+        }
+
         [HttpDelete("DeleteCorporateCustomerWholesaleAdvertVote")]
         public async Task<IActionResult> DeleteCorporateCustomerWholesaleAdvertVoteAsync(DeleteCorporateCustomerWholesaleAdvertVoteCommandRequest deleteCorporateCustomerWholesaleAdvertVoteCommandRequest)
         {
@@ -43,6 +65,22 @@ namespace ESISA.WebAPI.Controllers
             return this.ActionResultInstanceByResponse(response.Response);
         }
 
+        [HttpPost("CreateIndividualCustomerCorporateAdvertUpVote")]
+        public async Task<IActionResult> CreateIndividualCustomerCorporateAdvertUpVoteAsync(CreateIndividualCustomerCorporateAdvertUpVoteCommandRequest createIndividualCustomerCorporateAdvertUpVoteCommandRequest)
+        {
+            var response = await _mediator.Send(createIndividualCustomerCorporateAdvertUpVoteCommandRequest);
+
+            return this.ActionResultInstanceByResponse(response.Response);
+        }
+
+        [HttpPost("CreateIndividualCustomerCorporateAdvertDownVote")]
+        public async Task<IActionResult> CreateIndividualCustomerCorporateAdvertDownVoteAsync(CreateIndividualCustomerCorporateAdvertDownVoteCommandRequest createIndividualCustomerCorporateAdvertDownVoteCommandRequest)
+        {
+            var response = await _mediator.Send(createIndividualCustomerCorporateAdvertDownVoteCommandRequest);
+
+            return this.ActionResultInstanceByResponse(response.Response);
+        }
+
         [HttpDelete("DeleteIndividualCustomerCorporateAdvertVote")]
         public async Task<IActionResult> DeleteIndividualCustomerCorporateAdvertVoteAsync(DeleteIndividualCustomerCorporateAdvertVoteCommandRequest deleteIndividualCustomerCorporateAdvertVoteCommandRequest)
         {
@@ -55,6 +93,22 @@ namespace ESISA.WebAPI.Controllers
         public async Task<IActionResult> CreateIndividualCustomerIndividualDealerVoteAsync(CreateIndividualCustomerIndividualDealerVoteCommandRequest createIndividualCustomerIndividualDealerVoteCommandRequest)
         {
             var response = await _mediator.Send(createIndividualCustomerIndividualDealerVoteCommandRequest);
+
+            return this.ActionResultInstanceByResponse(response.Response);
+        }
+
+        [HttpPost("CreateIndividualCustomerIndividualDealerUpVote")]
+        public async Task<IActionResult> CreateIndividualCustomerIndividualDealerUpVoteAsync(CreateIndividualCustomerIndividualDealerUpVoteCommandRequest createIndividualCustomerIndividualDealerUpVoteCommandRequest)
+        {
+            var response = await _mediator.Send(createIndividualCustomerIndividualDealerUpVoteCommandRequest);
+
+            return this.ActionResultInstanceByResponse(response.Response);
+        }
+
+        [HttpPost("CreateIndividualCustomerIndividualDealerDownVote")]
+        public async Task<IActionResult> CreateIndividualCustomerIndividualDealerDownVoteAsync(CreateIndividualCustomerIndividualDealerDownVoteCommandRequest createIndividualCustomerIndividualDealerDownVoteCommandRequest)
+        {
+            var response = await _mediator.Send(createIndividualCustomerIndividualDealerDownVoteCommandRequest);
 
             return this.ActionResultInstanceByResponse(response.Response);
         }

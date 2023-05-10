@@ -12,7 +12,6 @@ namespace WorkerServices.ESISAVoteService.Services
     public class VoteService : IVoteService
     {
         private readonly String _connectionString;
-
         public VoteService(string connectionString)
         {
             _connectionString = connectionString;
@@ -44,12 +43,12 @@ namespace WorkerServices.ESISAVoteService.Services
                 await connection.ExecuteAsync("insert into IndividualCustomerCorporateAdvertVotes (Id, IndividualCustomerId, CorporateAdvertId, VoteType, CreatedDate, ModifiedDate, IsDeleted, IsActive) values (@Id, @IndividualCustomerId, @CorporateAdvertId, @VoteType, @CreatedDate, @ModifiedDate, @IsDeleted, @IsActive)",
                     new
                     {
-                        Id = Guid.NewGuid(),
-                        CreatedDate = DateTime.Now,
-                        ModifiedDate = DateTime.Now,
+                        Id = Guid.NewGuid(),       
                         IndividualCustomerId = @event.IndividualCustomerId,
                         CorporateAdvertId = @event.CorporateAdvertId,
                         VoteType = @event.VoteType,
+                        CreatedDate = DateTime.Now,
+                        ModifiedDate = DateTime.Now,
                         IsDeleted = false,
                         IsActive = true
                     });

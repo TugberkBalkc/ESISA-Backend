@@ -1,6 +1,5 @@
 ﻿using ESISA.Core.Domain.Constants;
 using ESISA.Core.Domain.Entities.Common;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;

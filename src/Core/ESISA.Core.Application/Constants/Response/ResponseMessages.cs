@@ -17,6 +17,10 @@ namespace ESISA.Core.Application.Constants.Response
 
         public const String AdvertVoted = "İlan Başarıyla Oylandı.";
         public const String DealerVoted = "Satıcı Başarıyla Oylandı.";
+        public const String AdvertDownVoted = "İlan Aşşağı Oylandı";
+        public const String DealerDownVoted = "Satıcı Aşşağı Oylandı";
+        public const String DealerUpVoted = "Satıcı Yukarı Oylandı";
+        public const String AdvertUpVoted = "İlan Yukarı Oylandı";
         public const String VoteDeleted = "Oy Silindi.";
       
         public const String PriceUpdated = "Fiyat Güncellendi.";

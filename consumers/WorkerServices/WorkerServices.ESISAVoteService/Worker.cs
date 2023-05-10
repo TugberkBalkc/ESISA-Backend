@@ -17,7 +17,7 @@ namespace WorkerServices.ESISAVoteService
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            var connectionString = _configuration.GetSection("SqlServerDatabaseOptions").ToString(); ;
+            var connectionString = _configuration["SqlServerConnectionString"];
 
             var voteService = new VoteService(connectionString);
 
@@ -34,6 +34,7 @@ namespace WorkerServices.ESISAVoteService
                            .Receive<CreateCorporateCustomerWholesaleAdvertVoteEvent>(@event =>
                            {
                                voteService.CreateCorporateCustomerWholesaleAdvertVote(@event).GetAwaiter().GetResult();
+                               _logger.LogInformation(ConsumerConstants.AlignConsumerLog(NameValues.ESISAVoteWorkerService, NameValues.CorporateCustomerWholesaleAdvertVote, NameValues.Create));
                            })
                            .StartConsuming(RabbitMQConstants.CreateCorporateCustomerWholesaleAdvertVoteQueueName);
 
@@ -44,6 +45,7 @@ namespace WorkerServices.ESISAVoteService
                            .Receive<CreateIndividualCustomerCorporateAdvertVoteEvent>(@event =>
                            {
                                voteService.CreateIndividualCustomerCorporateAdvertVote(@event).GetAwaiter().GetResult();
+                               _logger.LogInformation(ConsumerConstants.AlignConsumerLog(NameValues.ESISAVoteWorkerService, NameValues.IndividualCustomerCorporateAdvertVote, NameValues.Create));
                            })
                           .StartConsuming(RabbitMQConstants.CreateIndividualCustomerCorporateAdvertVoteQueueName);
 
@@ -55,6 +57,7 @@ namespace WorkerServices.ESISAVoteService
                            .Receive<CreateIndividualCustomerIndividualDealerVoteEvent>(@event =>
                            {
                                voteService.CreateIndividualCustomerIndividualDealerVote(@event).GetAwaiter().GetResult();
+                               _logger.LogInformation(ConsumerConstants.AlignConsumerLog(NameValues.ESISAVoteWorkerService, NameValues.IndividualCustomerIndividualDealerVote, NameValues.Create));
                            })
                            .StartConsuming(RabbitMQConstants.CreateIndividualCustomerIndividualDealerVoteQueueName);
 
@@ -65,6 +68,7 @@ namespace WorkerServices.ESISAVoteService
                          .Receive<DeleteCorporateCustomerWholesaleAdvertVoteEvent>(@event =>
                          {
                              voteService.DeleteCorporateCustomerWholesaleAdvertVote(@event).GetAwaiter().GetResult();
+                             _logger.LogInformation(ConsumerConstants.AlignConsumerLog(NameValues.ESISAVoteWorkerService, NameValues.CorporateCustomerWholesaleAdvertVote, NameValues.Delete));
                          })
                          .StartConsuming(RabbitMQConstants.DeleteCorporateCustomerWholesaleAdvertVoteQueueName);
 
@@ -75,6 +79,7 @@ namespace WorkerServices.ESISAVoteService
                            .Receive<DeleteIndividualCustomerCorporateAdvertVoteEvent>(@event =>
                            {
                                voteService.DeleteIndividualCustomerCorporateAdvertVote(@event).GetAwaiter().GetResult();
+                               _logger.LogInformation(ConsumerConstants.AlignConsumerLog(NameValues.ESISAVoteWorkerService, NameValues.IndividualCustomerCorporateAdvertVote, NameValues.Delete));
                            })
                           .StartConsuming(RabbitMQConstants.DeleteIndividualCustomerCorporateAdvertVoteQueueName);
 
@@ -86,6 +91,7 @@ namespace WorkerServices.ESISAVoteService
                            .Receive<DeleteIndividualCustomerIndividualDealerVoteEvent>(@event =>
                            {
                                voteService.DeleteIndividualCustomerIndividualDealerVote(@event).GetAwaiter().GetResult();
+                               _logger.LogInformation(ConsumerConstants.AlignConsumerLog(NameValues.ESISAVoteWorkerService, NameValues.IndividualCustomerIndividualDealerVote, NameValues.Delete));
                            })
                            .StartConsuming(RabbitMQConstants.DeleteIndividualCustomerIndividualDealerVoteQueueName);
         }
