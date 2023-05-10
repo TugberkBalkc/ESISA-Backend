@@ -47,6 +47,12 @@ namespace ESISA.Core.Application.Constants.Response
         public const String CorporateAdvertAlreadyOutOfStock = "Stok Zaten Mevcut Değil.";
         public const String CorporateAdvertAlreadyNotOutOfStock = "Stok Zaten Mevcut.";
 
+        public const String SwapAdvertCreated = "Takas İlanı Oluşturuldu.";
+        public const String SwapAdvertDeleted = "Takas İlanı Silindi.";
+        public const String SwapAdvertUpdate = "Takas İlanı Güncellendi.";
+        public const String SwapAdvertsListed = "Takas İlanları Listelendi.";
+        public const String SwapAdvertNoActive = "Takas İlanı Aktif Değil.";
+
         public const String ProductCreated = "Ürün Başarıyla Oluşturuldu.";
         public const String ProductDeleted = "Ürün Başarıyla Silindi.";
         public const String ProductsDeleted = "Ürünler Başarıyla Silindi.";

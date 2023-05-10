@@ -46,7 +46,10 @@ namespace ESISA.Core.Application.Mappings.Automapper
             this.CreateMap<UpdateIndividualAdvertCommandRequest, IndividualAdvertDto>()
               .ForMember(e => e.AdvertTitle, e => e.MapFrom(e => e.AdvertTitle))
               .ForMember(e => e.AdvertDescription, e => e.MapFrom(e => e.AdvertDescription))
-              .ForMember(e => e.IndividualAdvertProductConditionType, e => e.MapFrom(e => e.IndividualAdvertProductConditionType));
+              .ForMember(e => e.AdvertDescription, e => e.MapFrom(e => e.AdvertDescription))
+              .ForMember(e => e.IndividualAdvertProductConditionType, e => e.MapFrom(e => e.IndividualAdvertProductConditionType))
+              .ForMember(e => e.IndividualAdvertPrice, e => e.MapFrom(e => e.IndividualAdvertPrice))
+              .ForMember(e => e.IndividualAdvertBargain, e => e.MapFrom(e => e.IndividualAdvertBargain));
         }
     }
 }

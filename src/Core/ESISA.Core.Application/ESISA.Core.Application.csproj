@@ -36,11 +36,13 @@
 
   <ItemGroup>
     <Folder Include="Dtos\Advert\WholesaleAdvert\" />
-    <Folder Include="Dtos\Advert\SwapAdvert\" />
     <Folder Include="Features\MediatR\Commands\Comments\ToDealer\" />
     <Folder Include="Features\MediatR\Commands\Comments\ToAdvert\" />
     <Folder Include="Features\MediatR\Commands\Favorites\ToAdvert\" />
-    <Folder Include="Features\MediatR\Commands\SwapAdvert\" />
+    <Folder Include="Features\MediatR\Commands\SwapAdvert\AddSwappableProduct\" />
+    <Folder Include="Features\MediatR\Commands\SwapAdvert\DeleteSwappableProduct\" />
+    <Folder Include="Features\MediatR\Commands\SwapAdvert\AddSwappableCategory\" />
+    <Folder Include="Features\MediatR\Commands\SwapAdvert\DeleteSwappableCategory\" />
     <Folder Include="Features\MediatR\Commands\WholesaleAdvert\" />
     <Folder Include="Interfaces\Repositories\Payment\" />
     <Folder Include="Rules\ValidationRules\FluentValidation\" />
