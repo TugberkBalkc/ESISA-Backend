@@ -52,6 +52,10 @@ namespace ESISA.Core.Application.Constants.Response
         public const String SwapAdvertUpdate = "Takas İlanı Güncellendi.";
         public const String SwapAdvertsListed = "Takas İlanları Listelendi.";
         public const String SwapAdvertNoActive = "Takas İlanı Aktif Değil.";
+        public const String CategoryAddedToSwappableList = "Kategori Takaslanabilirler Listesine Eklendi.";
+        public const String CategoryDeletedInSwappableList = "Kategori Takaslanabilirler Listesinden Kaldırıldı.";
+        public const String ProductAddedToSwappableList = "Ürün Takaslanabilirler Listesine Eklendi.";
+        public const String ProductDeletedInSwappableList = "Ürün Takaslanabilirler Listesinden Kaldırıldı.";
 
         public const String ProductCreated = "Ürün Başarıyla Oluşturuldu.";
         public const String ProductDeleted = "Ürün Başarıyla Silindi.";
