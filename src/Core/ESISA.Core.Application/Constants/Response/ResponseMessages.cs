@@ -9,6 +9,7 @@ namespace ESISA.Core.Application.Constants.Response
     public static class ResponseMessages
     {
         public const String Vote = "Oy";
+        public const String Comment = "Yorum";
 
         public const String NotFound = "Bulunamadı.";
         public const String NothingFoundAccordingToFilter = "Aradığınız Filtreye Uygun Sonuç Bulunamadı.";
@@ -22,7 +23,12 @@ namespace ESISA.Core.Application.Constants.Response
         public const String DealerUpVoted = "Satıcı Yukarı Oylandı";
         public const String AdvertUpVoted = "İlan Yukarı Oylandı";
         public const String VoteDeleted = "Oy Silindi.";
-      
+
+        public const String CommentCreated = "Yorum Başarıyla Oluşturuldu.";
+        public const String CommentNotCreated = "Yorum Oluşturulamadı.";
+        public const String CommentDeleted = "Yorum Başarıyla Silindi.";
+        public const String CommentUpdated = "Yorum Başarıyla Düzenlendi.";
+
         public const String PriceUpdated = "Fiyat Güncellendi.";
         public const String PriceRaised = "Fiyat Arttırıldı.";
         public const String PriceReduced = "Fiyat Düşürüldü.";
@@ -68,6 +74,7 @@ namespace ESISA.Core.Application.Constants.Response
         public const String CategoryDeleted = "Kategori Başarıyla Silindi.";
         public const String CategoriesDeleted = "Kategoriler Başarıyla Silindi.";
         public const String CategoryUpdated = "Kategori Başarıyla Güncellendi.";
+        public const String CategoryListed = "Kategori Listelendi.";
 
         public const String SubCategoryCreated = "Alt Kategori Başarıyla Oluşturuldu.";
         public const String SubCategoryDeleted = "Alt Kategori Başarıyla Silindi.";
@@ -103,5 +110,9 @@ namespace ESISA.Core.Application.Constants.Response
         public const String AddressesListed = "Adresler Başarıyla Listelendi.";
 
         public const String Registered = "Başarıyla Kayıt Oldunuz.";
+
+        public const String CorporateCustomersAccountNotActive = "Kurumsal Müşteri Hesabı Aktif Değil.";
+        public const String CorporateDealersAccountNotActive = "Kurumsal Satıcı Hesabı Aktif Değil.";
+        public const String IndividualDealersAccountNotActive = "Bireysel Satıcı Hesabı Aktif Değil";
     }
 }

@@ -11,7 +11,7 @@ using ESISA.Core.Domain.Enums;
 using MediatR;
 using System.Net;
 
-namespace ESISA.Core.Application.Features.MediatR.Commands.Vote.ToDealer.CreateIndividualDealerUpVote
+namespace ESISA.Core.Application.Features.MediatR.Commands.Votes.ToDealer.CreateIndividualDealerUpVote
 {
     public class CreateIndividualCustomerIndividualDealerUpVoteCommandHandler : IRequestHandler<CreateIndividualCustomerIndividualDealerUpVoteCommandRequest, CreateIndividualCustomerIndividualDealerUpVoteCommandResponse>
     {

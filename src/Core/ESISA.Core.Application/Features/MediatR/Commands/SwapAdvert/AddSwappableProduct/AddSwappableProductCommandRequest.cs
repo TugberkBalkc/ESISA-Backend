@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESISA.Core.Application.Features.MediatR.Commands.SwapAdvert.AddSwappableProduct
+namespace ESISA.Core.Application.Features.MediatR.Commands.SwapAdverts.AddSwappableProduct
 {
     public class AddSwappableProductCommandRequest : IRequest<AddSwappableProductCommandResponse>
     {

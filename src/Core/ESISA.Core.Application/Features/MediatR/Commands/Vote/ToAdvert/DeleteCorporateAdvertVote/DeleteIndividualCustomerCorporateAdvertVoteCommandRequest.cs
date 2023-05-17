@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESISA.Core.Application.Features.MediatR.Commands.Vote.ToAdvert.DeleteCorporateAdvertVote
+namespace ESISA.Core.Application.Features.MediatR.Commands.Votes.ToAdvert.DeleteCorporateAdvertVote
 {
     public class DeleteIndividualCustomerCorporateAdvertVoteCommandRequest : IRequest<DeleteIndividualCustomerCorporateAdvertVoteCommandResponse>
     {

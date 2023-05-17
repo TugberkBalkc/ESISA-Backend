@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESISA.Core.Application.Features.MediatR.Commands.Vote.ToAdvert.CreateWholesaleAdvertVote
+namespace ESISA.Core.Application.Features.MediatR.Commands.Votes.ToAdvert.CreateWholesaleAdvertVote
 {
     public class CreateCorporateCustomerWholesaleAdvertVoteCommandRequest : IRequest<CreateCorporateCustomerWholesaleAdvertVoteCommandResponse>
     {

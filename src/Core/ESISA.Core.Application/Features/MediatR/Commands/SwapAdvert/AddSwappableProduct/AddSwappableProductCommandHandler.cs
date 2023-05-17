@@ -8,7 +8,7 @@ using ESISA.Core.Domain.Entities;
 using MediatR;
 using System.Net;
 
-namespace ESISA.Core.Application.Features.MediatR.Commands.SwapAdvert.AddSwappableProduct
+namespace ESISA.Core.Application.Features.MediatR.Commands.SwapAdverts.AddSwappableProduct
 {
     public class AddSwappableProductCommandHandler :
         IRequestHandler<AddSwappableProductCommandRequest, AddSwappableProductCommandResponse>

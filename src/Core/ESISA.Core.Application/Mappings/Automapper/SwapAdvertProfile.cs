@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using ESISA.Core.Application.Dtos.Advert.SwapAdvert;
-using ESISA.Core.Application.Features.MediatR.Commands.SwapAdvert.AddSwappableProduct;
+using ESISA.Core.Application.Features.MediatR.Commands.SwapAdverts.AddSwappableProduct;
 using ESISA.Core.Application.Features.MediatR.Commands.SwapAdverts.AddPhoto;
 using ESISA.Core.Application.Features.MediatR.Commands.SwapAdverts.AddSwappableCategory;
 using ESISA.Core.Application.Features.MediatR.Commands.SwapAdverts.Create;

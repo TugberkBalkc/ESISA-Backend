@@ -11,7 +11,7 @@ using ESISA.Core.Domain.Enums;
 using MediatR;
 using System.Net;
 
-namespace ESISA.Core.Application.Features.MediatR.Commands.Vote.ToAdvert.CreateCorporateAdvertUpVote
+namespace ESISA.Core.Application.Features.MediatR.Commands.Votes.ToAdvert.CreateCorporateAdvertUpVote
 {
     public class CreateIndividualCustomerCorporateAdvertUpVoteCommandHandler : IRequestHandler<CreateIndividualCustomerCorporateAdvertUpVoteCommandRequest, CreateIndividualCustomerCorporateAdvertUpVoteCommandResponse>
     {

@@ -1,5 +1,6 @@
 ﻿using ESISA.Core.Application.Constants.Response;
 using ESISA.Core.Application.Rules.BusinessRules.Common;
+using ESISA.Core.Domain.Entities;
 using ESISA.Core.Domain.Exceptions.BusinessLogic;
 using System;
 using System.Collections.Generic;
@@ -13,5 +14,11 @@ namespace ESISA.Core.Application.Rules.BusinessRules
     {
 
         public CorporateCustomerBusinessRules() : base("Kurumsal Müşteri") { }
+
+        public async Task CheckIfCorporateCustomerAccountActive(CorporateCustomer corporateCustomer)
+        {
+            if (corporateCustomer.IsActive == false)
+                throw new BusinessLogicException(ResponseTitles.Error, ResponseMessages.CorporateCustomersAccountNotActive + " " + ResponseMessages.CommentNotCreated);
+        }
     }
 }

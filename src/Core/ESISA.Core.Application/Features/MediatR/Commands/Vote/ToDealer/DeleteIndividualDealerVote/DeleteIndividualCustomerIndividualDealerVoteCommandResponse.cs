@@ -1,7 +1,7 @@
 ﻿using ESISA.Core.Application.Features.MediatR.Requests.Common;
 using ESISA.Core.Application.Utilities.Response.Common;
 
-namespace ESISA.Core.Application.Features.MediatR.Commands.Vote.ToDealer.DeleteIndividualDealerVote
+namespace ESISA.Core.Application.Features.MediatR.Commands.Votes.ToDealer.DeleteIndividualDealerVote
 {
     public class DeleteIndividualCustomerIndividualDealerVoteCommandResponse : CommandResponseBase<Guid>
     {

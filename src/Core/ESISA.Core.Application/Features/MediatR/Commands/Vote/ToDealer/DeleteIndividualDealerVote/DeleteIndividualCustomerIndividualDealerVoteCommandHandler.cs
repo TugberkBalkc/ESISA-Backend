@@ -8,7 +8,7 @@ using ESISA.Core.Application.Utilities.Response.ContentResponse;
 using MediatR;
 using System.Net;
 
-namespace ESISA.Core.Application.Features.MediatR.Commands.Vote.ToDealer.DeleteIndividualDealerVote
+namespace ESISA.Core.Application.Features.MediatR.Commands.Votes.ToDealer.DeleteIndividualDealerVote
 {
     public class DeleteIndividualCustomerIndividualDealerVoteCommandHandler : IRequestHandler<DeleteIndividualCustomerIndividualDealerVoteCommandRequest, DeleteIndividualCustomerIndividualDealerVoteCommandResponse>
     {

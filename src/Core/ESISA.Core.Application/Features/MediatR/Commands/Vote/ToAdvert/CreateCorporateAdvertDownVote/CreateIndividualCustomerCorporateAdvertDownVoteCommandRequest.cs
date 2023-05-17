@@ -1,4 +1,4 @@
-﻿using ESISA.Core.Application.Features.MediatR.Commands.Vote.ToAdvert.CreateCorporateAdvertVote;
+﻿using ESISA.Core.Application.Features.MediatR.Commands.Votes.ToAdvert.CreateCorporateAdvertVote;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESISA.Core.Application.Features.MediatR.Commands.Vote.ToAdvert.CreateCorporateAdvertDownVote
+namespace ESISA.Core.Application.Features.MediatR.Commands.Votes.ToAdvert.CreateCorporateAdvertDownVote
 {
     public class CreateIndividualCustomerCorporateAdvertDownVoteCommandRequest : IRequest<CreateIndividualCustomerCorporateAdvertDownVoteCommandResponse>
     {

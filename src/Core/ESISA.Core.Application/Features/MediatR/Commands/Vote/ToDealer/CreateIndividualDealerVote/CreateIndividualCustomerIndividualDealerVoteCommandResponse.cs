@@ -2,7 +2,7 @@
 using ESISA.Core.Application.Features.MediatR.Requests.Common;
 using ESISA.Core.Application.Utilities.Response.Common;
 
-namespace ESISA.Core.Application.Features.MediatR.Commands.Vote.ToDealer.CreateIndividualDealerVote
+namespace ESISA.Core.Application.Features.MediatR.Commands.Votes.ToDealer.CreateIndividualDealerVote
 {
     public class CreateIndividualCustomerIndividualDealerVoteCommandResponse : CommandResponseBase<IndividualCustomerIndividualDealerVoteDto>
     {

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESISA.Core.Application.Features.MediatR.Commands.Vote.ToAdvert.CreateCorporateAdvertVote
+namespace ESISA.Core.Application.Features.MediatR.Commands.Votes.ToAdvert.CreateCorporateAdvertVote
 {
     public class CreateIndividualCustomerCorporateAdvertVoteCommandRequest : IRequest<CreateIndividualCustomerCorporateAdvertVoteCommandResponse>
     {

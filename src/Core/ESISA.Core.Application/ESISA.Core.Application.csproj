@@ -36,8 +36,8 @@
 
   <ItemGroup>
     <Folder Include="Dtos\Advert\WholesaleAdvert\" />
-    <Folder Include="Features\MediatR\Commands\Comments\ToDealer\" />
-    <Folder Include="Features\MediatR\Commands\Comments\ToAdvert\" />
+    <Folder Include="Features\MediatR\Commands\Comments\ToDealer\DeleteCorporateDealerComment\" />
+    <Folder Include="Features\MediatR\Commands\Comments\ToDealer\DeleteIndivdualDealerComment\" />
     <Folder Include="Features\MediatR\Commands\Favorites\ToAdvert\" />
     <Folder Include="Features\MediatR\Commands\SwapAdvert\DeleteSwappableProduct\" />
     <Folder Include="Features\MediatR\Commands\SwapAdvert\DeleteSwappableCategory\" />

@@ -1,4 +1,4 @@
-﻿using ESISA.Core.Application.Features.MediatR.Commands.Vote.ToDealer.CreateIndividualDealerVote;
+﻿using ESISA.Core.Application.Features.MediatR.Commands.Votes.ToDealer.CreateIndividualDealerVote;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESISA.Core.Application.Features.MediatR.Commands.Vote.ToDealer.CreateIndividualDealerUpVote
+namespace ESISA.Core.Application.Features.MediatR.Commands.Votes.ToDealer.CreateIndividualDealerUpVote
 {
     public class CreateIndividualCustomerIndividualDealerUpVoteCommandRequest : IRequest<CreateIndividualCustomerIndividualDealerUpVoteCommandResponse>
     {

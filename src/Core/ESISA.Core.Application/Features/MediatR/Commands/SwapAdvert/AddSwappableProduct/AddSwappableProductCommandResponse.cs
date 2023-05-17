@@ -2,7 +2,7 @@
 using ESISA.Core.Application.Features.MediatR.Requests.Common;
 using ESISA.Core.Application.Utilities.Response.Common;
 
-namespace ESISA.Core.Application.Features.MediatR.Commands.SwapAdvert.AddSwappableProduct
+namespace ESISA.Core.Application.Features.MediatR.Commands.SwapAdverts.AddSwappableProduct
 {
     public class AddSwappableProductCommandResponse : CommandResponseBase<SwapAdvertSwappableProductDto>
     {

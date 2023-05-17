@@ -102,11 +102,13 @@ namespace WorkerServices.ESISACommentService.Services
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                await connection.ExecuteAsync("delete from CorporateCustomerDealerComments where CorporateCustomerId = @CorporateCustomerId AND CorporateDealerId = @CorporateDealerId",
+                await connection.ExecuteAsync("delete from CorporateCustomerDealerComments where CorporateCustomerId = @CorporateCustomerId AND CorporateDealerId = @CorporateDealerId AND Title=@Title AND Content=@Content",
                     new
                     {
                         CorporateCustomerId = @event.CorporateCustomerId,
-                        CorporateDealerId = @event.CorporateDealerId
+                        CorporateDealerId = @event.CorporateDealerId,
+                        Title = @event.Title,
+                        Content = @event.Content
                     });
             }
         }
@@ -115,11 +117,13 @@ namespace WorkerServices.ESISACommentService.Services
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                await connection.ExecuteAsync("delete from CorporateCustomerWholesaleAdvertComments where CorporateCustomerId = @CorporateCustomerId AND WholesaleAdvertId = @WholesaleAdvertId",
+                await connection.ExecuteAsync("delete from CorporateCustomerWholesaleAdvertComments where CorporateCustomerId = @CorporateCustomerId AND WholesaleAdvertId = @WholesaleAdvertId AND Title=@Title AND Content=@Content",
                     new
                     {
                         CorporateCustomerId = @event.CorporateCustomerId,
-                        WholesaleAdvertId = @event.WholesaleAdvertId
+                        WholesaleAdvertId = @event.WholesaleAdvertId,
+                        Title = @event.Title,
+                        Content = @event.Content
                     });
             }
         }
@@ -128,11 +132,13 @@ namespace WorkerServices.ESISACommentService.Services
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                await connection.ExecuteAsync("delete from IndividualCustomerCorporateAdvertComments where IndividualCustomerId = @IndividualCustomerId AND CorporateAdvertId = @CorporateAdvertId",
+                await connection.ExecuteAsync("delete from IndividualCustomerCorporateAdvertComments where IndividualCustomerId = @IndividualCustomerId AND CorporateAdvertId = @CorporateAdvertId AND Title=@Title AND Content=@Content",
                     new
                     {
                         IndividualCustomerId = @event.IndividualCustomerId,
-                        CorporateAdvertId = @event.CorporateAdvertId
+                        CorporateAdvertId = @event.CorporateAdvertId,
+                        Title = @event.Title,
+                        Content = @event.Content
                     });
             }
         }
@@ -141,11 +147,13 @@ namespace WorkerServices.ESISACommentService.Services
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                await connection.ExecuteAsync("delete from IndividualCustomerIndividualDealerComments where IndividualCustomerId = @IndividualCustomerId AND IndividualDealerId = @IndividualDealerId",
+                await connection.ExecuteAsync("delete from IndividualCustomerIndividualDealerComments where IndividualCustomerId = @IndividualCustomerId AND IndividualDealerId = @IndividualDealerId AND Title=@Title AND Content=@Content",
                     new
                     {
                         IndividualCustomerId = @event.IndividualCustomerId,
-                        IndividualDealerId = @event.IndividualDealerId
+                        IndividualDealerId = @event.IndividualDealerId,
+                        Title = @event.Title,
+                        Content = @event.Content
                     });
             }
         }

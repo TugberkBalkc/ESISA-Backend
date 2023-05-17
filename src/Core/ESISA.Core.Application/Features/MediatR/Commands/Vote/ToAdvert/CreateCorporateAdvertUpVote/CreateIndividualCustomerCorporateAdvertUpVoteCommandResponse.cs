@@ -2,7 +2,7 @@
 using ESISA.Core.Application.Features.MediatR.Requests.Common;
 using ESISA.Core.Application.Utilities.Response.Common;
 
-namespace ESISA.Core.Application.Features.MediatR.Commands.Vote.ToAdvert.CreateCorporateAdvertUpVote
+namespace ESISA.Core.Application.Features.MediatR.Commands.Votes.ToAdvert.CreateCorporateAdvertUpVote
 {
     public class CreateIndividualCustomerCorporateAdvertUpVoteCommandResponse : CommandResponseBase<IndividualCustomerCorporateAdvertVoteDto>
     {

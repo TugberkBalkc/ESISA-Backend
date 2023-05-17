@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESISA.Core.Application.Features.MediatR.Commands.Vote.ToDealer.DeleteIndividualDealerVote
+namespace ESISA.Core.Application.Features.MediatR.Commands.Votes.ToDealer.DeleteIndividualDealerVote
 {
 
     public class DeleteIndividualCustomerIndividualDealerVoteCommandRequest : IRequest<DeleteIndividualCustomerIndividualDealerVoteCommandResponse>

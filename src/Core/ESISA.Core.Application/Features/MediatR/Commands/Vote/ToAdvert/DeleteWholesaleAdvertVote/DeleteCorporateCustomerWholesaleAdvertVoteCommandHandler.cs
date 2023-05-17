@@ -8,7 +8,7 @@ using ESISA.Core.Application.Utilities.Response.ContentResponse;
 using MediatR;
 using System.Net;
 
-namespace ESISA.Core.Application.Features.MediatR.Commands.Vote.ToAdvert.DeleteWholesaleAdvertVote
+namespace ESISA.Core.Application.Features.MediatR.Commands.Votes.ToAdvert.DeleteWholesaleAdvertVote
 {
     public class DeleteCorporateCustomerWholesaleAdvertVoteCommandHandler : IRequestHandler<DeleteCorporateCustomerWholesaleAdvertVoteCommandRequest, DeleteCorporateCustomerWholesaleAdvertVoteCommandResponse>
     {

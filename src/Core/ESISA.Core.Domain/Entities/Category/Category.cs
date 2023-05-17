@@ -27,5 +27,10 @@ namespace ESISA.Core.Domain.Entities
 
         public virtual ICollection<SwapAdvertSwapableCategory> SwapAdvertSwapableCategories { get; set; }
 
+        public Category()
+        {
+            this.Children = new List<Category>();
+        }
+
     }
 }

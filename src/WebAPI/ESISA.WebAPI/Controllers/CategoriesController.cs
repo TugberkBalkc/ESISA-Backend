@@ -4,6 +4,7 @@ using ESISA.Core.Application.Features.MediatR.Commands.Categories.Delete;
 using ESISA.Core.Application.Features.MediatR.Commands.Categories.DeleteRange;
 using ESISA.Core.Application.Features.MediatR.Commands.Categories.Update;
 using ESISA.Core.Application.Features.MediatR.Commands.Categories.UpdateMainCategory;
+using ESISA.Core.Application.Features.MediatR.Queries.Categories.GetChildrenByCategoryId;
 using ESISA.WebAPI.Controllers.Common;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -34,7 +35,6 @@ namespace ESISA.WebAPI.Controllers
 
             return this.ActionResultInstanceByResponse(response.Response);
         }
-
         [HttpDelete("DeleteCategory")]
         public async Task<IActionResult> DeleteCategoryAsync([FromBody] DeleteCategoryCommandRequest deleteCategoryCommandRequest)
         {
@@ -63,6 +63,15 @@ namespace ESISA.WebAPI.Controllers
         public async Task<IActionResult> UpdateMainCategoryAsync([FromBody] UpdateMainCategoryCommandRequest updateMainCategoryCommandRequest)
         {
             var response = await base._mediator.Send(updateMainCategoryCommandRequest);
+
+            return this.ActionResultInstanceByResponse(response.Response);
+        }
+
+
+        [HttpGet("GetChildrenByCategoryId")]
+        public async Task<IActionResult> GetChildrenByCategoryIdAsync([FromQuery] GetAllChildrenByCategoryIdQueryRequest getChildrenByCategoryIdQueryRequest)
+        {
+            var response = await base._mediator.Send(getChildrenByCategoryIdQueryRequest);
 
             return this.ActionResultInstanceByResponse(response.Response);
         }

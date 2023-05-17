@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace ESISA.Core.Application.Features.MediatR.Commands.Vote.ToAdvert.CreateWholesaleAdvertUpVote
+namespace ESISA.Core.Application.Features.MediatR.Commands.Votes.ToAdvert.CreateWholesaleAdvertUpVote
 {
     public class CreateCorporateCustomerWholesaleAdvertUpVoteCommandRequest : IRequest<CreateCorporateCustomerWholesaleAdvertUpVoteCommandResponse>
     {

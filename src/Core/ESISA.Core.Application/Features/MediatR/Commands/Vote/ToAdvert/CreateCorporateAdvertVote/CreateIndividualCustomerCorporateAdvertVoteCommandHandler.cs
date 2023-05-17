@@ -10,7 +10,7 @@ using ESISA.Core.Application.Utilities.Response.ContentResponse;
 using MediatR;
 using System.Net;
 
-namespace ESISA.Core.Application.Features.MediatR.Commands.Vote.ToAdvert.CreateCorporateAdvertVote
+namespace ESISA.Core.Application.Features.MediatR.Commands.Votes.ToAdvert.CreateCorporateAdvertVote
 {
     public class CreateIndividualCustomerCorporateAdvertVoteCommandHandler : IRequestHandler<CreateIndividualCustomerCorporateAdvertVoteCommandRequest, CreateIndividualCustomerCorporateAdvertVoteCommandResponse>
     {

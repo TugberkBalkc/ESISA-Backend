@@ -1,4 +1,4 @@
-﻿using ESISA.Core.Application.Features.MediatR.Commands.Vote.ToAdvert.CreateWholesaleAdvertVote;
+﻿using ESISA.Core.Application.Features.MediatR.Commands.Votes.ToAdvert.CreateWholesaleAdvertVote;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESISA.Core.Application.Features.MediatR.Commands.Vote.ToAdvert.CreateWholesaleAdvertDownVote
+namespace ESISA.Core.Application.Features.MediatR.Commands.Votes.ToAdvert.CreateWholesaleAdvertDownVote
 {
     public class CreateCorporateCustomerWholesaleAdveretDownVoteCommandRequest : IRequest<CreateCorporateCustomerWholesaleAdveretDownVoteCommandResponse>
     {
