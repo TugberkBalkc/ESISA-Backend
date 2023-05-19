@@ -11,7 +11,13 @@ namespace ESISA.Core.Application.Utilities.Configuration
 {
     public static class NonInjectableOptionsTool
     {
-        public static TokenOptions GetTokenOptions(IConfiguration configuration) => configuration.GetSection("TokenOptions").Get<TokenOptions>();
-        public static SqlServerDatabaseOptions GetDatabaseOptions(IConfiguration configuration) => configuration.GetSection("SqlServerDatabaseOptions").Get<SqlServerDatabaseOptions>();
+        public static TokenOptions GetTokenOptions(IConfiguration configuration)
+        {
+            return configuration.GetSection("TokenOptions").Get<TokenOptions>();
+        }
+        public static SqlServerDatabaseOptions GetDatabaseOptions(IConfiguration configuration)
+        {
+            return configuration.GetSection("SqlServerDatabaseOptions").Get<SqlServerDatabaseOptions>();
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ESISA.Core.Application.Constants.HttpContextConstants;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -26,6 +27,16 @@ namespace ESISA.Infrastructure.Extensions.Claims
         public static void AddEmail(this ICollection<Claim> claims, String email)
         {
             claims.Add(new Claim(ClaimTypes.Email, email));
+        }
+
+        public static void AddTaxIdentityNumber(this ICollection<Claim> claims, String taxIdentityNumber)
+        {
+            claims.Add(new Claim(CustomClaimTypes.TaxIdentityNumber, taxIdentityNumber));
+        }
+
+        public static void AddRegistryNumber(this ICollection<Claim> claims, String registryNumber)
+        {
+            claims.Add(new Claim(CustomClaimTypes.RegistryNumber, registryNumber));
         }
 
         public static void AddRole(this ICollection<Claim> claims, String roleName)

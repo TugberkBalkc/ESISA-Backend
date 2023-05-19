@@ -1,5 +1,6 @@
 ﻿using ESISA.Core.Application.Extensions.ClaimExtensions;
 using ESISA.Core.Application.Features.MediatR.Requests.Common;
+using ESISA.Core.Application.Interfaces.Repositories;
 using ESISA.Core.Domain.Constants;
 using ESISA.Core.Domain.Entities;
 using ESISA.Core.Domain.Exceptions.Authorization;
@@ -17,39 +18,43 @@ namespace ESISA.Core.Application.Utilities.Pipelines.MediatR.Security.Authorizat
         where TRequest : IRequest<TResponse>, ISecuredRequest
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IUserQueryRepository _userQueryRepository;
 
-        public AuthorizationBehavior(IHttpContextAccessor httpContextAccessor)
+        public AuthorizationBehavior(IHttpContextAccessor httpContextAccessor, IUserQueryRepository userQueryRepository)
         {
             _httpContextAccessor = httpContextAccessor;
+            _userQueryRepository = userQueryRepository;
         }
 
         public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
         {
-            var usersRoles = _httpContextAccessor.HttpContext.GetUsersRoles();
             var usersEmail = _httpContextAccessor.HttpContext.GetUsersEmail();
+            var usersRoleNames = _httpContextAccessor.HttpContext.GetUsersRoles();
 
-            this.CheckIfUserHasAnyRoles(usersRoles, usersEmail);
+            var usersOperationClaimNames = _userQueryRepository.GetOperationClaimsByRoleNames(usersRoleNames).Select(e => e.ClaimName).ToArray();
 
-            this.CheckIfUserRolesSatisfiesRequest(request, usersRoles, usersEmail);
+            this.CheckIfUserHasAnyOperationClaims(usersOperationClaimNames, usersEmail);
+
+            this.CheckIfUserOperationClaimsSatisfiesRequest(request, usersOperationClaimNames, usersEmail);
             
             return await next();
         }
 
-        private void CheckIfUserHasAnyRoles(String[] usersRoles, String usersEmail)
+        private void CheckIfUserHasAnyOperationClaims(String[] usersOperationClaimNames, String usersEmail)
         {
-            if (usersRoles is null || usersRoles.Length == 0)
+            if (usersOperationClaimNames is null || usersOperationClaimNames.Length == 0)
                 throw new AuthorizationException(DefaultDomainExceptionTitles.AuthorizationExceptionTitle, DefaultDomainExceptionMessages.AuthorizationExceptionMessage, usersEmail);
         }
 
-        private void CheckIfUserRolesSatisfiesRequest(TRequest request, String[] usersRoles, String usersEmail)
+        private void CheckIfUserOperationClaimsSatisfiesRequest(TRequest request, String[] usersOperationClaims, String usersEmail)
         {
-            if (this.CheckIfUsersRolesNotSatisfiesRequestsRoles(request, usersRoles) is true)
+            if (this.CheckIfUsersOperationClaimsNotSatisfiesRequestsOperationClaims(request, usersOperationClaims) is true)
                 throw new AuthorizationException(DefaultDomainExceptionTitles.AuthorizationExceptionTitle, DefaultDomainExceptionMessages.AuthorizationExceptionMessage, usersEmail);
         }
 
-        private bool CheckIfUsersRolesNotSatisfiesRequestsRoles(TRequest request, String[] usersRoles)
+        private bool CheckIfUsersOperationClaimsNotSatisfiesRequestsOperationClaims(TRequest request, String[] usersOperationClaimsNames)
         {
-            var result = usersRoles.FirstOrDefault(userRole => request.Roles.Any(requestRole => requestRole == userRole));
+            var result = usersOperationClaimsNames.FirstOrDefault(userOperationClaimName => request.OperationClaimNames.Any(requestOperationClaimName => requestOperationClaimName == userOperationClaimName));
 
             if (result is null || result == String.Empty)
                 return true;

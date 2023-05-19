@@ -8,5 +8,18 @@ namespace ESISA.Core.Application.Dtos.Security.Authentication.Logins
 {
     public class StarterLoginDto
     {
+        public String StarterEmail { get; set; }
+        public String StarterPassword { get; set; }
+
+        public StarterLoginDto()
+        {
+
+        }
+
+        public StarterLoginDto(string starterEmail, string starterPassword)
+        {
+            StarterEmail = starterEmail;
+            StarterPassword = starterPassword;
+        }
     }
 }

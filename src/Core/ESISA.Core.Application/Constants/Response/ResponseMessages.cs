@@ -8,6 +8,8 @@ namespace ESISA.Core.Application.Constants.Response
 {
     public static class ResponseMessages
     {
+        public const String UserPasswordOrEmailNotCorrect = "Şifre Veya Email Hatalı.";
+
         public const String Vote = "Oy";
         public const String Comment = "Yorum";
 
@@ -91,6 +93,9 @@ namespace ESISA.Core.Application.Constants.Response
         public const String RolesDeleted = "Roller Başarıyla Silindi.";
         public const String RoleUpdated = "Rol Başarıyla Güncellendi.";
 
+        public const String RoleAddedToUser = "Rol Kullanıcıya Başarıyla Eklendi.";
+        public const String RoleRemovedInUser = "Rol Kullanıcıdan Başarıyla Kaldırıldı.";
+
         public const String OperationClaimCreated = "Yetki Başarıyla Oluşturuldu.";
         public const String OperationClaimDeleted = "Yetki Başarıyla Silindi.";
         public const String OperationClaimsDeleted = "Yetkiler Başarıyla Silindi.";
@@ -109,9 +114,12 @@ namespace ESISA.Core.Application.Constants.Response
 
         public const String AddressesListed = "Adresler Başarıyla Listelendi.";
 
-        public const String Registered = "Başarıyla Kayıt Oldunuz.";
+        public const String Registered = "Başarıyla Kayıt Oldunuz";
+        public const String LoggedIn = "Başarıyla Giriş Yaptınız.";
+        public const String NotLoggedIn = "Giriş Başarısız.";
+        public const String BlockedAccount = "Hesap Bloke Edilmiş. Lütfen Destek Merkezi İle İletişime Geçiniz.";
 
-        public const String CorporateCustomersAccountNotActive = "Kurumsal Müşteri Hesabı Aktif Değil.";
+        public const String CorporateCustomersAccountNotActive = "Kurumsal Müşteri Hesabı Aktif Değil. ";
         public const String CorporateDealersAccountNotActive = "Kurumsal Satıcı Hesabı Aktif Değil.";
         public const String IndividualDealersAccountNotActive = "Bireysel Satıcı Hesabı Aktif Değil";
     }

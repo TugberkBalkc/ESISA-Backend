@@ -8,11 +8,11 @@ namespace ESISA.Core.Application.Interfaces.Services.Authentications
 {
     public interface IInternalAuthenticationService
     {
-        Task<Token> LoginAsStarterAsync(StarterLoginDto starterLoginDto, int tokenLifeTimeInSeconds);
-        Task<Token> LoginAsCorporateCustomerAsync(CorporateCustomerLoginDto customerLoginDto, int tokenLifeTimeInSeconds);
-        Task<Token> LoginAsCorporateDealerAsync(CorporateDealerLoginDto corporateDealerLoginDto, int tokenLifeTimeInSeconds);
-        Task<Token> LoginAsSupportAsync(SupportLoginDto supportLoginDto, int tokenLifeTimeInSeconds);
-        Task<Token> LoginAsModeratorAsync(ModeratorLoginDto moderatorLoginDto, int tokenLifeTimeInSeconds);
+        Task<Token> LoginAsStarterAsync(StarterLoginDto starterLoginDto);
+        Task<Token> LoginAsCorporateCustomerAsync(CorporateCustomerLoginDto customerLoginDto);
+        Task<Token> LoginAsCorporateDealerAsync(CorporateDealerLoginDto corporateDealerLoginDtos);
+        Task<Token> LoginAsSupportAsync(SupportLoginDto supportLoginDto);
+        Task<Token> LoginAsModeratorAsync(ModeratorLoginDto moderatorLoginDto);
 
 
         Task<UserDto> GetUserByEmailAsync(String userEmail);

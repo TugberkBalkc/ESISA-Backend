@@ -15,5 +15,7 @@ namespace ESISA.Core.Application.Interfaces.Services.Identity
         Task AddUser(User user);
         Task DeleteUserById(Guid userId);
         Task UpdateUser(User user);
+
+        Task GetUserRolesByUserId(Guid userId);
     }
 }

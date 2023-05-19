@@ -16,6 +16,7 @@ namespace ESISA.Core.Application.Extensions.DIRegitrations
             var assembly = Assembly.GetExecutingAssembly();
 
             services.RegisterAutoMapper(assembly);
+
             services.RegisterMediatR(assembly);
 
             services.RegisterMediatRPipelines();
@@ -24,7 +25,7 @@ namespace ESISA.Core.Application.Extensions.DIRegitrations
 
             services.RegisterBusinessRules();
 
-         //   services.AddHttpContextAccessor();
+            //services.AddHttpContextAccessor();
         }
     }
 }

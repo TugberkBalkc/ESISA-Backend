@@ -17,7 +17,7 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Repositories.Common
     public class EfQueryRepositoryBase<TEntity> : IQueryRepository<TEntity>
         where TEntity : EntityBase
     {
-        private readonly ESISADbContext _dbContext;
+        protected readonly ESISADbContext _dbContext;
 
         public EfQueryRepositoryBase(ESISADbContext dbContext)
         {

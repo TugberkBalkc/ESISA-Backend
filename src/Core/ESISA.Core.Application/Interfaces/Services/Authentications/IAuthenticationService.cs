@@ -15,7 +15,5 @@ namespace ESISA.Core.Application.Interfaces.Services.Authentications
         Task CorporateDealerPasswordResetAsync(CorporateDealerPasswordResetDto corporateDealerPasswordResetDto);
         Task SupportPasswordResetAsync(SupportPasswordResetDto supportPasswordResetDto);
         Task ModeratorPasswordResetAsync(ModeratorPasswordResetDto moderatorPasswordResetDto);
-
-        Task<bool> VerifyResetTokenAsync(String resetToken, Guid userId);
     }
 }

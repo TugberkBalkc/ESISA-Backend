@@ -14,7 +14,7 @@ namespace ESISA.Core.Application.Rules.BusinessRules
     {
         public IndividualStarterBusinessRules() :base("Bireysel Kullanıcı") { }
 
-        public async Task CheckIfIndividualDealerAccountActive(IndividualDealer individualDealer)
+        public async Task CheckIfIndividualDealerAccountActiveOnCommenting(IndividualDealer individualDealer)
         {
             if(individualDealer.IsActive = false)
             {
@@ -24,5 +24,5 @@ namespace ESISA.Core.Application.Rules.BusinessRules
         }
     }
 
-  
+
 }

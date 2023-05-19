@@ -1,0 +1,26 @@
+﻿using MediatR;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ESISA.Core.Application.Features.MediatR.Commands.UserRoles.Delete
+{
+    public class DeleteUserRoleCommandRequest : IRequest<DeleteUserRoleCommandResponse>
+    {
+        public Guid UserId { get; set; }
+        public Guid RoleId { get; set; }
+
+        public DeleteUserRoleCommandRequest()
+        {
+
+        }
+
+        public DeleteUserRoleCommandRequest(Guid userId, Guid roleId)
+        {
+            UserId = userId;
+            RoleId = roleId;
+        }
+    }
+}

@@ -40,7 +40,7 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.Comments.ToDealer.Cre
             var individualDealer = await _individualDealerQueryRepository.GetByIdAsync(request.IndividualDealerId);
 
             await _individualStarterBusinessRules.NullCheck(individualCustomer);
-            await _individualStarterBusinessRules.CheckIfIndividualDealerAccountActive(individualDealer);
+            await _individualStarterBusinessRules.CheckIfIndividualDealerAccountActiveOnCommenting(individualDealer);
 
             var individualDealerComment = await _individualCustomerIndividualDealerCommentQueryRepository.GetSingleAsync(e => e.IndividualCustomerId == request.IndividualCustomerId && e.IndividualDealerId == request.IndividualDealerId && e.Title == request.CommentTitle && e.Content == request.CommentContent);
 

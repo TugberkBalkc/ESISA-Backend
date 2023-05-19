@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ESISA.Core.Application.Constants.Response;
 using ESISA.Core.Application.Dtos;
 using ESISA.Core.Application.Dtos.CorporateCustomer;
 using ESISA.Core.Application.Dtos.Security.Authentication;
@@ -11,6 +12,8 @@ using ESISA.Core.Application.Interfaces.Repositories;
 using ESISA.Core.Application.Interfaces.Services.Authentications;
 using ESISA.Core.Application.Utilities.Security.Hashing;
 using ESISA.Core.Domain.Entities;
+using ESISA.Core.Domain.Exceptions.BusinessLogic;
+using ESISA.Infrastructure.Persistence.EntityFramework.Repositories;
 
 namespace ESISA.Infrastructure.Persistence.Services
 {
@@ -22,36 +25,49 @@ namespace ESISA.Infrastructure.Persistence.Services
         private readonly IUserQueryRepository _userQueryRepository;       
 
         private readonly IDealerCommandRepository _dealerCommandRepository;
+        private readonly IDealerQueryRepository _dealerQueryRepository;
+
         private readonly ICustomerCommandRepository _customerCommandRepository;
-        
+        private readonly ICustomerQueryRepository _customerQueryRepository;
+
         private readonly IIndividualDealerCommandRepository _individualDealerCommandRepository;
         private readonly IIndividualCustomerCommandRepository _individualCustomerCommandRepository;
+        private readonly IIndividualCustomerQueryRepository _individualCustomerQueryRepository;
 
         private readonly ICorporateCustomerCommandRepository _corporateCustomerCommandRepository;
+        private readonly ICorporateCustomerQueryRepository _corporateCustomerQueryRepository;
+
         private readonly ICorporateDealerCommandRepository _corporateDealerCommandRepository;
+        private readonly ICorporateDealerQueryRepository _corporateDealerQueryRepository;
 
         private readonly IMapper _mapper;
 
         public AuthenticationManager
             (ITokenHandler tokenHandler, IUserCommandRepository userCommandRepository, IUserQueryRepository userQueryRepository,
              IDealerCommandRepository dealerCommandRepository, ICustomerCommandRepository customerCommandRepository,
-             IIndividualDealerCommandRepository individualDealerCommandRepository, IIndividualCustomerCommandRepository individualCustomerCommandRepository, ICorporateCustomerCommandRepository corporateCustomerCommandRepository,
-             ICorporateDealerCommandRepository corporateDealerCommandRepository, IMapper mapper)
+             IIndividualDealerCommandRepository individualDealerCommandRepository, IIndividualCustomerCommandRepository individualCustomerCommandRepository, ICorporateCustomerCommandRepository corporateCustomerCommandRepository, ICorporateCustomerQueryRepository corporateCustomerQueryRepository,
+             ICorporateDealerCommandRepository corporateDealerCommandRepository, ICorporateDealerQueryRepository corporateDealerQueryRepository, IMapper mapper,ICustomerQueryRepository customerQueryRepository, IIndividualCustomerQueryRepository individualCustomerQueryRepository, IDealerQueryRepository dealerQueryRepository)
         {
             _tokenHandler = tokenHandler;
 
             _userCommandRepository = userCommandRepository;
             _userQueryRepository = userQueryRepository;
 
+
             _dealerCommandRepository = dealerCommandRepository;
+            _dealerQueryRepository = dealerQueryRepository;
+
             _customerCommandRepository = customerCommandRepository;
+            _customerQueryRepository = customerQueryRepository;
 
             _individualDealerCommandRepository = individualDealerCommandRepository; ;
             _individualCustomerCommandRepository = individualCustomerCommandRepository;
-
+            _individualCustomerQueryRepository = individualCustomerQueryRepository;
             _corporateCustomerCommandRepository = corporateCustomerCommandRepository;
+            _corporateCustomerQueryRepository = corporateCustomerQueryRepository;
 
             _corporateDealerCommandRepository = corporateDealerCommandRepository;
+            _corporateDealerQueryRepository = corporateDealerQueryRepository;
 
             _mapper = mapper;
         }
@@ -66,12 +82,6 @@ namespace ESISA.Infrastructure.Persistence.Services
             return userDto;
         }
 
-        public Task<bool> VerifyResetTokenAsync(string resetToken, Guid userId)
-        {
-            throw new NotImplementedException();
-        }
-
-
         public Task<Token> GoogleLoginAsync(string idToken, int tokenLifeTimeInSeconds)
         {
             throw new NotImplementedException();
@@ -83,27 +93,61 @@ namespace ESISA.Infrastructure.Persistence.Services
         }
 
 
-        public Task<Token> LoginAsStarterAsync(StarterLoginDto starterLoginDto, int tokenLifeTimeInSeconds)
+        public async Task<Token> LoginAsStarterAsync(StarterLoginDto starterLoginDto)
+        {
+            var user = await _userQueryRepository.GetSingleAsync(e => e.Email == starterLoginDto.StarterEmail);
+
+            this.VerifyUserPassword(starterLoginDto.StarterPassword, user.PasswordHash, user.PasswordSalt);
+
+            var usersRoleNames = _userQueryRepository.GetRolesByUserId(user.Id).Select(e => e.Name).ToArray();
+
+            var customer = await _customerQueryRepository.GetSingleAsync(e => e.UserId == user.Id);
+
+            var individualCustomer = await _individualCustomerQueryRepository.GetSingleAsync(e => e.CustomerId == customer.Id);
+
+            var token = _tokenHandler.CreateTokenForIndividualStarter(user.Id, individualCustomer.FirstName, individualCustomer.LastName, user.Email, usersRoleNames);
+
+            return token;
+        }
+
+        public async Task<Token> LoginAsCorporateCustomerAsync(CorporateCustomerLoginDto corporateCustomerLoginDto)
+        {
+            var corporateCustomer = await _corporateCustomerQueryRepository.GetSingleAsync(e => e.TaxIdentityNumber == corporateCustomerLoginDto.CorporateCustomerTaxIdentityNumber);
+
+            var customer = await _customerQueryRepository.GetByIdAsync(corporateCustomer.CustomerId);
+            var user = await _userQueryRepository.GetByIdAsync(customer.UserId);
+
+            this.VerifyUserPassword(corporateCustomerLoginDto.CorporateCustomerPassword, user.PasswordHash, user.PasswordSalt);
+
+            var usersRoleNames = _userQueryRepository.GetRolesByUserId(user.Id).Select(e => e.Name).ToArray();
+
+            var token = _tokenHandler.CreateTokenForCorporateUser(user.Id, corporateCustomer.TaxIdentityNumber, user.Email, usersRoleNames);
+
+            return token;
+        }
+
+        public async Task<Token> LoginAsCorporateDealerAsync(CorporateDealerLoginDto corporateDealerLoginDto)
+        {
+            var corporateDealer = await _corporateDealerQueryRepository.GetSingleAsync(e => e.TaxIdentityNumber == corporateDealerLoginDto.CorporateDealerTaxIdentityNumber);
+
+            var dealer = await _dealerQueryRepository.GetByIdAsync(corporateDealer.DealerId);
+            var user = await _userQueryRepository.GetByIdAsync(dealer.UserId);
+
+            this.VerifyUserPassword(corporateDealerLoginDto.CorporateDealerPassword, user.PasswordHash, user.PasswordSalt);
+
+            var usersRoleNames = _userQueryRepository.GetRolesByUserId(user.Id).Select(e => e.Name).ToArray();
+
+            var token = _tokenHandler.CreateTokenForCorporateUser(user.Id, corporateDealer.TaxIdentityNumber, user.Email, usersRoleNames);
+
+            return token;
+        }
+
+        public Task<Token> LoginAsModeratorAsync(ModeratorLoginDto moderatorLoginDto)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Token> LoginAsCorporateCustomerAsync(CorporateCustomerLoginDto customerLoginDto, int tokenLifeTimeInSeconds)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Token> LoginAsCorporateDealerAsync(CorporateDealerLoginDto corporateDealerLoginDto, int tokenLifeTimeInSeconds)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Token> LoginAsModeratorAsync(ModeratorLoginDto moderatorLoginDto, int tokenLifeTimeInSeconds)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Token> LoginAsSupportAsync(SupportLoginDto supportLoginDto, int tokenLifeTimeInSeconds)
+        public Task<Token> LoginAsSupportAsync(SupportLoginDto supportLoginDto)
         {
             throw new NotImplementedException();
         }
@@ -178,7 +222,7 @@ namespace ESISA.Infrastructure.Persistence.Services
             await _corporateDealerCommandRepository.SaveChangesAsync();
 
             var corporateDealerDto = _mapper.Map<CorporateDealerDto>(registerCorporateDealerDto);
-            this.SetCorporateDealerDto(corporateDealerDto, user, dealer.Id, corporateDealer.Id);
+            this.SetCorporateDealerDto(corporateDealerDto, user, dealer.Id, corporateDealer.Id, corporateDealer.AddressId, corporateDealer.SalesCategoryId);
             return corporateDealerDto;
         }
 
@@ -217,6 +261,13 @@ namespace ESISA.Infrastructure.Persistence.Services
             throw new NotImplementedException();
         }
 
+        private void VerifyUserPassword(String userPassword, byte[] userPasswordHash, byte[] userPasswordSalt)
+        {
+            var compareResult = HashingHelper.VerifyHashes(userPassword, userPasswordHash, userPasswordSalt);
+
+            if (!compareResult)
+                throw new BusinessLogicException(ResponseTitles.Error, ResponseMessages.UserPasswordOrEmailNotCorrect);
+        }
 
         private void SetUserPassword(User user, String password)
         {
@@ -269,15 +320,18 @@ namespace ESISA.Infrastructure.Persistence.Services
         {
             corporateDealer.DealerId = dealerId;
         }
-        private void SetCorporateDealerDto(CorporateDealerDto corporateDealerDto, User user, Guid dealerId, Guid corporateDealerId)
+        private void SetCorporateDealerDto(CorporateDealerDto corporateDealerDto, User user, Guid dealerId, Guid corporateDealerId, Guid addressId, Guid categoryId)
         {
             corporateDealerDto.CorporateDealerUserCreatedDate = user.CreatedDate;
             corporateDealerDto.CorporateDealerUserModifiedDate = user.ModifiedDate;
             corporateDealerDto.CorporateDealerUserIsActive = user.IsActive;
             corporateDealerDto.CorporateDealerUserIsDeleted = user.IsDeleted;
             corporateDealerDto.CorporateDealerUserId = user.Id;
-            corporateDealerDto.CorporateDealerId = dealerId;
+            corporateDealerDto.CorporateDealerDealerId = dealerId;
             corporateDealerDto.CorporateDealerId = corporateDealerId;
+
+            corporateDealerDto.CorporateDealerAddressId = addressId;
+            corporateDealerDto.CorporateDealerSalesCategoryId = categoryId;
         }
     }
 }

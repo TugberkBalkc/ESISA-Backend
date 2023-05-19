@@ -8,5 +8,7 @@ namespace ESISA.Core.Application.Dtos.Security.Authentication.Logins
 {
     public class CorporateCustomerLoginDto
     {
+        public String CorporateCustomerTaxIdentityNumber { get; set; }
+        public String CorporateCustomerPassword { get; set; }
     }
 }

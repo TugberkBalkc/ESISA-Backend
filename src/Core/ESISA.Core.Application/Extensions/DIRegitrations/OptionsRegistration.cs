@@ -18,8 +18,8 @@ namespace ESISA.Core.Application.Extensions.DIRegitrations
             services.ConfigureTokenOptions(configuration);
             services.ConfigureDatabaseOptions(configuration);
         }
-
-        private static void ConfigureTokenOptions(this IServiceCollection services, IConfiguration configuration)
+        //TODO DUZELT
+        public static void ConfigureTokenOptions(this IServiceCollection services, IConfiguration configuration)
         {
             services.Configure<TokenOptions>(accessTokenOptions =>
             {
@@ -27,7 +27,7 @@ namespace ESISA.Core.Application.Extensions.DIRegitrations
             });
         }
 
-        private static void ConfigureDatabaseOptions(this IServiceCollection services, IConfiguration configuration)
+        public static void ConfigureDatabaseOptions(this IServiceCollection services, IConfiguration configuration)
         {
             services.Configure<SqlServerDatabaseOptions>(databaseOptions =>
             {

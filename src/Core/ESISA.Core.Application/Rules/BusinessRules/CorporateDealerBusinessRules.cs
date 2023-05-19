@@ -14,7 +14,7 @@ namespace ESISA.Core.Application.Rules.BusinessRules
     {
         public CorporateDealerBusinessRules() : base("Kurumsal Satıcı") { }
 
-        public async Task CheckIfCorporateDealerAccountActive(CorporateDealer corporateDealer)
+        public async Task CheckIfCorporateDealerAccountActiveOnCommenting(CorporateDealer corporateDealer)
         {
             if (corporateDealer.IsActive == false)
             {

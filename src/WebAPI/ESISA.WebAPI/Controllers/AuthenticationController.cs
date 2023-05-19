@@ -1,5 +1,8 @@
-﻿using ESISA.Core.Application.Features.MediatR.Commands.CorporateCustomer.RegisterAsCorporateCustomer;
+﻿using ESISA.Core.Application.Features.MediatR.Commands.CorporateCustomer.LoginAsCorporateCustomer;
+using ESISA.Core.Application.Features.MediatR.Commands.CorporateCustomer.RegisterAsCorporateCustomer;
+using ESISA.Core.Application.Features.MediatR.Commands.CorporateDealer.LoginAsCorporateDealer;
 using ESISA.Core.Application.Features.MediatR.Commands.CorporateDealer.RegisterAsCorporateDealer;
+using ESISA.Core.Application.Features.MediatR.Commands.IndividualStarter.LoginAsIndividualStarter;
 using ESISA.Core.Application.Features.MediatR.Commands.IndividualStarter.RegisterAsIndividualStarter;
 using ESISA.WebAPI.Controllers.Common;
 using MediatR;
@@ -14,6 +17,30 @@ namespace ESISA.WebAPI.Controllers
     {
         public AuthenticationController(IHttpContextAccessor httpContextAccessor, IMediator mediator) : base(httpContextAccessor, mediator)
         {
+        }
+
+        [HttpPost("LoginAsIndividualStarter")]
+        public async Task<IActionResult> LoginAsIndividualStarterAsync([FromBody] LoginAsIndividualStarterCommandRequest loginAsIndividualStarterCommandRequest)
+        {
+            var response = await _mediator.Send(loginAsIndividualStarterCommandRequest);
+
+            return base.ActionResultInstanceByResponse(response.Response);
+        }
+
+        [HttpPost("LoginAsCorporateCustomer")]
+        public async Task<IActionResult> RegisterAsCorporateCustomerAsync([FromBody] LoginAsCorporateCustomerCommandRequest loginAsCorporateCustomerCommandRequest)
+        {
+            var response = await _mediator.Send(loginAsCorporateCustomerCommandRequest);
+
+            return base.ActionResultInstanceByResponse(response.Response);
+        }
+
+        [HttpPost("LoginAsCorporateDealer")]
+        public async Task<IActionResult> LoginAsCorporateDealerAsync([FromBody] LoginAsCorporateDealerCommandRequest loginAsCorporateDealerCommandRequest)
+        {
+            var response = await _mediator.Send(loginAsCorporateDealerCommandRequest);
+
+            return base.ActionResultInstanceByResponse(response.Response);
         }
 
         [HttpPost("RegisterAsIndividualStarter")]
