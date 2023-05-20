@@ -7,7 +7,13 @@ using ESISA.Core.Application.Features.MediatR.Commands.IndividualAdverts.ReduceP
 using ESISA.Core.Application.Features.MediatR.Commands.IndividualAdverts.Update;
 using ESISA.Core.Application.Features.MediatR.Commands.IndividualAdverts.UpdatePrice;
 using ESISA.Core.Application.Features.MediatR.Commands.IndividualAdverts.UpdatePriceByRate;
+using ESISA.Core.Application.Features.MediatR.Queries.IndividualAdverts.GetAllIndividualAdvertDetails;
 using ESISA.Core.Application.Features.MediatR.Queries.IndividualAdverts.GetAllIndividualAdverts;
+using ESISA.Core.Application.Features.MediatR.Queries.IndividualAdverts.GetIndividualAdvertDetailsByBrandId;
+using ESISA.Core.Application.Features.MediatR.Queries.IndividualAdverts.GetIndividualAdvertDetailsByCategoryId;
+using ESISA.Core.Application.Features.MediatR.Queries.IndividualAdverts.GetIndividualAdvertDetailsByDealerId;
+using ESISA.Core.Application.Features.MediatR.Queries.IndividualAdverts.GetIndividualAdvertDetailsByDynamic;
+using ESISA.Core.Application.Features.MediatR.Queries.IndividualAdverts.GetIndividualAdvertDetailsByProductId;
 using ESISA.WebAPI.Controllers.Common;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -95,10 +101,59 @@ namespace ESISA.WebAPI.Controllers
             return base.ActionResultInstanceByResponse(response.Response);
         }
 
+        [HttpPost("GetIndividualAdvertDetailsByDynamic")]
+        public async Task<IActionResult> GetIndividualAdvertDetailsByDynamic([FromBody] GetIndividualAdvertDetailsByDynamicQueryRequest getIndividualAdvertDetailsByDynamicQueryRequest)
+        {
+            var response = await _mediator.Send(getIndividualAdvertDetailsByDynamicQueryRequest);
+
+            return base.ActionResultInstanceByResponse(response.Response);
+        }
+
         [HttpGet("GetAllIndividualAdverts")]
         public async Task<IActionResult> GetAllIndividualAdvertsAsync([FromQuery] GetAllIndividualAdvertsQueryRequest getAllIndividualAdvertsQueryRequest)
         {
             var response = await _mediator.Send(getAllIndividualAdvertsQueryRequest);
+
+            return base.ActionResultInstanceByResponse(response.Response);
+        }
+
+
+        [HttpGet("GetAllIndividualAdvertDetails")]
+        public async Task<IActionResult> GetAllIndividualAdvertDetailsAsync([FromQuery] GetAllIndividualAdvertDetailsQueryRequest getAllIndividualAdvertDetailsQueryRequest)
+        {
+            var response = await _mediator.Send(getAllIndividualAdvertDetailsQueryRequest);
+
+            return base.ActionResultInstanceByResponse(response.Response);
+        }
+
+        [HttpGet("GetIndividualAdvertDetailsByCategoryId")]
+        public async Task<IActionResult> GetIndividualAdvertDetailsByCategoryId([FromQuery] GetIndividualAdvertDetailsByCategoryIdQueryRequest getIndividualAdvertDetailsByCategoryIdQueryRequest)
+        {
+            var response = await _mediator.Send(getIndividualAdvertDetailsByCategoryIdQueryRequest);
+
+            return base.ActionResultInstanceByResponse(response.Response);
+        }
+
+        [HttpGet("GetIndividualAdvertDetailsByBrandId")]
+        public async Task<IActionResult> GetIndividualAdvertDetailsByBrandId([FromQuery] GetIndividualAdvertDetailsByBrandIdQueryRequest getIndividualAdvertDetailsByBrandIdQueryRequest)
+        {
+            var response = await _mediator.Send(getIndividualAdvertDetailsByBrandIdQueryRequest);
+
+            return base.ActionResultInstanceByResponse(response.Response);
+        }
+
+        [HttpGet("GetIndividualAdvertDetailsByDealerId")]
+        public async Task<IActionResult> GetIndividualAdvertDetailsByDealerId([FromQuery] GetIndividualAdvertDetailsByDealerIdQueryRequest getIndividualAdvertDetailsByDealerIdQueryRequest)
+        {
+            var response = await _mediator.Send(getIndividualAdvertDetailsByDealerIdQueryRequest);
+
+            return base.ActionResultInstanceByResponse(response.Response);
+        }
+
+        [HttpGet("GetIndividualAdvertDetailsByProductId")]
+        public async Task<IActionResult> GetIndividualAdvertDetailsByProductId([FromQuery] GetIndividualAdvertDetailsByProductIdQueryRequest getIndividualAdvertDetailsByProductIdQueryRequest)
+        {
+            var response = await _mediator.Send(getIndividualAdvertDetailsByProductIdQueryRequest);
 
             return base.ActionResultInstanceByResponse(response.Response);
         }

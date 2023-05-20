@@ -18,12 +18,6 @@ namespace ESISA.Core.Application.Mappings.CustomMapper
             individualAdvertDto.AdvertId = advert.Id;
             individualAdvertDto.IndividualAdvertId = individualAdvert.Id;
 
-            individualAdvertDto.AdvertCreatedDate = advert.CreatedDate;
-            individualAdvertDto.AdvertModifiedDate = advert.ModifiedDate;
-            individualAdvertDto.AdvertIsActive = advert.IsActive;
-            individualAdvertDto.IsIndividualAdvertActive = individualAdvert.IsActive;
-            individualAdvertDto.AdvertIsDeleted = advert.IsDeleted;
-
             individualAdvertDto.AdvertTitle = advert.Title;
             individualAdvertDto.AdvertDescription = advert.Description;
 
@@ -43,12 +37,7 @@ namespace ESISA.Core.Application.Mappings.CustomMapper
 
             corporateAdvertDto.AdvertId = advert.Id;
             corporateAdvertDto.CorporateAdvertId = corporateAdvert.Id;
-
-            corporateAdvertDto.AdvertCreatedDate = advert.CreatedDate;
-            corporateAdvertDto.AdvertModifiedDate = advert.ModifiedDate;
-            corporateAdvertDto.AdvertIsActive = advert.IsActive;
             corporateAdvertDto.IsCorporateAdvertActive = corporateAdvert.IsActive;
-            corporateAdvertDto.AdvertIsDeleted = advert.IsDeleted;
 
             corporateAdvertDto.AdvertTitle = advert.Title;
             corporateAdvertDto.AdvertDescription = advert.Description;

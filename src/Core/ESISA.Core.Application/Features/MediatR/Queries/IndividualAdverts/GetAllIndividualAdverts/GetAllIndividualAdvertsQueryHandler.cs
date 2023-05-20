@@ -30,35 +30,14 @@ namespace ESISA.Core.Application.Features.MediatR.Queries.IndividualAdverts.GetA
 
         public async Task<GetAllIndividualAdvertsQueryResponse> Handle(GetAllIndividualAdvertsQueryRequest request, CancellationToken cancellationToken)
         {
-            var individualAdverts = _individualAdvertQueryRepository.GetAll();
+            var individualAdverts = _individualAdvertQueryRepository.GetAll(false, null, e=>e.Advert);
 
-            await _individualAdvertBusinessRules.NullCheck(individualAdverts);
-
-            var advertIds = individualAdverts.Select(e => e.AdvertId);
-
-            var adverts = await this.SetIndividualAdvertsToAdvertsAsync(individualAdverts);
-
-            var individualAdvertDtos = CustomMappingTool.MapIndividualAdvertDtosWithCustomMapper(adverts, individualAdverts.ToList());
+            var individualAdvertDtos = individualAdverts.Select(e => _mapper.Map<IndividualAdvertDto>(e));
 
             var paginate = individualAdvertDtos.ToPaginate<IndividualAdvertDto>(request.PageIndex, request.PageSize);
 
             return new GetAllIndividualAdvertsQueryResponse(new SuccessfulContentResponse<IPaginate<IndividualAdvertDto>>(paginate, ResponseTitles.Success, ResponseMessages.IndividualAdvertsListed, System.Net.HttpStatusCode.OK));
         }
 
-        private async Task<List<Advert>> SetIndividualAdvertsToAdvertsAsync(IQueryable<IndividualAdvert> individualAdverts)
-        {
-            var advertIds = individualAdverts.Select(e => e.AdvertId).ToList();
-
-            List<Advert> adverts = new List<Advert>();
-
-            foreach (var advertId in advertIds)
-            {
-                var advert = await _advertQueryRepository.GetByIdAsync(advertId);
-
-                adverts.Add(advert);
-            }
-
-            return adverts;
-        }
     }
 }

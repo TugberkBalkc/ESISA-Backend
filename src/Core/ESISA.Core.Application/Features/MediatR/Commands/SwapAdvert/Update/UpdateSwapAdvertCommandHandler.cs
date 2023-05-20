@@ -58,11 +58,6 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.SwapAdverts.Update
             swapAdvertDto.AdvertId = advert.Id;
             swapAdvertDto.SwapAdvertId = swapAdvert.Id;
 
-            swapAdvertDto.AdvertCreatedDate = advert.CreatedDate;
-            swapAdvertDto.AdvertModifiedDate = advert.ModifiedDate;
-            swapAdvertDto.AdvertIsActive = advert.IsActive;
-            swapAdvertDto.AdvertIsDeleted = advert.IsDeleted;
-
             swapAdvertDto.SwapAdvertIndividualDealerId = swapAdvert.IndividualDealerId;
             swapAdvertDto.SwapAdvertProductId = swapAdvert.ProductId;
         }

@@ -13,17 +13,17 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.CorporateAdverts.Redu
     public class ReduceCorporateAdvertPriceByRateCommandRequest : IRequest<ReduceCorporateAdvertPriceByRateCommandResponse>
     {
         public Guid CorporateAdvertId { get; set; }
-        public PriceChangeRateType RaiseRate { get; set; }
+        public PriceChangeRateType ReduceRate { get; set; }
 
         public ReduceCorporateAdvertPriceByRateCommandRequest()
         {
 
         }
 
-        public ReduceCorporateAdvertPriceByRateCommandRequest(Guid corporateAdvertId, PriceChangeRateType raiseRate)
+        public ReduceCorporateAdvertPriceByRateCommandRequest(Guid corporateAdvertId, PriceChangeRateType reduceRate)
         {
             CorporateAdvertId = corporateAdvertId;
-            RaiseRate = raiseRate;
+            ReduceRate = reduceRate;
         }
     }
 }

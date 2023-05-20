@@ -9,6 +9,7 @@ using ESISA.WebAPI.Controllers.Common;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Identity.Client;
 
 namespace ESISA.WebAPI.Controllers
 {
@@ -21,6 +22,7 @@ namespace ESISA.WebAPI.Controllers
         }
 
         [HttpPost("CreateMainCategory")]
+
         public async Task<IActionResult> CreateMainCategoryAsync([FromBody] CreateMainCategoryCommandRequest createMainCategoryCommandRequest)
         {
             var response = await base._mediator.Send(createMainCategoryCommandRequest);

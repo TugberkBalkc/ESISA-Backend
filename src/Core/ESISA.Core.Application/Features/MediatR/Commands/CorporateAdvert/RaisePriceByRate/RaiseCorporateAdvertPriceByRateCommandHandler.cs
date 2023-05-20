@@ -3,6 +3,7 @@ using ESISA.Core.Application.Dtos.Advert.CorporateAdverts;
 using ESISA.Core.Application.Interfaces.Repositories;
 using ESISA.Core.Application.Mappings.CustomMapper;
 using ESISA.Core.Application.Rules.BusinessRules;
+using ESISA.Core.Application.Utilities.Common;
 using ESISA.Core.Application.Utilities.Response.ContentResponse;
 using MediatR;
 
@@ -32,7 +33,7 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.CorporateAdverts.Rais
             await _corporateAdvertBusinessRules.NullCheck(corporateAdvert);
             await _corporateAdvertBusinessRules.CheckIfCorporateAdvertSold(corporateAdvert);
 
-            corporateAdvert.UnitPrice = corporateAdvert.UnitPrice + (corporateAdvert.UnitPrice * Convert.ToInt32(request.RaiseRate) / 100);
+            corporateAdvert.UnitPrice = PriceChangeUtility.RaisePriceByRate(corporateAdvert.UnitPrice, Convert.ToDecimal(request.RaiseRate));
 
             _corporateAdvertCommandRepository.Update(corporateAdvert);
             await _corporateAdvertCommandRepository.SaveChangesAsync();

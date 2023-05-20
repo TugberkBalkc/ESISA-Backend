@@ -3,6 +3,7 @@ using ESISA.Core.Application.Dtos.Advert.IndividualAdverts;
 using ESISA.Core.Application.Interfaces.Repositories;
 using ESISA.Core.Application.Mappings.CustomMapper;
 using ESISA.Core.Application.Rules.BusinessRules;
+using ESISA.Core.Application.Utilities.Common;
 using ESISA.Core.Application.Utilities.Response.ContentResponse;
 using ESISA.Core.Domain.Entities;
 using MediatR;
@@ -33,7 +34,7 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.IndividualAdverts.Red
             await _individualAdvertBusinessRules.NullCheck(individualAdvert);
             await _individualAdvertBusinessRules.CheckIfIndividualAdvertSold(individualAdvert);
 
-            individualAdvert.Price = individualAdvert.Price - (individualAdvert.Price * Convert.ToInt32(request.ReduceRate) / 100);
+            individualAdvert.Price = PriceChangeUtility.ReducePriceByRate(individualAdvert.Price, Convert.ToDecimal(request.ReduceRate));
 
             _individualAdvertCommandRepository.Update(individualAdvert);
             await _individualAdvertCommandRepository.SaveChangesAsync();

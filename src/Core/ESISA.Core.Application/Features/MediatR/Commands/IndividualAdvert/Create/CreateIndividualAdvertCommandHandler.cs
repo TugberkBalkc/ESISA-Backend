@@ -68,11 +68,7 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.IndividualAdverts.Cre
             individualAdvertDto.AdvertId = advert.Id;
             individualAdvertDto.IndividualAdvertId = individualAdvertId;
 
-            individualAdvertDto.AdvertCreatedDate = advert.CreatedDate;
-            individualAdvertDto.AdvertModifiedDate = advert.ModifiedDate;
-            individualAdvertDto.AdvertIsActive = advert.IsActive;
             individualAdvertDto.IsIndividualAdvertActive = advert.IsActive;
-            individualAdvertDto.AdvertIsDeleted = advert.IsDeleted;
         }
     }
 }

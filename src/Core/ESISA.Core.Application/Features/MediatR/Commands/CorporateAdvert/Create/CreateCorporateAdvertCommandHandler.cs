@@ -64,11 +64,6 @@ namespace ESISA.Core.Application.Features.MediatR.Commands.CorporateAdverts.Crea
         {
             corporateAdvertDto.AdvertId = advert.Id;
             corporateAdvertDto.CorporateAdvertId = corporateAdvertId;
-
-            corporateAdvertDto.AdvertCreatedDate = advert.CreatedDate;
-            corporateAdvertDto.AdvertModifiedDate = advert.ModifiedDate;
-            corporateAdvertDto.AdvertIsActive = advert.IsActive;
-            corporateAdvertDto.AdvertIsDeleted = advert.IsDeleted;
             corporateAdvertDto.IsCorporateAdvertActive = advert.IsActive;
         }
     }

@@ -30,7 +30,5 @@ namespace ESISA.Core.Application.Dtos.Adress
             Details=details;    
 
         }
-
-
     }
 }

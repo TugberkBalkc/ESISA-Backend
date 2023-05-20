@@ -32,7 +32,7 @@ namespace ESISA.Core.Application.Utilities.DynamicQuerying.Extensions
 
             if (!string.IsNullOrEmpty(queryString) && values is not null)
                 query = query.Where(queryString, values);
-
+               
             return query;
         }
 
@@ -94,7 +94,7 @@ namespace ESISA.Core.Application.Utilities.DynamicQuerying.Extensions
                 else if (compareOperator == DynamicQueryConstants.StartsWithOperatorValueName || compareOperator == DynamicQueryConstants.EndsWithOperatorValueName || compareOperator == DynamicQueryConstants.ContainsOperatorValueName)
                     queryStringBuilder.Append($"(np({filter.Field}).{compareOperator}(@{index}))");
                 else
-                    queryStringBuilder.Append($"np({filter.Field}) {compareOperator} @{index}");
+                    queryStringBuilder.Append($"np({filter.Field}) {compareOperator} (@{index})");
             }
             else if(filter.Operator == DynamicQueryConstants.IsNullContainsOperatorKeyName || filter.Operator == DynamicQueryConstants.IsNotNullContainsOperatorKeyName)
             {
