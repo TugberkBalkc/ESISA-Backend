@@ -32,6 +32,8 @@ namespace ESISA.Core.Application.Features.MediatR.Queries.IndividualAdverts.GetA
         {
             var individualAdverts = _individualAdvertQueryRepository.GetAllIncluded(false, null);
 
+            await _individualAdvertBusinessRules.NullCheck(individualAdverts);
+
             var individualAdvertDetailsDtos = individualAdverts.Select(e => _mapper.Map<IndividualAdvertDetailsDto>(e));
 
             var paginate = individualAdvertDetailsDtos.ToPaginate<IndividualAdvertDetailsDto>(request.PageIndex, request.PageSize);

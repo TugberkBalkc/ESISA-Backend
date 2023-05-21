@@ -108,13 +108,13 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Repositories
 
             query.Include(e => e.IndividualCustomerIndividualAdvertFavorites);
 
+            if (trackingStatus is not true)
+                query = query.AsNoTracking();
+
             query = query.ToDynamic<IndividualAdvert>(dynamicQuery);
 
             if (predicate is not null)
                 query = query.Where(predicate);
-
-            if (trackingStatus is not true)
-                query = query.AsNoTracking();
 
             return query;
         }

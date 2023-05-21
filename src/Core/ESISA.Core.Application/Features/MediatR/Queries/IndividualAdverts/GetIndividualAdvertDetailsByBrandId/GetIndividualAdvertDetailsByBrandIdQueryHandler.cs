@@ -27,11 +27,13 @@ namespace ESISA.Core.Application.Features.MediatR.Queries.IndividualAdverts.GetI
         {
             var individualAdverts = _individualAdvertQueryRepository.GetWhereIncluded(e => e.Product.BrandId == request.BrandId, false, null);
 
+            await _individualAdvertBusinessRules.NullCheck(individualAdverts);
+
             var individualAdvertDetailsDtos = individualAdverts.Select(e => _mapper.Map<IndividualAdvertDetailsDto>(e));
 
             var paginate = individualAdvertDetailsDtos.ToPaginate<IndividualAdvertDetailsDto>(request.PageIndex, request.PageSize);
 
-            return await Task.FromResult(new GetIndividualAdvertDetailsByBrandQueryResponse(new SuccessfulContentResponse<IPaginate<IndividualAdvertDetailsDto>>(paginate, ResponseTitles.Success, ResponseMessages.IndividualAdvertsListed, System.Net.HttpStatusCode.OK)));
+            return new GetIndividualAdvertDetailsByBrandQueryResponse(new SuccessfulContentResponse<IPaginate<IndividualAdvertDetailsDto>>(paginate, ResponseTitles.Success, ResponseMessages.IndividualAdvertsListed, System.Net.HttpStatusCode.OK));
         }
     }
 }

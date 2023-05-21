@@ -12,6 +12,11 @@ using Microsoft.AspNetCore.Mvc;
 using ESISA.Core.Application.Features.MediatR.Commands.CorporateAdverts.RaisePriceByRate;
 using ESISA.Core.Application.Features.MediatR.Commands.CorporateAdverts.UpdatePrice;
 using ESISA.Core.Application.Features.MediatR.Commands.CorporateAdverts.UpdateStock;
+using ESISA.Core.Application.Features.MediatR.Queries.CorporateAdverts.GetAllCorporateAdvertDetails;
+using ESISA.Core.Application.Features.MediatR.Queries.CorporateAdverts.GetCorporateAdvertDetailsByCategoryId;
+using ESISA.Core.Application.Features.MediatR.Queries.CorporateAdverts.GetCorporateAdvertDetailsByBrandId;
+using ESISA.Core.Application.Features.MediatR.Queries.CorporateAdverts.GetCorporateAdvertDetailsByProductId;
+using ESISA.Core.Application.Features.MediatR.Queries.CorporateAdverts.GetCorporateAdvertDetailsByDealerId;
 
 namespace ESISA.WebAPI.Controllers
 {
@@ -99,6 +104,54 @@ namespace ESISA.WebAPI.Controllers
         public async Task<IActionResult> UpdateCorporateAdvertStockAsync([FromBody] UpdateCorporateAdvertStockCommandRequest updateCorporateAdvertStockCommandRequest)
         {
             var response = await _mediator.Send(updateCorporateAdvertStockCommandRequest);
+
+            return base.ActionResultInstanceByResponse(response.Response);
+        }
+
+        [HttpGet("GetAllCorporateAdverts")]
+        public async Task<IActionResult> GetAllCorporateAdvertsAsync([FromQuery] GetAllCorporateAdvertDetailsQueryRequest getAllCorporateAdvertDetailsQueryRequest)
+        {
+            var response = await _mediator.Send(getAllCorporateAdvertDetailsQueryRequest);
+
+            return base.ActionResultInstanceByResponse(response.Response);
+        }
+
+        [HttpGet("GetAllCorporateAdvertDetails")]
+        public async Task<IActionResult> GetAllCorporateAdvertDetailsAsync([FromQuery] GetAllCorporateAdvertDetailsQueryRequest getAllCorporateAdvertDetailsQueryRequest)
+        {
+            var response = await _mediator.Send(getAllCorporateAdvertDetailsQueryRequest);
+
+            return base.ActionResultInstanceByResponse(response.Response);
+        }
+
+        [HttpGet("GetCorporateAdvertDetailsByCategoryId")]
+        public async Task<IActionResult> GetCorporateAdvertDetailsByCategoryIdAsync([FromQuery] GetCorporateAdvertDetailsByCategoryIdQueryRequest getCorporateAdvertDetailsByCategoryIdQueryRequest)
+        {
+            var response = await _mediator.Send(getCorporateAdvertDetailsByCategoryIdQueryRequest);
+
+            return base.ActionResultInstanceByResponse(response.Response);
+        }
+
+        [HttpGet("GetCorporateAdvertDetailsByBrandId")]
+        public async Task<IActionResult> GetCorporateAdvertDetailsByBrandIdAsync([FromQuery] GetCorporateAdvertDetailsByBrandIdQueryRequest getCorporateAdvertDetailsByBrandIdQueryRequest)
+        {
+            var response = await _mediator.Send(getCorporateAdvertDetailsByBrandIdQueryRequest);
+
+            return base.ActionResultInstanceByResponse(response.Response);
+        }
+
+        [HttpGet("GetCorporateAdvertDetailsByDealerId")]
+        public async Task<IActionResult> GetCorporateAdvertDetailsByDealerIdAsync([FromQuery] GetCorporateAdvertDetailsByDealerIdQueryRequest getCorporateAdvertDetailsByDealerIdQueryRequest)
+        {
+            var response = await _mediator.Send(getCorporateAdvertDetailsByDealerIdQueryRequest);
+
+            return base.ActionResultInstanceByResponse(response.Response);
+        }
+
+        [HttpGet("GetCorporateAdvertDetailsByProductId")]
+        public async Task<IActionResult> GetCorporateAdvertDetailsByProductIdAsync([FromQuery] GetCorporateAdvertDetailsByProductIdQueryRequest getCorporateAdvertDetailsByProductIdQueryRequest)
+        {
+            var response = await _mediator.Send(getCorporateAdvertDetailsByProductIdQueryRequest);
 
             return base.ActionResultInstanceByResponse(response.Response);
         }

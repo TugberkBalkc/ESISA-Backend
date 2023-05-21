@@ -1,4 +1,5 @@
 ﻿using ESISA.Core.Application.Dtos.Advert.Common;
+using ESISA.Core.Application.Utilities.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,11 +24,13 @@ namespace ESISA.Core.Application.Dtos.Advert.CorporateAdvert
         public Guid CorporateAdvertProductCategoryId { get; set; }
         public String CorporateAdvertProductCategoryName { get; set; }
 
+        public Guid CorporateAdvertProductBrandId { get; set; }
+        public String CorporateAdvertProductBrandName { get; set; }
 
         public Guid CorporateAdvertPurchaseQuantityDiscountId { get; set; }
         public String CorporateAdvertPurchaseQuantityDiscountName { get; set; }
         public decimal CorporateAdvertPurchaseQuantityDiscountRate { get; set; }
-        public decimal CorporateAdvertPurchaseQuantityDiscountDeadline { get; set; }
+        public DateTime CorporateAdvertPurchaseQuantityDiscountDeadline { get; set; }
         
 
         public int CorporateAdvertStockAmount { get; set; }
@@ -44,6 +47,19 @@ namespace ESISA.Core.Application.Dtos.Advert.CorporateAdvert
 
 
         public decimal CorporateAdvertUnitPrice { get; set; }
-        public decimal CorporateAdvertDiscountedUnitPrice { get; set; }
+        public decimal CorporateAdvertDiscountedUnitPrice 
+        {
+            get 
+            {
+                if (this.CorporateAdvertPurchaseQuantityDiscountRate != 0)
+                    return PriceChangeUtility.ReducePriceByRate(this.CorporateAdvertUnitPrice, this.CorporateAdvertPurchaseQuantityDiscountRate);
+                return this.CorporateAdvertUnitPrice;
+            }
+        }
+
+        public int CorporateAdvertCommentsCount { get; set; }
+        public int CorporateAdvertFavoritesCount { get; set; }
+
+        public List<AdvertPhotoPathDto> AdvertPhotos { get; set; }
     }
 }

@@ -23,15 +23,17 @@ namespace ESISA.Core.Application.Features.MediatR.Queries.IndividualAdverts.GetI
             _mapper = mapper;
         }
 
-        public Task<GetIndividualAdvertDetailsByProductIdQueryResponse> Handle(GetIndividualAdvertDetailsByProductIdQueryRequest request, CancellationToken cancellationToken)
+        public async Task<GetIndividualAdvertDetailsByProductIdQueryResponse> Handle(GetIndividualAdvertDetailsByProductIdQueryRequest request, CancellationToken cancellationToken)
         {
             var individualAdverts = _individualAdvertQueryRepository.GetWhereIncluded(e => e.ProductId == request.ProductId, false, null);
+
+            await _individualAdvertBusinessRules.NullCheck(individualAdverts);
 
             var individualAdvertDetailsDtos = individualAdverts.Select(e => _mapper.Map<IndividualAdvertDetailsDto>(e));
 
             var paginate = individualAdvertDetailsDtos.ToPaginate<IndividualAdvertDetailsDto>(request.PageIndex, request.PageSize);
 
-            return Task.FromResult(new GetIndividualAdvertDetailsByProductIdQueryResponse(new SuccessfulContentResponse<IPaginate<IndividualAdvertDetailsDto>>(paginate, ResponseTitles.Success, ResponseMessages.IndividualAdvertsListed, System.Net.HttpStatusCode.OK)));
+            return new GetIndividualAdvertDetailsByProductIdQueryResponse(new SuccessfulContentResponse<IPaginate<IndividualAdvertDetailsDto>>(paginate, ResponseTitles.Success, ResponseMessages.IndividualAdvertsListed, System.Net.HttpStatusCode.OK));
         }
     }
 }

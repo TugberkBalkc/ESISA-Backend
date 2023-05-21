@@ -8,24 +8,24 @@ using ESISA.Core.Application.Utilities.Paging.Extensions;
 using ESISA.Core.Application.Utilities.Response.ContentResponse;
 using MediatR;
 
-namespace ESISA.Core.Application.Features.MediatR.Queries.IndividualAdverts.GetIndividualAdvertDetailsByCategoryId
+namespace ESISA.Core.Application.Features.MediatR.Queries.IndividualAdverts.GetIndividualAdvertDetailsByDealerId
 {
-    public class GetIndividualAdvertDetailsByCategoryIdQueryHandler : IRequestHandler<GetIndividualAdvertDetailsByCategoryIdQueryRequest, GetIndividualAdvertDetailsByCategoryIdQueryResponse>
+    public class GetIndividualAdvertDetailsByDealerIdQueryHandler : IRequestHandler<GetIndividualAdvertDetailsByDealerIdQueryRequest, GetIndividualAdvertDetailsByDealerIdQueryResponse>
     {
         private readonly IIndividualAdvertQueryRepository _individualAdvertQueryRepository;
         private readonly IndividualAdvertBusinessRules _individualAdvertBusinessRules;
         private readonly IMapper _mapper;
 
-        public GetIndividualAdvertDetailsByCategoryIdQueryHandler(IIndividualAdvertQueryRepository individualAdvertQueryRepository, IndividualAdvertBusinessRules individualAdvertBusinessRules, IMapper mapper)
+        public GetIndividualAdvertDetailsByDealerIdQueryHandler(IIndividualAdvertQueryRepository individualAdvertQueryRepository, IndividualAdvertBusinessRules individualAdvertBusinessRules, IMapper mapper)
         {
             _individualAdvertQueryRepository = individualAdvertQueryRepository;
             _individualAdvertBusinessRules = individualAdvertBusinessRules;
             _mapper = mapper;
         }
 
-        public async Task<GetIndividualAdvertDetailsByCategoryIdQueryResponse> Handle(GetIndividualAdvertDetailsByCategoryIdQueryRequest request, CancellationToken cancellationToken)
+        public async Task<GetIndividualAdvertDetailsByDealerIdQueryResponse> Handle(GetIndividualAdvertDetailsByDealerIdQueryRequest request, CancellationToken cancellationToken)
         {
-            var individualAdverts = _individualAdvertQueryRepository.GetWhereIncluded(e => e.Product.CategoryId == request.CategoryId, false, null);
+            var individualAdverts = _individualAdvertQueryRepository.GetWhereIncluded(e => e.IndividualDealerId == request.IndividualDealerId, false, null);
 
             await _individualAdvertBusinessRules.NullCheck(individualAdverts);
 
@@ -33,7 +33,7 @@ namespace ESISA.Core.Application.Features.MediatR.Queries.IndividualAdverts.GetI
 
             var paginate = individualAdvertDetailsDtos.ToPaginate<IndividualAdvertDetailsDto>(request.PageIndex, request.PageSize);
 
-            return new GetIndividualAdvertDetailsByCategoryIdQueryResponse(new SuccessfulContentResponse<IPaginate<IndividualAdvertDetailsDto>>(paginate, ResponseTitles.Success, ResponseMessages.IndividualAdvertsListed, System.Net.HttpStatusCode.OK));
+            return new GetIndividualAdvertDetailsByDealerIdQueryResponse(new SuccessfulContentResponse<IPaginate<IndividualAdvertDetailsDto>>(paginate, ResponseTitles.Success, ResponseMessages.IndividualAdvertsListed, System.Net.HttpStatusCode.OK));
         }
     }
 }
