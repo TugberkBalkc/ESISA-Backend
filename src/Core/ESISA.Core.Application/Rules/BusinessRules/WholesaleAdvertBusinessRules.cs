@@ -9,7 +9,7 @@ namespace ESISA.Core.Application.Rules.BusinessRules
 {
     public class WholesaleAdvertBusinessRules : BusinessRulesBase
     {
-        public WholesaleAdvertBusinessRules() : base("Bireysel İlan")
+        public WholesaleAdvertBusinessRules() : base("Toptan İlan")
         {
         }
     }

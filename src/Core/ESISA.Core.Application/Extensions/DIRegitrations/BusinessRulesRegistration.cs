@@ -14,7 +14,7 @@ namespace ESISA.Core.Application.Extensions.DIRegitrations
     {
         internal static void RegisterBusinessRules(this IServiceCollection services)
         {
-            services.AddScoped<AdressBusinessRules>();
+            services.AddScoped<AddressBusinessRules>();
 
             services.AddScoped<IndividualCustomerAddressBusinessRules>();
 

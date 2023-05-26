@@ -13,7 +13,6 @@ namespace ESISA.Core.Application.Dtos.Advert.CorporateAdvert
         public bool IsCorporateAdvertActive { get; set; }
         public Guid CorporateAdvertId { get; set; }
 
-
         public Guid CorporateAdvertCorporateDealerId { get; set; }
         public String CorporateAdvertCorporateDealerCompanyName { get; set; }
 

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using ESISA.Core.Application.Constants.Response;
-using ESISA.Core.Application.Dtos.Adress;
+using ESISA.Core.Application.Dtos.Adresses;
 using ESISA.Core.Application.Dtos.Product;
 using ESISA.Core.Application.Features.MediatR.Queries.Products.GetAllProductDetails;
 using ESISA.Core.Application.Interfaces.Repositories;

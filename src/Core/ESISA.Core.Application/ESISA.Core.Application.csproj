@@ -36,12 +36,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Dtos\Advert\WholesaleAdvert\" />
     <Folder Include="Features\MediatR\Commands\Comments\ToDealer\DeleteIndivdualDealerComment\" />
     <Folder Include="Features\MediatR\Commands\Favorites\ToAdvert\" />
     <Folder Include="Features\MediatR\Commands\SwapAdvert\DeleteSwappableProduct\" />
     <Folder Include="Features\MediatR\Commands\SwapAdvert\DeleteSwappableCategory\" />
-    <Folder Include="Features\MediatR\Commands\WholesaleAdvert\" />
+    <Folder Include="Features\MediatR\Commands\WholesaleAdvert\AddPhoto\" />
+    <Folder Include="Features\MediatR\Commands\WholesaleAdvert\DeletePhoto\" />
+    <Folder Include="Features\MediatR\Commands\WholesaleAdvert\RaisePrice\" />
+    <Folder Include="Features\MediatR\Commands\WholesaleAdvert\ReducePrice\" />
+    <Folder Include="Features\MediatR\Commands\WholesaleAdvert\UpdatePrice\" />
+    <Folder Include="Features\MediatR\Commands\WholesaleAdvert\Update\" />
+    <Folder Include="Features\MediatR\Queries\WholesaleAdverts\GetWholesaleAdvertDetailsByProductId\" />
+    <Folder Include="Features\MediatR\Queries\WholesaleAdverts\GetWholesaleAdvertDetailsByMinimumBuyingAmount\" />
     <Folder Include="Interfaces\Repositories\Payment\" />
     <Folder Include="Rules\ValidationRules\FluentValidation\" />
   </ItemGroup>

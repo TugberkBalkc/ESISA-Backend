@@ -66,6 +66,11 @@ namespace ESISA.Core.Application.Constants.Response
         public const String ProductAddedToSwappableList = "Ürün Takaslanabilirler Listesine Eklendi.";
         public const String ProductDeletedInSwappableList = "Ürün Takaslanabilirler Listesinden Kaldırıldı.";
 
+        public const String WholesaleAdvertCreated = "Toptan İlan Oluşturuldu.";
+        public const String WholesaleAdvertDeleted = "Toptan İlan Silindi.";
+        public const String WholesaleAdvertUpdated = "Toptan İlan Güncellendi.";
+        public const String WholesaleAdvertsListed = "Toptan İlanlar Listelendi.";
+
         public const String ProductCreated = "Ürün Başarıyla Oluşturuldu.";
         public const String ProductDeleted = "Ürün Başarıyla Silindi.";
         public const String ProductsDeleted = "Ürünler Başarıyla Silindi.";
@@ -113,7 +118,12 @@ namespace ESISA.Core.Application.Constants.Response
         public const String DemandsDeleted = "Talepler Başarıyla Silindi.";
         public const String OtherUsersSentDemand = "Farklı Kullanıcılar Tarafından Bildirim Sağlanmıştır.";
 
+        public const String AddressCreated = "Adres Başarıyla Eklendi";
+        public const String AddressDeleted = "Adres Başarıyla Silindi";
         public const String AddressesListed = "Adresler Başarıyla Listelendi.";
+
+        public const String IndividualCustomerAddressCreated = "Adres Başarıyla Eklendi.";
+        public const String IndividualCustomerAddressDeleted = "Adres Başarıyla Silindi.";
 
         public const String Registered = "Başarıyla Kayıt Oldunuz";
         public const String LoggedIn = "Başarıyla Giriş Yaptınız.";

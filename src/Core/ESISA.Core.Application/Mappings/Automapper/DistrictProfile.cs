@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using ESISA.Core.Application.Dtos.Adress;
+using ESISA.Core.Application.Dtos.Adresses;
 using ESISA.Core.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -18,10 +18,6 @@ namespace ESISA.Core.Application.Mappings.Automapper
                 .ForMember(e => e.Id, e => e.MapFrom(e => e.Id))
                 .ForMember(e => e.Name, e => e.MapFrom(e => e.Name))
                 .ForMember(e => e.CityId, e => e.MapFrom(e => e.CityId));
-                   
-
-
-            
         }
 
     }

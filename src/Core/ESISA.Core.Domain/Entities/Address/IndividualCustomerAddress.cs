@@ -12,7 +12,7 @@ namespace ESISA.Core.Domain.Entities
         public Guid IndividualCustomerId { get; set; }
         public Guid AddressId { get; set; }
 
-        public bool IsResidence { get; set; }
+        public bool IsResidence { get; set; } = true;
 
 
         public virtual IndividualCustomer IndividualCustomer { get; set; }

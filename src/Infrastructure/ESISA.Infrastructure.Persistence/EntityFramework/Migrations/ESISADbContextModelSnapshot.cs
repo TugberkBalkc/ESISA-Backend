@@ -2465,6 +2465,9 @@ namespace ESISA.Infrastructure.Persistence.EntityFramework.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("PurchaseQuantityDiscountId");
 
+                    b.Property<int>("StockAmount")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AdvertId")

@@ -1,6 +1,6 @@
-﻿//using ESISA.Core.Application.Features.MediatR.Queries.Addresses.GetAllIndividualCustomerAdressesByIndividualCustomerId;
-using ESISA.Core.Application.Features.MediatR.Queries.Addresses.GetAllIndCAddressesByIndCId;
-using ESISA.Core.Application.Features.MediatR.Queries.Addresses.GetIndCAddressesDetailsByIndCId;
+﻿using ESISA.Core.Application.Features.MediatR.Commands.IndividualStarter.AddAddress;
+using ESISA.Core.Application.Features.MediatR.Queries.IndividualStarters.GetAllIndividualStartersAddressesDetails;
+using ESISA.Core.Application.Features.MediatR.Queries.IndividualStarters.GetAllIndividualStartersAddressesDetails;
 using ESISA.WebAPI.Controllers.Common;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -14,22 +14,21 @@ namespace ESISA.WebAPI.Controllers
         public IndividualCustomerAddressController(IHttpContextAccessor httpContextAccessor, IMediator mediator) : base(httpContextAccessor, mediator)
         {
         }
-        [HttpGet("GetAllIndividualCustomerAdressByIndividualCustomerId")]
-        public async Task<IActionResult> GetAllIndividualCustomerAdressByIndividualCustomerIdAsync([FromQuery]
-        GetAllIndCAddressesByIndCIdQueryRequest getAllIndCAddressesByIndCIdQueryRequest)
-        {
-            var response = await base._mediator.Send(getAllIndCAddressesByIndCIdQueryRequest);
 
-            return this.ActionResultInstanceByResponse(response.Response);
+        [HttpPost("AddAddressToIndividualCustomer")]
+        public async Task<IActionResult> AddAddressToIndividualCustomerAsync([FromBody] AddAddressToIndividualCustomerCommandRequest addAddressToIndividualCustomerCommandRequest)
+        {
+            var response = await _mediator.Send(addAddressToIndividualCustomerCommandRequest);
+
+            return base.ActionResultInstanceByResponse(response.Response);
         }
 
-        [HttpGet("GetIndividualCustomerAdressDetailsByIndividualCustomerId")]
-        public async Task<IActionResult> GetIndividualCustomerAdressDetailsByIndividualCustomerIdAsync([FromQuery]
-        GetIndCAddressesDetailsByIndCIdQueryRequest getIndCAddressesDetailsByIndCIdQueryRequest)
+        [HttpGet("GetIndividualStartersAddressesDetails")]
+        public async Task<IActionResult> GetIndividualStartersAddressesDetailsAsync([FromQuery] GetAllIndividualStartersAddressesDetailsQueryRequest getAllIndividualStartersAddressesDetailsQueryRequest)
         {
-            var response = await base._mediator.Send(getIndCAddressesDetailsByIndCIdQueryRequest);
+            var response = await _mediator.Send(getAllIndividualStartersAddressesDetailsQueryRequest);
 
-            return this.ActionResultInstanceByResponse(response.Response);
+            return base.ActionResultInstanceByResponse(response.Response);
         }
     }
 }

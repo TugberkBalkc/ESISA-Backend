@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESISA.Core.Application.Dtos.Adress
+namespace ESISA.Core.Application.Dtos.Adresses
 {
     public class IndividualCustomerAddressDetailsDto
     {
@@ -27,7 +27,7 @@ namespace ESISA.Core.Application.Dtos.Adress
 
         public bool IsResidence { get; set; }
 
-        public AdressDetailsDto AdressDetailsDto { get; set; }
+        public AddressDetailsDto AdressDetailsDto { get; set; }
 
      //   public IndividualCustomerDto IndividualCustomerDto { get; set; }
 
@@ -35,7 +35,7 @@ namespace ESISA.Core.Application.Dtos.Adress
         {
 
         }
-        public IndividualCustomerAddressDetailsDto(Guid individualCustomerId, AdressDetailsDto adressDetailsDto, 
+        public IndividualCustomerAddressDetailsDto(Guid individualCustomerId, AddressDetailsDto adressDetailsDto, 
             bool isResidence, Guid addressId,/* IndividualCustomerDto indvidualCustomerDto,*/ Guid id)
         {
             Id = id;

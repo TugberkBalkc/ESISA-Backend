@@ -1,4 +1,4 @@
-﻿using ESISA.Core.Application.Dtos.Adress;
+﻿using ESISA.Core.Application.Dtos.Adresses;
 using ESISA.Core.Application.Features.MediatR.Queries.Addresses.GetAllDistricts;
 using ESISA.Core.Application.Features.MediatR.Requests.Common;
 using ESISA.Core.Application.Utilities.Paging;

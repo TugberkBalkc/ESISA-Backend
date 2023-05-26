@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using ESISA.Core.Application.Dtos.Adress;
+using ESISA.Core.Application.Dtos.Adresses;
 using ESISA.Core.Domain.Entities;
 using System;
 using System.Collections.Generic;

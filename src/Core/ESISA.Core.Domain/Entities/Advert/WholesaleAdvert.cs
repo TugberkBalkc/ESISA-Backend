@@ -15,6 +15,8 @@ namespace ESISA.Core.Domain.Entities
         public Guid ProductId { get; set; }
         public Guid PurchaseQuantityDiscountId { get; set; } = Guid.Parse(DefaultDiscountValues.DefaultPurchaseQuantityDiscountId);
 
+        public int StockAmount { get; set; }
+
         public int MinimumPurchaseAmount { get; set; }
         public int MaximumPurchaseAmount { get; set; }
         public decimal PricePerUnit { get; set; }

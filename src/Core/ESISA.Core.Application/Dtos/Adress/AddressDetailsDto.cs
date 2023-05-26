@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESISA.Core.Application.Dtos.Adress
+namespace ESISA.Core.Application.Dtos.Adresses
 {
-    public class AdressDetailsDto
+    public class AddressDetailsDto
     {
         public Guid Id { get; set; }
         public Guid CountryId { get; set; }
@@ -18,14 +18,14 @@ namespace ESISA.Core.Application.Dtos.Adress
         public string Details { get; set; }
         public String PostalCode { get; set; }
 
-        public AdressDetailsDto()
+        public AddressDetailsDto()
         {
 
 
         }
       
 
-        public AdressDetailsDto(Guid id, Guid countryId, string countryName, Guid cityId, string cityName, Guid districtId, string districtName, string details, string postalCode)
+        public AddressDetailsDto(Guid id, Guid countryId, string countryName, Guid cityId, string cityName, Guid districtId, string districtName, string details, string postalCode)
         {
             Id = id;
             CountryId = countryId;

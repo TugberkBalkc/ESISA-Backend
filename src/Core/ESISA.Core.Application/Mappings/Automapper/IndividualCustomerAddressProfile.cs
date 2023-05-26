@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
-using ESISA.Core.Application.Dtos.Adress;
+using ESISA.Core.Application.Dtos.Adresses;
 using ESISA.Core.Application.Dtos.Product;
+using ESISA.Core.Application.Features.MediatR.Commands.IndividualStarter.AddAddress;
 using ESISA.Core.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -13,16 +14,16 @@ namespace ESISA.Core.Application.Mappings.Automapper
     public class IndividualCustomerAddressProfile : Profile
     {
         public IndividualCustomerAddressProfile()
-        {
-            //this.CreateMap<IndividualCustomerAddress, IndividualCustomerAddressDto>()
-            //    .ForMember(e => e.Id, e => e.MapFrom(e => e.Id))
-            //   .ForMember(e => e.AddressId, e => e.MapFrom(e => e.AddressId))
-            //   .ForMember(e => e.IndividualCustomerId, e => e.MapFrom(e => e.IndividualCustomerId))
-            //   .ForMember(e => e.IsResidence, e => e.MapFrom(e => e.IsResidence));
+        {   
+            this.CreateMap<IndividualCustomerAddress, IndividualCustomerAddressDto>()
+                .ForMember(e => e.Id, e => e.MapFrom(e => e.Id))
+               .ForMember(e => e.AddressId, e => e.MapFrom(e => e.AddressId))
+               .ForMember(e => e.IndividualCustomerId, e => e.MapFrom(e => e.IndividualCustomerId))
+               .ForMember(e => e.IsResidence, e => e.MapFrom(e => e.IsResidence));
 
             //this.CreateMap<IndividualCustomerAddress, IndividualCustomerAddressDetailsDto>()
             // .ForMember(e => e.Id, e => e.MapFrom(e => e.Id))
-            // .ForMember(e => e.AddressId, e => e.MapFrom(e => e.AddressId))      
+            // .ForMember(e => e.AddressId, e => e.MapFrom(e => e.AddressId))
             // .ForMember(e => e.IndividualCustomerId, e => e.MapFrom(e => e.IndividualCustomerId))
             // .ForMember(e => e.IndividualCustomerFirstName, e => e.MapFrom(e => e.IndividualCustomer.FirstName))
             // .ForMember(e => e.IndividualCustomerLastName, e => e.MapFrom(e => e.IndividualCustomer.LastName))

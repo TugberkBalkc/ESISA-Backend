@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using ESISA.Core.Application.Constants.Response;
-using ESISA.Core.Application.Dtos.Adress;
+using ESISA.Core.Application.Dtos.Adresses;
 using ESISA.Core.Application.Features.MediatR.Queries.Addresses.GetAllCities;
 using ESISA.Core.Application.Interfaces.Repositories;
 using ESISA.Core.Application.Rules.BusinessRules;
@@ -20,9 +20,9 @@ namespace ESISA.Core.Application.Features.MediatR.Queries.Addresses.GetAllAdress
     {
         private readonly   IAddressQueryRepository _addressQueryRepository;
         private readonly IMapper _mapper;
-        private readonly AdressBusinessRules _adressBusinessRules;
+        private readonly AddressBusinessRules _adressBusinessRules;
 
-        public GetAllAdressesQueryHandler(IAddressQueryRepository addressQueryRepository, IMapper mapper, AdressBusinessRules adressBusinessRules)
+        public GetAllAdressesQueryHandler(IAddressQueryRepository addressQueryRepository, IMapper mapper, AddressBusinessRules adressBusinessRules)
         {
            _addressQueryRepository=addressQueryRepository;
             _mapper=mapper; 
@@ -31,13 +31,13 @@ namespace ESISA.Core.Application.Features.MediatR.Queries.Addresses.GetAllAdress
 
         public async Task<GetAllAdressesQueryResponse> Handle(GetAllAdressesQueryRequest request, CancellationToken cancellationToken)
         {
-            var adressDtos = _addressQueryRepository.GetAll().Select(e => _mapper.Map<AdressDto>(e));
+            var adressDtos = _addressQueryRepository.GetAll().Select(e => _mapper.Map<AddressDto>(e));
 
             await _adressBusinessRules.NullCheck(adressDtos);
 
-            var paginate = adressDtos.ToPaginate<AdressDto>(request.PageIndex, request.PageSize);
+            var paginate = adressDtos.ToPaginate<AddressDto>(request.PageIndex, request.PageSize);
 
-            return new GetAllAdressesQueryResponse(new SuccessfulContentResponse<IPaginate<AdressDto>>(paginate, ResponseTitles.Success, "", System.Net.HttpStatusCode.OK));
+            return new GetAllAdressesQueryResponse(new SuccessfulContentResponse<IPaginate<AddressDto>>(paginate, ResponseTitles.Success, "", System.Net.HttpStatusCode.OK));
         }
     
     }

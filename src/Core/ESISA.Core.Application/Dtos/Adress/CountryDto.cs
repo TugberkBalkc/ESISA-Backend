@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESISA.Core.Application.Dtos.Adress
+namespace ESISA.Core.Application.Dtos.Adresses
 {
     public class CountryDto
     {
